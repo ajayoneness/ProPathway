@@ -1,0 +1,318 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codeAj | Free College Major Projects | Affordable Software Development Services at CodeAjay</title>
+
+    <meta name="description" content="Get a wide range of free college major projects and affordable software development services from CodeAjay. Get the best of both worlds today!" />
+    <meta name="keywords" content="college major projects, free college major projects, affordable software development services, web development, mobile development, machine learning, software development,  web design, CodeAjay, codeaj" />
+    
+
+
+
+
+
+    <link rel="icon" type="image/png" href="/fav.png" />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+       
+        body{
+            background:url('{% static "background.jpg" %}');
+            height : 100vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+
+        .levels{
+            padding-top: 50px;
+        }
+
+        .card1{
+            width: 250px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 20px;
+            
+        }
+
+        .card1  img {
+            scale:  2.3;
+            transition: ease-in-out 0.4s;
+        }
+
+        .card1:hover img{
+            scale:  2.4;
+        }
+
+
+        .bac{
+            background-color: rgba(0, 0, 0, 0.459);
+            position: absolute;
+            width: 250px;
+            height: 300px;
+            z-index: 1;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            border-radius: 20px;    
+        }
+
+        .lock{
+            width: 70px;
+            z-index: 99;
+            margin: 0;
+            position: relative;
+            left: 90px;
+            top:-80px;
+        }
+
+        .numlevel{
+            z-index: 9999;
+            position: relative;
+        }
+
+        .levels h5{
+            color:white;
+        }
+
+        .navv{
+
+            width: 100%;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.258);
+
+        }
+        .navv h5{
+            color:white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <section class="navv">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 col-md-6">
+                    <h4 class="pt-4">DASHBOARD</h4>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 col-md-6 mt-4">
+                    <a href="{% url 'logout' %}"><p style="text-right"><b>LOGOUT</b></p></a>
+                </div>
+                
+                <div class="col-sm-6 col-lg-3 col-md-6 mt-4"></div>
+                
+                <div class="col-sm-6 col-lg-3 col-md-6 mt-3" style="display:flex; ">
+                    <img src="{{user.profile_pic.url}}"  width="50px" height="50px">
+                    <p class="p-2 mt-1" style="font-weight:500">
+                        {{user.name}}
+                    </p>
+                </div>
+                
+                
+            </div>
+
+
+
+
+        </div>
+        
+    </section>
+
+    <section class="levels">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-sm-12 col-lg-3 col-md-6">
+                    <a href="{% url 'level1' %}">
+                        <div class="card1" id="level1">
+                            <!-- <div class="bac"></div> -->
+<!--                            <img src="{% static 'lbg.avif' %}" alt="" class=" img-fluid">-->
+                            <img src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
+                            <!-- <img  src="/lock.png" alt="" class="lock">                         -->
+                        </div>
+                        <div class="text-center mt-2">
+                            <h5>Level 1</h5>
+                        </div>
+                    </a>
+
+                </div>
+
+
+<!--                Level 2    -->
+
+                {% if user.level_student > 1 %}
+                <div class="col-sm-12 col-lg-3 col-md-6">
+                    <a href="{% url 'level2' %}">
+                    <div class="card1" id="level2" >
+<!--                        <div class="bac"></div>-->
+                        <img src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">
+<!--                        <img  src="{% static 'lock.png' %}" alt="" class="lock">-->
+                    </div>
+                    <div class="text-center mt-2">
+                        <h5>Level 2</h5>
+                    </div>
+                    </a>
+                </div>
+
+                {% else %}
+
+
+                <div class="col-sm-12 col-lg-3 col-md-6">
+                    <div class="card1" id="level2" >
+                        <div class="bac"></div>
+                        <img src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">
+                        <img  src="{% static 'lock.png' %}" alt="" class="lock">
+                    </div>
+                    <div class="text-center mt-2">
+                        <h5>Level 2</h5>
+                    </div>
+                </div>
+
+                {% endif %}
+
+
+
+
+<!--                Level 3 -->
+
+                {% if user.level_student > 2 %}
+                <div class="col-sm-12 col-lg-3 col-md-6">
+                    <a href ="{% url 'level3' %}">
+                    <div class="card1" id="level3" >
+<!--                        <div class="bac"></div>-->
+                        <img src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">
+<!--                        <img  src="{% static 'lock.png' %}" alt="" class="lock">-->
+                    </div>
+                    <div class="text-center mt-2">
+                        <h5>Level 3</h5>
+                    </div>
+                    </a>
+                </div>
+                {% else %}
+
+                <div class="col-sm-12 col-lg-3 col-md-6">
+                    <div class="card1" id="level3" >
+                        <div class="bac"></div>
+                        <img src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">
+                        <img  src="{% static 'lock.png' %}" alt="" class="lock">
+                    </div>
+                    <div class="text-center mt-2">
+                        <h5>Level 3</h5>
+                    </div>
+                </div>
+
+                {% endif %}
+
+
+
+
+
+                {% if user.level_student == 5 %}
+                    <div class="col-sm-12 col-lg-3 col-md-6">
+                        <a href="{% url 'certification' %}">
+
+                             <div class="card1" id="level4" >
+<!--                            <div class="bac"></div>-->
+                            <img src="{% static 'lbg.avif' %}" alt="" class=" img-fluid">
+<!--                            <img  src="{% static 'lock.png' %}" alt="" class="lock">-->
+                            </div>
+                            <div class="text-center mt-2">
+                                <h5>Final Level</h5>
+                            </div>
+
+
+
+                        </a>
+
+                    </div>
+
+                {% else %}
+
+                    <div class="col-sm-12 col-lg-3 col-md-6">
+                        <div class="card1" id="level4" >
+                            <div class="bac"></div>
+                            <img src="{% static 'lbg.avif' %}" alt="" class=" img-fluid">
+                            <img  src="{% static 'lock.png' %}" alt="" class="lock">
+                        </div>
+                        <div class="text-center mt-2">
+                            <h5>Final Level</h5>
+                        </div>
+                    </div>
+
+                {% endif %}
+
+
+
+
+
+
+
+
+                <div class="col-sm-12 col-lg-12 col-md-12">
+
+                    {% if user.level_student == 4 %}
+                        <div class="card danger p-3" style="background-color:rgba(255,0,0,0.3); color:white">
+
+                            You are successfully complete the level 3,
+                            Now it will take 24 hour to Verify your Solution after that only you can get the Certificate.
+
+                        </div>
+                    {% endif %}
+
+
+
+                    {% if user.level_student == 5 %}
+                        <div class="card danger p-3" style="background-color:rgba(0,255,0,0.3); color:white">
+
+                            Now You are Successfully Verified !! Now you can get your certificate !!
+
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+
+
+
+                </div>
+
+            </div>
+    
+
+        </div>
+        
+        
+
+
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $("#level1").click(function(){
+
+        });
+
+
+
+    </script>
+
+</body>
+</html>
+
+
+
+     

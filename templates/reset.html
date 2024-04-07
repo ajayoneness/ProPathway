@@ -1,0 +1,79 @@
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+    .main-box{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 45%;
+        height: 70%;
+        background-color: steelblue;
+        padding: 100px;
+        
+    }
+</style>
+
+<br><br>
+
+
+
+
+
+<h2>Reset Password</h2>
+    <form id="resetPasswordForm"  class="main-box">
+        <label for="resetPassword">New Password:</label>
+        <input type="password" id="resetPassword" required><br><br>
+        <label for="resetConfirmPassword">Confirm New Password:</label>
+        <input type="password" id="resetConfirmPassword" required><br><br>
+        <input type="submit" value="Reset Password">
+    </form>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+ $(document).ready(function() {
+
+
+    $("#resetPasswordForm").submit(function(event) {
+        event.preventDefault();
+
+        var resetPasswordData = {
+            "password": $("#resetPassword").val(),
+            "password2": $("#resetConfirmPassword").val()
+        };
+
+        // Replace 'NQ' and 'b25g11-b9b46ea0cf2f1ec6d8f0cd15a1706036' with actual uid and token
+        var uid = "{{uid}}";
+        var token = "{{token}}";
+
+        $.ajax({
+            url: `http://127.0.0.1:8000/api/user/reset-password/${uid}/${token}/`,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(resetPasswordData),
+            success: function(response) {
+                console.log(response);
+                alert(response.msg);
+            },
+            error: function(xhr, errmsg, err) {
+                console.log(xhr.status + ": " + xhr.responseText);
+                alert("Failed to reset password.");
+            }
+        });
+    });
+
+
+   
+
+ });
+
+
+
+</script>

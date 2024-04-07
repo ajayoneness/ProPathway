@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codeAj | Free College Major Projects | Affordable Software Development Services at CodeAjay</title>
+
+    <meta name="description" content="Get a wide range of free college major projects and affordable software development services from CodeAjay. Get the best of both worlds today!" />
+    <meta name="keywords" content="college major projects, free college major projects, affordable software development services, web development, mobile development, machine learning, software development,  web design, CodeAjay, codeaj" />
+    
+
+
+
+
+
+    <link rel="icon" type="image/png" href="/fav.png" />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+
+        body{
+            background:url('{% static "background.jpg" %}');
+            height : 100vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+
+
+        .headbanner{
+        
+            
+        }
+
+        .head{
+            position: absolute;
+            color :white;
+            text-align: center;
+            width: 100%;
+            top : 10px;
+        }
+
+        .levelone {
+            width: 100%;
+            height: 10px;
+            background-color: rgb(0, 247, 0);
+            clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+            animation: revealAnimation 3s ease-out infinite;
+          }
+
+          .point{
+            width : 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgb(24, 110, 224);
+            position: relative;
+            left : 99%;
+            bottom:15px;
+            top : -20px;
+          }
+          
+          @keyframes revealAnimation {
+            0% {
+                clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+            }
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+          }
+
+
+         
+
+
+
+
+
+
+        .leveltwo{
+            width: 100%;
+            height: 10px;
+            background-color: rgb(206, 206, 206);
+        }
+
+        .levelthree{
+            width: 100%;
+            height: 10px;
+            background-color: rgb(206, 206, 206);
+        }
+
+        .levelfour{
+            width: 100%;
+            height: 10px;
+            background-color: rgb(206, 206, 206);
+        }
+        
+
+    </style>
+</head>
+
+<body>
+
+    <section class="headbanner">
+        <div class="head">
+            <h1>{{user.assignment1.assignment_question}}</h1>
+            <p>Level 1</p>
+        
+        <div class="container">
+
+
+            <div class="level">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-lg-3" >
+                        <div class="levelone"></div>
+                        <div class="point"></div>
+                       
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3" >
+                        <div class="leveltwo"></div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3" >
+                        <div class="levelthree"></div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3" >
+                        <div class="levelfour"></div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <img src="{{user.assignment1.assignment_banner1.url}}" class="img-fluid" height="110%">
+<!--    <img src="{% static 'banner.jpg' %}" class="img-fluid" height="110%">-->
+    </section>
+
+
+    <section class="mt-3">
+        <div class="container">
+            <p>
+               {{user.assignment1.assignment_description}}
+            </p>
+
+
+            <div class="row">
+                <div class="col-sm-12 col-lg-6 col-md-12">
+
+                    <h4>Requirenments</h4>
+
+                    {{user.assignment1.assignment_requirements | safe}}
+
+<!--                    <ul>-->
+<!--                        <li>User Interface:</li>-->
+<!--                        <li>Shopping Cart:</li>-->
+<!--                        <li>Admin Interface:</li>-->
+<!--                        <li>Database:</li>-->
+<!--                        <li>Security:</li>-->
+<!--                        <li>Code Quality and Documentation:</li>-->
+<!--                        <li>Testing:</li>-->
+<!--                    </ul>-->
+
+                </div>
+                <div class="col-sm-12 col-lg-6 col-md-12">
+                    <form method="post">
+                        {% csrf_token %}
+                        <h4>Submit Your Project</h4>
+                        <input value="{{sdata.Assignment1_github_Link}}" type="text" name="git" class="mb-3 form-control" placeholder="Project Git Link" required>
+                        <input value="{{sdata.Assignment1_linkedin_link}}" type="text" name="linkedin" class="mb-3 form-control"  placeholder="Project video Linkedin Link" required>
+                        <button type="submit" class="btn btn-primary mt-3">Move to Next Level</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+            
+
+
+
+        </div>
+
+        
+
+    </section>
+
+
+
+
+</body>
+
+</html>
+
+
+
+     
