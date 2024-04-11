@@ -5,6 +5,21 @@ from django.contrib import messages
 from .models import Student,Domain,Assignment,AssignmentSubmit
 import razorpay
 from ProPathway.settings import RAZORPAY_KEY_ID,RAZORPAY_KEY_SECRET
+from django.core.mail import send_mail
+import random
+
+
+
+
+
+
+def emailTemplate(subject,message,html_message,from_email,recipient_list):
+    subject = subject
+    message = message
+    html_message = html_message
+    from_email = from_email
+    recipient_list = recipient_list
+    send_mail(subject, message, from_email, recipient_list, html_message=html_message)
 
 
 
@@ -57,7 +72,8 @@ def register(request):
             login(request, user)
 
             if user.phone_no is None:
-                return redirect("profileupdate")
+                request.session['otp'] = random.randint(1000, 9999)
+                return redirect("otp")
 
             if user.profile_pic is None:
                 return redirect('profileimage')
@@ -68,6 +84,10 @@ def register(request):
 
             #18Feb
 
+
+            #Email
+
+            
 
 
 
@@ -129,6 +149,31 @@ def ProfileImage(request):
         request.user.profile_pic = pimage
         request.user.level_student = 1
         request.user.save()
+
+        subject = f'Thankyou For Registation'
+        message = 'Thankyou For Becoming codeAj Family'
+        html_message = f'''
+                                            <div style="text-align:center;" >
+                                                <img src ="https://www.codeajay.in/static/codeaj1.png" width=100px >
+                                                <h2>codeAj</h2>
+                                                <p>Internship</p>
+                                            </div>
+                                            <br><br>
+
+                                            <h1 style="text-align:center;">
+                                            Congratulations!
+                                            </h1>
+                                        
+                                            <p style="text-align:center;"> You are now successfully registered as a {request.user.domain} for our Internship Program. Welcome to the CodeAj family! Thank you for joining us on this exciting journey.</p>
+                                            <br><br>
+                                            '''
+
+        from_email = 'pythoncoding4u@gmail.com'
+        recipient_list = ['pythoncoding4u@gmail.com',f'{request.user.email}']
+        emailTemplate(subject,message,html_message,from_email,recipient_list)
+
+
+
         return redirect('dashboard')
 
     return render(request, 'profileimage.html')
@@ -162,9 +207,21 @@ def level(request):
 
 
 
+
+
+
+
 @login_required(login_url='/')
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    
+    if request.user.phone_no is None:
+        return redirect("profileupdate")
+
+    elif request.user.profile_pic is None:
+        return redirect('profileimage')
+    else:
+        return render(request, 'dashboard.html')
+
 
 
 
@@ -183,11 +240,12 @@ def level_one(request):
             update_assignemt_one.Assignment1_github_Link = git
             update_assignemt_one.Assignment1_linkedin_link = linkedin
             update_assignemt_one.save()
-
-        request.user.level_student = 2
+        if request.user.level_student !=5:  
+            request.user.level_student = 2
         request.user.save()
 
-        return redirect('level2')
+        return redirect('dashboard')
+
     try:
         submitted_data = AssignmentSubmit.objects.get(student=student)
         return render(request, 'level1.html',{"sdata": submitted_data})
@@ -209,11 +267,12 @@ def level_two(request):
         update_assignemt_two.Assignment2_github_Link = git
         update_assignemt_two.Assignment2_linkedin_link = linkedin
         update_assignemt_two.save()
-
-        request.user.level_student = 3
+        if request.user.level_student !=5:
+            request.user.level_student = 3
         request.user.save()
 
-        return redirect('level3')
+        return redirect('dashboard')
+
 
     try:
         submitted_data = AssignmentSubmit.objects.get(student=student)
@@ -235,8 +294,8 @@ def level_three(request):
         update_assignemt_three.Assignment3_github_Link = git
         update_assignemt_three.Assignment3_linkedin_link = linkedin
         update_assignemt_three.save()
-
-        request.user.level_student = 4
+        if request.user.level_student !=5:
+            request.user.level_student = 4
         request.user.save()
 
         return redirect('dashboard')
@@ -263,8 +322,39 @@ def Pay(request):
     data = {"amount": 99000, "currency": "INR", "receipt": "PythonCoding4u"}
     payment = client.order.create(data=data)
     print(payment)
-
     return render(request, 'certificate.html', payment)
+
+
+
+
+
+@login_required(login_url='/')
+def Profile(request):
+    return render(request,"profile.html")
+
+
+
+@login_required(login_url='/')
+def OTP(request):
+    print(request.session.get('otp'))
+    emailTemplate("OTP | codeAj Internship","Your OTP",f"<h1 style='text-align:center; background-color:black; color:white;  padding-top:200px; padding-bottom:200px; '>{request.session.get('otp')}</h1>","codeaj4u@gmail.com",[f'{request.user.email}'])
+    if request.method == "POST":
+        otp = request.POST['otp']
+        generated_otp = request.session.get('otp')
+
+
+        print(f"otp : {str(otp)}    generated otp: {str(generated_otp)}")
+
+        if str(otp) == str(generated_otp):
+            return redirect('profileupdate')
+        else:
+            return render(request,"otp.html",{"message":"Incorrect OTP !!"})
+
+
+
+
+    return render(request,"otp.html",{"message":""})
+
 
 
 

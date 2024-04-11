@@ -14,6 +14,8 @@ urlpatterns = [
     path('profile-update/', views.ProfileUpdate, name='profileupdate'),
     path('profile-image/', views.ProfileImage, name='profileimage'),
     path('pay/',views.Pay,name="rezpay"),
+    path('profile/',views.Profile,name="profile"),
+    path('otp/',views.OTP,name="otp"),
 
 ]
 

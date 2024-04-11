@@ -22,6 +22,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
+
+a{
+        color :rgb(0, 0, 0);
+        font-weight : 700;
+        text-decoration: none;
+    }
+
+    a:hover{
+
+        color:rgb(37, 37, 37);
+        text-decoration: none;
+    }
        
         body{
             background:url('{% static "background.jpg" %}');
@@ -112,10 +124,18 @@
                 <div class="col-sm-6 col-lg-3 col-md-6 mt-4"></div>
                 
                 <div class="col-sm-6 col-lg-3 col-md-6 mt-3" style="display:flex; ">
-                    <img src="{{user.profile_pic.url}}"  width="50px" height="50px">
-                    <p class="p-2 mt-1" style="font-weight:500">
-                        {{user.name}}
-                    </p>
+                    
+                        <a href="{% url 'profile' %}">
+                            <img src="{{user.profile_pic.url}}"  width="50px" height="50px">
+                        </a>
+
+                        <a href="{% url 'profile' %}">
+                        <p class="p-2 mt-1" style="font-weight:500">
+                            {{user.name}}
+                        </p>
+
+                    </a>
+                    
                 </div>
                 
                 

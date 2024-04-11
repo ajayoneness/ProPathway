@@ -1,6 +1,10 @@
 
 import os
 from pathlib import Path
+import environ
+
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,6 +15,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'accounts.Student'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pythoncoding4u@gmail.com'
+EMAIL_HOST_PASSWORD = 'boxrxnifrgcjpsen'
+DEFAULT_FROM_EMAIL = 'pythoncoding4u@gmail.com'
 
 
 
