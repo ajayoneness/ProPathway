@@ -1,111 +1,98 @@
+{% extends 'login.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Profile Update</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
 
 
-    <style>
-
-    a{
-        color :white;
-        font-weight : 700;
-    }
-
-    a:hover{
-
-        color:white;
-    }
-
-        .main-box{
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 45%;
-            height: auto;
-            background-color: steelblue;
-            padding:50px;
-            
-        }
-    
-    
-        input,select{
-            width: 100%;
-            height: 40px;
-        }
-    
-        button{
-            
-            height:40px;
-            border:none;
-            color:black;
-        }
-    </style>
 
 
+{% block content %}
 
-</head>
-<body>
+<div class="section">
 
-    <div class="main-box text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                
+            </div>
 
-        <h2 style="color: aliceblue;">Update Profile</h2>
-<form method="post">
 
-    {% csrf_token %}
-   
-    <input type="text" name="contactno" class="mb-3" id="contact" placeholder="Enter contact"><br>
+            <div class="col-sm-12 col-md-12 col-lg-4 p-4 text-center box">
+
+                <h1 class = "head-text mt-2">Update Profile</h1>
+
+                <div class="text-center">
+                    <img class="logo" src="{% static 'hacker.gif' %}" alt="Login Icon">
+                </div>
+                
+
+
+                <form id="loginForm" method="post">
+                    {% csrf_token %}
+
+
+                    <input type="text" name="contactno" class="mb-3 input-box" id="contact" placeholder="Enter contact" required><br>
 
    
-    <input type="text" name="whatsappno" class="mb-3" id="whatsapp" placeholder="Enter WhatsApp"><br>
+                    <input type="text" name="whatsappno" class="mb-3 input-box" id="whatsapp" placeholder="Enter WhatsApp" required><br>
+                
+                
+                    <input type="text" name="collage" class="mb-3 input-box" id="collage" placeholder="Enter collage" required><br>
+                   
+                    <select class="input-box" id="domain" name="domain" required>
+                
+                        <option value="" selected disabled>Select a domain</option>
+                
+                        {% for i in domain %}
+                        <option value="{{i.domain_name}}">{{i.domain_name}}</option>
+                       {% endfor %}
+                
+                    </select> <br>
+                
 
 
-    <input type="text" name="collage" class="mb-3" id="collage" placeholder="Enter collage"><br>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="error-message">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                    
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="mb-3 submit-button" >
+                            Update Profile
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    
+                    <p><a style="text-decoration: none; color:rgb(219, 86, 63);" href="{% url 'profileimage' %}">Skip</a> The Process</p>
+                    
+                   
+
+                  
+                </form>
 
 
-    <!-- <input type="text" class="mb-3" id="domain" placeholder="Enter domain"><br> -->
-   
-    <select class="mb-3" id="domain" name="domain">
+                
 
-        <option value="" selected disabled>Select a domain</option>
+            </div>
 
-        {% for i in domain %}
-        <option value="{{i.domain_name}}">{{i.domain_name}}</option>
-       {% endfor %}
-
-    </select> <br>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                
+            </div>
 
 
-    <input id="updateProfileBtn" value="Update Profile" type="submit">
-
-    <br>
-            <a href="{% url 'profileimage' %}" > SKIP </a>
-</form>
-
-
+        </div>
     </div>
 
 
 
+</div>
 
 
 
-    
-
-    <script>
-        $(document).ready(function() {
 
 
-        });
-    </script>
-
-</body>
-</html>
+{% endblock %}

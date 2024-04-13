@@ -8,72 +8,102 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap" rel="stylesheet">
 
-        .logregform{
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+<style>
+
+    
+       
+
+
+        p{
+            color: #545454;
+            font-size: 15px;
+            font-family: "Platypi", serif;
+            font-optical-sizing: auto;
+       
+
+        }
+        
+
+        .box{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            border-radius: 10px;
+            height :95vh;
+            margin: 10px;
+
+
+           
+ 
+  
+        }
+
+        .input-box{
+            width : 100%;
+            height :35px;
+            border : 2px solid #797979;
+            font-family: "M PLUS 1 Code", monospace;
 
         }
 
-        a{
-        text-decoration : none;
-        color : white;
-        }
-
-        .main-box{
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 45%;
-            height: 70%;
-            background-color: steelblue;
+        .head-text{
+            color : rgb(70, 70, 70);
+            padding :10px;
             
+            font-weight: 700;
         }
 
-        #login-btn{
-            background-color: transparent;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: ease-in-out 0.4s;
+        .logo{
+            width: 120px;
+            margin:10px;
         }
 
-        #reg-btn{
-            background-color: #3cbc96;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition:ease-out 0.5s;
+        .submit-button{
+            border : none;
+            border : 2px solid gray;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
 
 
-        .logregform input{
-            width: 100%;
-            height: 40px;
+        .submit-button i{
+            font-size: 13px;
+            margin-left: 1px;
+            transition: ease-in-out;
+            transition-duration: 0.3s;
         }
 
-        .logregform button{
-            width: 100px;
-            height: 40px;
-            border:none;
-        }
 
-        .logregform input:focus{
-            border: none;
-        }
-
-        #loginscreen img{
-            width: 100px;
-            height: 100px;
-            mix-blend-mode:color-burn;
-            
-        }
-
-        #registerscreen{
-            display: none;
+        .submit-button:hover i{
+            margin-left: 5px;
 
         }
+
+        .error-message{
+            text-align: left;
+            font-size: 12px;
+            color:rgb(226, 0, 0);
+        }
+
+
+        @media only screen and (max-width: 600px) {
+            .box{
+
+                height:100vh;
+                border-radius : 0px;
+                margin :0px;
+
+            }
+            }
+
+
+
+        
 
 
     </style>
@@ -84,66 +114,86 @@
 <body>
 
 
-    <div class="logregform">
+
+    {% block content %}
+
+
+    <div class="section">
 
         <div class="container">
-            <div class="main-box">
-                <div class="row">
-                    <div class="col-6 text-center p-3" id="login-btn">
-                        LOGIN
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    
+                </div>
+
+
+                <div class="col-sm-12 col-md-12 col-lg-4 p-4 text-center box">
+
+                    <h1 class = "head-text mt-4">LOGIN</h1>
+
+                    <div class="text-center">
+                        <img class="logo" src="{% static 'hacker.gif' %}" alt="Login Icon">
                     </div>
-    
-                    <div class="col-6 text-center p-3" id="reg-btn">
-                        <a href="{% url 'register' %}">REGISTER</a>
-                    </div>
+                    
 
-                    <!-- Login -->
 
-                    <div id="loginscreen" class="p-5">
-
-                        <div class="text-center">
-                            <img src="{% static 'login.jpg' %}">
-                        </div>
-
+                    <form id="loginForm" method="post">
+                        {% csrf_token %}
+                        <input type="email" name="email" class="mb-3 input-box" id="loginEmail" placeholder="Email" required>
                         
-                        <form id="loginForm" method="post">
-                            {% csrf_token %}
-                            <input type="email" name="email" class="mb-3" id="loginEmail" placeholder="Email" required>
-                            <input type="password" name="password1" class="mb-3" id="loginPassword" placeholder="Password" required>
-                            <div class="text-center">
-                                <button type="submit" class="mb-3" >Login</button>
-                            </div>
-                            
-                            <p style="color:white;">Forget Password <a style="text-decoration: none; color:rgb(219, 86, 63);" href="#">Here</a></p>
-
-                        </form>
-            
-            
-                    </div>
+                        <input type="password" name="password1" class="input-box" id="loginPassword" placeholder="Password" required>
 
 
-                    <div id="registerscreen" class="p-5">
-<!--                        <form id="registerForm">-->
-<!--               -->
-<!--                            <input type="email" class="mb-3" id="regEmail" placeholder="Email" required>-->
-<!--                            <input type="text" class="mb-3" id="regName" placeholder="Name" required>-->
-<!--                            <input type="password" class="mb-3" id="regPassword" placeholder="Password" required>-->
-<!--                            <input type="password" class="mb-3" id="regPassword2" placeholder="Re-password" required>-->
-<!--                            <div class="text-center">-->
-<!--                                <button type="submit" class="mb-3" >Register</button>-->
-<!--                            </div>-->
-<!--                            -->
-<!--                        </form>-->
-                    </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="error-message">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                        
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="mb-3 submit-button" >
+                                Login
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        
+                       
+
+                        <p>
+                            For New User <a style="text-decoration: none; color:rgb(0, 159, 50);" href="{% url 'register' %}">Regisster Now</a>
+                        </p>
+
+                        <p>Forget Password <a style="text-decoration: none; color:rgb(219, 86, 63);" href="#">Here</a></p>
+
+                    </form>
 
 
-
+                    
 
                 </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    
+                </div>
+
+
             </div>
         </div>
+
+
+
     </div>
-   
+
+
+
+
+
+
+
+{% endblock %}
+
+
     
 
 

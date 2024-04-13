@@ -1,142 +1,82 @@
+
+{% extends 'login.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intern| Login/Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <style>
-
-    a{
-        text-decoration : none;
-        color : white;
-        }
-
-        .logregform{
-
-        }
-
-        .main-box{
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 45%;
-            height: 70%;
-            background-color: steelblue;
-            
-        }
-
-        #login-btn{
-            background-color: transparent;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: ease-in-out 0.4s;
-        }
-
-        #reg-btn{
-            background-color: #3cbc96;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition:ease-out 0.5s;
-        }
-
-
-        .logregform input{
-            width: 100%;
-            height: 40px;
-        }
-
-        .logregform button{
-            width: 100px;
-            height: 40px;
-            border:none;
-        }
-
-        .logregform input:focus{
-            border: none;
-        }
-
-        #loginscreen img{
-            width: 100px;
-            height: 100px;
-            mix-blend-mode:color-burn;
-            
-        }
+{% block content %}
 
 
 
-    </style>
-</head>
 
 
 
-<body>
 
 
-    <div class="logregform">
+<div class="section">
 
-        <div class="container">
-            <div class="main-box">
-                <div class="row">
-                    <div class="col-6 text-center p-3" id="login-btn">
-                        <a href="{% url 'main' %}">LOGIN</a>
-                    </div>
-    
-                    <div class="col-6 text-center p-3" id="reg-btn">
-                        REGISTER
-                    </div>
-
-                    <!-- Login -->
-
-<!--                    <div id="loginscreen" class="p-5">-->
-
-<!--&lt;!&ndash;                        <div class="text-center">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="{% static 'login.jpg' %}">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-
-<!--                        -->
-<!--&lt;!&ndash;                        <form id="loginForm">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="email" class="mb-3" id="loginEmail" placeholder="Email" required>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="password" class="mb-3" id="loginPassword" placeholder="Password" required>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <div class="text-center">&ndash;&gt;-->
-<!--&lt;!&ndash;                                <button type="submit" class="mb-3" >Login</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                            &ndash;&gt;-->
-<!--&lt;!&ndash;                            <p style="color:white;">Forget Password <a style="text-decoration: none; color:rgb(219, 86, 63);" href="#">Here</a></p>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        </form>&ndash;&gt;-->
-<!--            -->
-<!--            -->
-<!--                    </div>-->
-
-                    <div id="registerscreen" class="p-5">
-                        
-                        <form id="registerForm" method="post">
-                            {% csrf_token %}
-                            <input type="email" name="email" class="mb-3" id="regEmail" placeholder="Email" required>
-                            <input type="text" name="name" class="mb-3" id="regName" placeholder="Name" required>
-                            <input type="password" name="password1" class="mb-3" id="regPassword" placeholder="Password" required>
-                            <input type="password" name="password2" class="mb-3" id="regPassword2" placeholder="Re-password" required>
-                            <div class="text-center">
-                                <button type="submit" class="mb-3" >Register</button>
-                            </div>
-                            
-                        </form>
-                    </div>
-
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                
             </div>
+
+
+            <div class="col-sm-12 col-md-12 col-lg-4 p-4 text-center box">
+
+                <h1 class = "head-text">REGISTER</h1>
+
+                <div class="text-center">
+                    <img class="logo" src="{% static 'hacker.gif' %}" alt="Login Icon">
+                </div>
+                
+
+
+                <form id="loginForm" method="post">
+                    {% csrf_token %}
+
+
+                        <input type="email" name="email" class="mb-3 input-box" id="regEmail" placeholder="Email" required>
+                        <input type="text" name="name" class="mb-3 input-box" id="regName" placeholder="Name" required>
+                        <input type="password" name="password1" class="mb-3 input-box" id="regPassword" placeholder="Password" required>
+                        <input type="password" name="password2" class="mb-3 input-box" id="regPassword2" placeholder="Re-password" required>
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="error-message">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="mb-3 submit-button" >
+                                Register
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+
+                    <p>
+                        If You are Already Registered <a style="text-decoration: none; color:rgb(0, 159, 50);" href="{% url 'main' %}">Login</a>
+                    </p>
+
+                   
+
+                </form>
+
+
+                
+
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                
+            </div>
+
+
         </div>
     </div>
-   
-    
+
+
+
+</div>
 
 
 
@@ -144,22 +84,6 @@
 
 
 
+{% endblock %}
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-    <script>
-
-        $(document).ready(function() {
-
-
-        })
-
-
-    </script>
-
-
-
-</body>
-</html>

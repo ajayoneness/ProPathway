@@ -1,82 +1,170 @@
+{% extends 'login.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Profile Update</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% block content %}
 
-    <style>
-    a{
-        color :white;
-        font-weight : 700;
+<style>
+    #preview {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+        display: none;
+    }
+    #profileImage {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        cursor: pointer;
+        border : 2px solid black;
     }
 
-    a:hover{
+    .logo{
+        width: 150px;
+    }
 
+
+    #edit{
+        font-size : 20px;
+        position: absolute;
+        top : 170px;
+        left : 54%;
+        border-radius: 50%;
+        padding:10px;
+        background-color: cadetblue;
         color:white;
+        transition: ease-in-out;
+        transition-duration: 0.3s;
     }
 
-        .main-box{
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 45%;
-            height: auto;
-            background-color: steelblue;
-            padding:50px;
-            
-        }
-    
-    
-        input{
-            width: 100%;
-            height: 40px;
-        }
-    
-        button{
-            
-            height:40px;
-            border:none;
-            color:black;
-        }
-    </style>
+
+    #edit:hover{
+        transform: rotate(10deg);
+    }
+</style>
 
 
 
-</head>
-<body>
+<div class="section">
 
-    <div class="main-box text-center">
-
-        <h2 style="color: aliceblue;">Profile Image</h2>
-
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="file" name="profileimage" id="profileImageInput" accept="image/*">
-            <input type="submit" value="Upload Profile Image">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                
+            </div>
 
 
-            <br><br>
-            <a href="{% url 'dashboard' %}" > SKIP </a>
+            <div class="col-sm-12 col-md-12 col-lg-4 p-4 text-center box">
 
-        </form>
-        
+                <h1 class = "head-text mt-5">Profile Image</h1>
 
+                <form id="loginForm" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                <div class="text-center">
+                    <!-- <img class="logo" src="{% static 'hacker.gif' %}" alt="Login Icon"> -->
+                
+
+                    {% if user.profile_pic %}
+                    <input  type="file" name="profileimage" value="{{user.profile_pic.url}}" id="fileInput" style="display: none;" required>
+                    {% else %}
+                    <input  type="file" name="profileimage"  id="fileInput" style="display: none;" required>
+                    {% endif %}
+
+
+
+                    {% if user.profile_pic %}
+                    <img class="logo" src="{{user.profile_pic.url}}" alt="Profile Image" id="profileImage">
+
+                    {% else %}
+                    <img class="logo" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg" alt="Profile Image" id="profileImage">
+                    {% endif %}
+
+                    <i id="edit" class="fa-solid fa-pen penn"></i>
+
+
+
+                </div>
+
+
+                
+
+                    <!-- <input type="file" name="profileimage" class="input-box" id="profileImageInput" accept="image/*" required> -->
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="error-message">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    
+                  
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="mb-3 submit-button" >
+                                Update
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+
+
+
+                    <p><a style="text-decoration: none; color:rgb(219, 86, 63);" href="{% url 'profileimage' %}">Skip</a> The Process</p>
+                    
+                   
+                </form>
+
+
+                
+
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                
+            </div>
+
+
+        </div>
     </div>
 
-    
-
-    <script>
-        $(document).ready(function() {
 
 
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+            $('#edit').click(function () {
+                $('#fileInput').trigger('click');
+            });
+
+            $('#fileInput').change(function () {
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#profileImage').attr('src', e.target.result);
+                    $('#preview').html('<img src="' + e.target.result + '" alt="Uploaded Image">').show();
+                };
+                reader.readAsDataURL(file);
+            });
+
+           
         });
-    </script>
+</script>
 
-</body>
-</html>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
