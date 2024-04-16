@@ -83,8 +83,19 @@
             <div class="col-lg-4">
               <div class="card mb-4">
                 <div class="card-body text-center">
+
+                  {% if user.profile_pic %}
                   <img src="{{user.profile_pic.url}}" alt="avatar"
                     class="rounded-circle img-fluid" style="width: 150px;">
+                  {% else %}
+
+                  <img src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+
+                  {% endif %}
+
+
+
                   <h5 class="my-3">{{user.name}}</h5>
                   <p class="text-muted mb-1">{{user.domain}}</p>
                   <p class="text-muted mb-4">{{user.college}}</p>
@@ -189,9 +200,14 @@
                       <p class="mb-1" style="font-size: .77rem;">Web Design</p>
                       <div class="progress rounded" style="height: 20px;">
 
-                        {% if user.level_student == 1 %}
+                        {% if user.level_student == 0 %}
+                        <div class="progress-bar" style="color:Orange" role="progressbar" style="width: 0%" aria-valuenow="0"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+
+                        {% elif user.level_student == 1 %}
                         <div class="progress-bar" style="color:Orange" role="progressbar" style="width: 20%" aria-valuenow="20"
                           aria-valuemin="0" aria-valuemax="100"></div>
+
                         {% elif user.level_student == 2 %}
 
                         <div class="progress-bar"  role="progressbar" style="width: 40%" aria-valuenow="40"
@@ -208,7 +224,7 @@
                           <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
                           aria-valuemin="0" aria-valuemax="100"></div>
 
-                          {% else %}
+                          {% elif user.level_student == 5 %}
 
                           <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
                           aria-valuemin="0" aria-valuemax="100"></div>

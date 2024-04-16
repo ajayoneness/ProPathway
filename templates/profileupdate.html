@@ -32,17 +32,17 @@
                     {% csrf_token %}
 
 
-                    <input type="text" name="contactno" class="mb-3 input-box" id="contact" placeholder="Enter contact" required><br>
+                    <input type="text" name="contactno" class="mb-3 input-box" id="contact" placeholder="Enter contact*" required><br>
 
    
-                    <input type="text" name="whatsappno" class="mb-3 input-box" id="whatsapp" placeholder="Enter WhatsApp" required><br>
+                    <input type="text" name="whatsappno" class="mb-3 input-box" id="whatsapp" placeholder="Enter WhatsApp*" required><br>
                 
                 
-                    <input type="text" name="collage" class="mb-3 input-box" id="collage" placeholder="Enter collage" required><br>
+                    <input type="text" name="collage" class="mb-3 input-box" id="collage" placeholder="Enter collage*" required><br>
                    
                     <select class="input-box" id="domain" name="domain" required>
                 
-                        <option value="" selected disabled>Select a domain</option>
+                        <option value="" selected disabled>Select a domain*</option>
                 
                         {% for i in domain %}
                         <option value="{{i.domain_name}}">{{i.domain_name}}</option>
@@ -67,7 +67,7 @@
                     </div>
 
                     
-                    <p><a style="text-decoration: none; color:rgb(219, 86, 63);" href="{% url 'profileimage' %}">Skip</a> The Process</p>
+                    <!-- <p><a style="text-decoration: none; color:rgb(219, 86, 63);" href="{% url 'profileimage' %}">Skip</a> The Process</p> -->
                     
                    
 

@@ -66,32 +66,34 @@ def register(request):
         password2 = request.POST.get('password2')
 
         if email and name and password1 and password1 == password2:
-            student = Student.objects.create_user(email=email, name=name, password=password1)
+            try: 
+                Student.objects.create_user(email=email, name=name, password=password1)
+           
 
-            user = authenticate(request, email=email, password=password1)
-            login(request, user)
+                user = authenticate(request, email=email, password=password1)
+                login(request, user)
 
-            if user.phone_no is None:
-                request.session['otp'] = random.randint(1000, 9999)
-                return redirect("otp")
+                if user.phone_no is None:
+                    request.session['otp'] = random.randint(1000, 9999)
+                    return redirect("otp")
 
-            if user.profile_pic is None:
-                return redirect('profileimage')
+                if user.profile_pic is None:
+                    return redirect('profileimage')
 
 
 
-            print("Register Success / Login Success")
+                print("Register Success / Login Success")
 
             #18Feb
 
 
             #Email
 
-            
+        
+                return redirect('dashboard')
+            except:
+                messages.error(request, f'{email} is Already Registered.')
 
-
-
-            return redirect('dashboard')
         else:
             messages.error(request, 'Invalid registration details')
     return render(request, 'register.html')
@@ -137,13 +139,17 @@ def ProfileUpdate(request):
 
 
     domain = Domain.objects.all()
-    return render(request, 'profileupdate.html',{'domain':domain})
+
+    if request.user.phone_no:
+        return redirect('dashboard')
+    else:
+        return render(request, 'profileupdate.html',{'domain':domain})
 
 
 
 @login_required(login_url='/')
 def ProfileImage(request):
-
+    
     if request.method == 'POST':
         pimage = request.FILES['profileimage']
         request.user.profile_pic = pimage
@@ -172,11 +178,13 @@ def ProfileImage(request):
         recipient_list = ['pythoncoding4u@gmail.com',f'{request.user.email}']
         emailTemplate(subject,message,html_message,from_email,recipient_list)
 
-
-
         return redirect('dashboard')
+    
 
-    return render(request, 'profileimage.html')
+    if request.user.profile_pic:
+        return redirect('dashboard')
+    else :
+        return render(request, 'profileimage.html')
 
 
 
@@ -213,8 +221,11 @@ def level(request):
 
 @login_required(login_url='/')
 def dashboard(request):
+
+    if request.user.otp is None:
+        return redirect("otp")
     
-    if request.user.phone_no is None:
+    elif request.user.phone_no is None:
         return redirect("profileupdate")
 
     elif request.user.profile_pic is None:
@@ -336,25 +347,34 @@ def Profile(request):
 
 @login_required(login_url='/')
 def OTP(request):
-    print(request.session.get('otp'))
-    emailTemplate("OTP | codeAj Internship","Your OTP",f"<h1 style='text-align:center; background-color:black; color:white;  padding-top:200px; padding-bottom:200px; '>{request.session.get('otp')}</h1>","codeaj4u@gmail.com",[f'{request.user.email}'])
-    if request.method == "POST":
-        otp = request.POST['otp']
-        generated_otp = request.session.get('otp')
+
+    if request.user.otp:
+        return redirect('dashboard')
+        
+        
+    else:
+        print(request.session.get('otp'))
+        emailTemplate("OTP | codeAj Internship","Your OTP",f"<h1 style='text-align:center; background-color:black; color:white;  padding-top:200px; padding-bottom:200px; '>{request.session.get('otp')}</h1>","codeaj4u@gmail.com",[f'{request.user.email}'])
+        if request.method == "POST":
+            otp = request.POST['otp']
+            generated_otp = request.session.get('otp')
 
 
-        print(f"otp : {str(otp)}    generated otp: {str(generated_otp)}")
+            print(f"otp : {str(otp)}    generated otp: {str(generated_otp)}")
 
-        if str(otp) == str(generated_otp):
-            return redirect('profileupdate')
-        else:
-            return render(request,"otp.html",{"message":"Incorrect OTP !!"})
+            if str(otp) == str(generated_otp):
+                request.user.otp = 1
+                request.user.save()
+                print("otp_verify")
+                return redirect('profileupdate')
 
+            else:
+                return render(request,"otp.html",{"message":f"Incorrect OTP !!"})
+        
+        return render(request,"otp.html",{"message":""})
 
-
-
-    return render(request,"otp.html",{"message":""})
-
+            
+        
 
 
 

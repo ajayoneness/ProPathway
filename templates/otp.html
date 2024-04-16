@@ -31,15 +31,21 @@
                     {% csrf_token %}
 
                     <input class="input-box" placeholder="Enter Your 6 digit OTP" type='text' name="otp" required>
+
+                    {% if message %}
                     <p class="error-message">{{message}}</p>
-                    
-                    
+                    {% endif %}
 
                     <div class="text-center mt-3">
                         <button type="submit" class="mb-3 submit-button" >
                             Verify
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
+
+
+                        {% if message %}
+                        <p>Return to <a style="text-decoration: none; color:rgb(201, 18, 18); font-size : 13px;" href="{% url 'logout' %}">Login</a> </p>
+                        {% endif %}
                     </div>
                     
                    

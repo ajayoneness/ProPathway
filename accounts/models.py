@@ -57,6 +57,7 @@ class Student(AbstractBaseUser, PermissionsMixin):
     assignment3 = models.ForeignKey(Assignment, on_delete=models.SET_NULL, null=True, blank=True, related_name='assignment3')
     level_choices_student = [(0, 'Not Started'), (1, 'Level 1'), (2, 'Level 2'), (3, 'Level 3'), (4, 'pending'), (5, 'Certificate Level')]
     level_student = models.IntegerField(choices=level_choices_student, default=0)
+    otp = models.IntegerField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
