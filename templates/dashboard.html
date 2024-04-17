@@ -36,6 +36,7 @@ a{
             overflow: hidden;
             border-radius: 10px;
             position: relative;
+
             
             
         }
@@ -51,7 +52,7 @@ a{
 
 
         .bac{
-            background-color: rgba(0, 0, 0, 0.459);
+            background-color: rgba(0, 0, 0, 0.559);
             position: absolute;
             width: 400px;
             height: 400px;
@@ -68,8 +69,9 @@ a{
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 100px;
-            color:rgba(204, 204, 204, 0.909);
+            color:rgb(249, 249, 249);
             z-index: 999;
+            text-shadow:rgba(0, 0, 0, 0.4) 0px 30px 90px;;
             
         }
 
@@ -125,13 +127,73 @@ a{
 }
 
 
+.biglevel{
+    font-size: 400px;
+    font-weight: 700;
+    z-index: 999999;
+    position: absolute;
+    margin: 0;
+    position: absolute;
+    top: 65%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color:rgba(255, 255, 255, 0.568);
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+
+}
+
+.imgtext{
+    z-index: 999999;
+    position: absolute;
+    margin: 0;
+    position: absolute;
+    bottom: -10%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    color:white;
+}
+
+.imgtext i{
+    padding:10px;
+}
+
+.imgtext p{
+    color:white;
+    padding:5px;
+}
+
+
+
+
+
 @media only screen and (max-width: 600px) {
+
+    
+.level-card{
+    margin: 50px 0px;  
+}
+
+
+
+
+.level-text{
+    margin: 50px 0px;
+ 
+}
+
+
+
+    .imgtext{
+        left: 25%;
+        bottom: -20%;
+    }
+
 .container1{
     margin : 0px 10px;
 }
 
         .bac{
-            background-color: rgba(0, 0, 0, 0.259);
+            background-color: rgba(0, 0, 0, 0.559);
             position: absolute;
             width: 100%;
             height: 100%;
@@ -161,6 +223,11 @@ a{
 
         .level-text{
 
+        }
+
+        .biglevel{
+            font-size: 200px; 
+            left: 85%; 
         }
 
 }
@@ -204,6 +271,16 @@ a{
     font-size: 25px;
     margin-right: 20px;
 }
+
+
+.navigation{
+    z-index: 9999999999;
+}
+
+
+
+
+
 
 
 </style>
@@ -257,7 +334,25 @@ a{
                         <div class="card1" id="level1">
                             <div class="bac"></div>
                             <img src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
-                            <i class="fa-solid fa-play play"></i>                      
+                            <i class="fa-solid fa-play play"></i> 
+
+                            <div class="imgtext">
+                                <div style="display:flex; position:relative; top:20px;">
+                                    <i class="ml-2 fa-solid fa-chart-column"></i>
+                                    <p>LEVEL ONE</p> 
+                                </div>
+
+                                <div style="display:flex; ">
+                                    <i class="fa-solid fa-unlock"></i>
+                                    <p>UNLOCKED</p>
+
+                                </div>
+                            </div>
+
+                            <div class="biglevel">
+                                1
+                            </div>
+                                                
                         </div>
                     
 
@@ -290,7 +385,7 @@ a{
 
 <!-- Level one end -->
 
-
+<!-- Level 2 -->
             {% if user.level_student > 1 %}
 
             <div class="col-sm-12 col-md-12 col-lg-6">
@@ -322,7 +417,26 @@ a{
                     <div class="card1" id="level1">
                         <div class="bac"></div>
                         <img src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">
-                        <i class="fa-solid fa-play play"></i>                      
+                        <i class="fa-solid fa-play play"></i>    
+                        
+                        
+                        <div class="imgtext">
+                            <div style="display:flex; position:relative; top:20px;">
+                                <i class="ml-2 fa-solid fa-chart-column"></i>
+                                <p>LEVEL TWO</p> 
+                            </div>
+
+                            <div style="display:flex; ">
+                                <i class="fa-solid fa-unlock"></i>
+                                <p>UNLOCKED</p>
+
+                            </div>
+                        </div>
+
+                        <div class="biglevel">
+                            2
+                        </div>
+
                     </div>
         
 
@@ -367,7 +481,24 @@ a{
                     <div class="card1" id="level1">
                         <div class="bac"></div>
                         <img src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">  
-                        <i class="fa-solid fa-lock locked"></i>                   
+                        <i class="fa-solid fa-lock locked"></i>    
+                        
+                        <div class="imgtext">
+                            <div style="display:flex; position:relative; top:20px;">
+                                <i class="ml-2 fa-solid fa-chart-column"></i>
+                                <p>LEVEL TWO</p> 
+                            </div>
+
+                            <div style="display:flex; ">
+                                <i class="fa-solid fa-lock"></i>
+                                <p>UNLOCKED</p>
+
+                            </div>
+                        </div>
+
+                        <div class="biglevel" style="padding-bottom: 100px;">
+                            2
+                        </div>
                     </div>
                
 
@@ -389,7 +520,27 @@ a{
                 <div class="card1" id="level1">
                     <div class="bac"></div>
                     <img src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">
-                    <i class="fa-solid fa-play play"></i>                      
+                    <i class="fa-solid fa-play play"></i>
+                    
+                    <div class="imgtext">
+
+                        <div style="display:flex; position:relative; top:20px;">
+                            <i class="ml-2 fa-solid fa-chart-column"></i>
+                            <p>LEVEL THREE</p> 
+                        </div>
+
+                        <div style="display:flex; ">
+                            <i class="fa-solid fa-unlock"></i>
+                            <p>UNLOCKED</p>
+
+                        </div>
+                    </div>
+
+                    <div class="biglevel">
+                        3
+                    </div>
+                    
+                    
                 </div>
             
 
@@ -430,11 +581,30 @@ a{
                 <div class="card1" id="level1">
                     <div class="bac"></div>
                     <img src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">  
-                    <i class="fa-solid fa-lock locked"></i>                   
+                    <i class="fa-solid fa-lock locked"></i>  
+                    
+                    <div class="imgtext">
+                        <div style="display:flex; position:relative; top:20px;">
+                            <i class="ml-2 fa-solid fa-chart-column"></i>
+                            <p>LEVEL THREE</p> 
+                        </div>
+
+                        <div style="display:flex; ">
+                            <i class="fa-solid fa-unlock"></i>
+                            <p>LOCKED</p>
+
+                        </div>
+                    </div>
+
+                    <div class="biglevel" style="padding-bottom: 100px;">
+                        3
+                    </div>
+                    
                 </div>
            
 
             </div>
+
              <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="level-text" style="margin-bottom: 10px;">
                     
@@ -530,7 +700,25 @@ a{
                     <div class="card1" id="level1">
                         <div class="bac"></div>
                         <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/certificate-of-achievement-diploma-template-%28-design-a0629a4e70ae62e3854786173842eaaa_screen.jpg?ts=1690948843" alt="" class=" img-fluid">
-                        <i class="fa-solid fa-play play"></i>                      
+                        <i class="fa-solid fa-play play"></i>    
+                        
+                        <div class="imgtext">
+                            <div style="display:flex; position:relative; top:20px;">
+                                <i class="ml-2 fa-solid fa-chart-column"></i>
+                                <p>CERTIFICATION LEVEL</p> 
+                            </div>
+    
+                            <div style="display:flex; ">
+                                <i class="fa-solid fa-unlock"></i>
+                                <p>LOCKED</p>
+    
+                            </div>
+                        </div>
+    
+                        <div class="biglevel">
+                            4
+                        </div>
+
                     </div>
                 
 
@@ -575,8 +763,36 @@ a{
                     <div class="card1" id="level1">
                         <div class="bac"></div>
                         <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/certificate-of-achievement-diploma-template-%28-design-a0629a4e70ae62e3854786173842eaaa_screen.jpg?ts=1690948843" alt="" class=" img-fluid">  
-                        <i class="fa-solid fa-lock locked"></i>                   
+                        <i class="fa-solid fa-lock locked"></i>
+                        
+                        
+                        <div class="imgtext">
+                            <div style="display:flex; position:relative; top:20px;">
+                                <i class="ml-2 fa-solid fa-chart-column"></i>
+                                <p>LEVEL FOUR</p> 
+                            </div>
+    
+                            <div style="display:flex; ">
+                                <i class="fa-solid fa-unlock"></i>
+                                <p>LOCKED</p>
+    
+                            </div>
+                        </div>
+    
+                        <div class="biglevel" style="padding-bottom: 30px;">
+                            4
+                        </div>
+
+
+
+
+
+
+
+
                     </div>
+
+                    
                
 
             </div>
@@ -584,25 +800,7 @@ a{
             {% endif %}
 
 
-
-
-
-            
-
-
-
-            
-
-
-
-
-
-
-         
-
         </div>
-
-
 
     </div>
 
