@@ -4,322 +4,28 @@
 {% block content %}
 
 
+
 <style>
 
-a{
-        color :rgb(0, 0, 0);
-        font-weight : 700;
-        text-decoration: none;
+
+    body{
+        height: auto;
     }
-
-    a:hover{
-
-        color:rgb(37, 37, 37);
-        text-decoration: none;
-    }
-       
-        body{
-            background:url('{% static "background.jpg" %}');
-            height : 400vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:cover;
-        }
-
-        .levels{
-            padding-top: 50px;
-        }
-
-        .card1{
-            width: 400px;
-            height: 400px;
-            overflow: hidden;
-            border-radius: 10px;
-            position: relative;
-
-            
-            
-        }
-
-        .card1  img {
-            scale:  1;
-            transition: ease-in-out 0.4s;
-        }
-
-        .card1:hover img{
-            scale:  1.1;
-        }
-
-
-        .bac{
-            background-color: rgba(0, 0, 0, 0.559);
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            z-index: 1;
-            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-            border-radius: 10px; 
-            text-shadow:rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;;   
-        }
-
-        .locked{
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 100px;
-            color:rgb(249, 249, 249);
-            z-index: 999;
-            text-shadow:rgba(0, 0, 0, 0.4) 0px 30px 90px;;
-            
-        }
-
-
-        .play{
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            color:white;
-            z-index: 999;
-            
-           
-        }
-
-        .numlevel{
-            z-index: 9999;
-            position: relative;
-        }
-
-        .levels h5{
-            color:white;
-        }
-
-        .navv{
-
-            width: 100%;
-            height: 80px;
-            background-color: rgba(0, 0, 0, 0.258);
-
-        }
-        .navv h5{
-            color:white;
-        }
-
-
-.level-card{
-    margin: 120px 0px;  
-}
-
-
-
-
-.level-text{
-    margin: 120px 0px;
- 
-}
-
-.container1{
-    margin : 0px 200px;
-}
-
-
-.biglevel{
-    font-size: 400px;
-    font-weight: 700;
-    z-index: 999999;
-    position: absolute;
-    margin: 0;
-    position: absolute;
-    top: 65%;
-    left: 80%;
-    transform: translate(-50%, -50%);
-    color:rgba(255, 255, 255, 0.568);
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
-
-}
-
-.imgtext{
-    z-index: 999999;
-    position: absolute;
-    margin: 0;
-    position: absolute;
-    bottom: -10%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    color:white;
-}
-
-.imgtext i{
-    padding:10px;
-}
-
-.imgtext p{
-    color:white;
-    padding:5px;
-}
-
-
-
-
-
-@media only screen and (max-width: 600px) {
-
-    
-.level-card{
-    margin: 50px 0px;  
-}
-
-
-
-
-.level-text{
-    margin: 50px 0px;
- 
-}
-
-
-
-    .imgtext{
-        left: 25%;
-        bottom: -20%;
-    }
-
-.container1{
-    margin : 0px 10px;
-}
-
-        .bac{
-            background-color: rgba(0, 0, 0, 0.559);
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-            border-radius: 10px;    
-        }
-
-        .card1{
-            width: 100%;
-            height: auto;
-            overflow: hidden;
-            border-radius: 10px;
-            position: relative;
-            
-            
-        }
-
-        .card1  img {
-            scale:  1.1;
-            transition: ease-in-out 0.4s;
-        }
-
-        .card1:hover img{
-            scale:  1.2;
-        }
-
-        .level-text{
-
-        }
-
-        .biglevel{
-            font-size: 200px; 
-            left: 85%; 
-        }
-
-}
-
-.fa-play {
-    color: white; /* Set icon color to white */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Initial shadow color and blur */
-    transition: text-shadow 0.3s; /* Add transition for smooth animation */
-}
-
-
-
-
-
-
-@keyframes shadow-pulse {
-    0% {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
-    }
-    50% {
-        text-shadow: 0 0 50px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 1) ;
-    }
-    100% {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
-    }
-}
-
-.fa-play {
-    color: white; /* Set icon color to white */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Initial shadow color and blur */
-    animation: shadow-pulse 2s infinite; /* Apply animation to the play button */
-}
-
-.status-box{
-    display: flex;
-    padding: 10px 0px;
-
-}
-
-.status-box i{
-    font-size: 25px;
-    margin-right: 20px;
-}
-
-
-.navigation{
-    z-index: 9999999999;
-}
-
-
-
-
-
-
-
 </style>
 
 
 
-    <div class="navigation">
-        <div class="mainlogo">
-            <img class="logo-image" src="https://www.codeajay.in/static/codeaj1.png">
-            <div class="bbx">
 
 
-                {% if user.profile_pic %}
-                    <a href="{% url 'profile' %}">
-                    <img class="profile-image" src="{{user.profile_pic.url}}"  >
-                            </a>
-                {% else %}
-                    <a href="{% url 'profile' %}">
-                        <img class="profile-image" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg"  >
-                </a>
-                
-                {% endif %}
+<div class="fullbggg" id="popupvideo">
 
-                <!-- <img class="profile-image" src="http://localhost:8000/media/profile_pics/pythoncoding4u_2z7TKz6.jpg"> -->
-
-
-
-                <div class="profile-details">
-                    <a href="{% url 'profile' %}">
-                        <h1 style="color: #545454;">{{user.name}}</h1>
-                        <p>{{user.domain}}<br> {{user.phone_no}} </p>
-                    </a>
-                    <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
-                </div>
-            </div>
-        </div>
+    <div class="videopopup">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/5O0YDHiosD0?si=pprYDGtMWuSy4MgS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <i class="fa-solid fa-xmark close" id="close"></i>
     </div>
 
-
+</div>
+    
 
 
     <div class="container1">
@@ -328,28 +34,33 @@ a{
 
 
 <!-- Level 1 -->
-            <div class="col-sm-12 col-md-12 col-lg-6 level-card">
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card wow animate__animated animate__flip ">
             
                    
                         <div class="card1" id="level1">
                             <div class="bac"></div>
                             <img src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
-                            <i class="fa-solid fa-play play"></i> 
+                            <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+
+
+                            <!-- Popup container -->
+                             
+
 
                             <div class="imgtext">
                                 <div style="display:flex; position:relative; top:20px;">
                                     <i class="ml-2 fa-solid fa-chart-column"></i>
-                                    <p>LEVEL ONE</p> 
+                                    <p class="wow animate__animated animate__wobble">LEVEL ONE</p> 
                                 </div>
 
                                 <div style="display:flex; ">
-                                    <i class="fa-solid fa-unlock"></i>
-                                    <p>UNLOCKED</p>
+                                    <i class="fa-solid fa-unlock "></i>
+                                    <p class="wow animate__animated animate__wobble">UNLOCKED</p>
 
                                 </div>
                             </div>
 
-                            <div class="biglevel">
+                            <div class="biglevel wow animate__animated animate__zoomIn">
                                 1
                             </div>
                                                 
@@ -361,21 +72,21 @@ a{
 
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="level-text">
-                    <h1>{{user.assignment1.assignment_question}}</h1>
-                    <p>
+                    <h1 class="wow animate__animated animate__fadeInTopRight">{{user.assignment1.assignment_question}}</h1>
+                    <p class="wow animate__animated animate__fadeInBottomRight">
                         {{user.assignment1.assignment_description}} 
                     </p>
 
-                   <h3>Status</h3>
+                   <h3 class="wow animate__animated animate__flip">Status</h3>
                     <div class="status-box">
 
                         <!-- <i class="fa-solid fa-lock"></i> -->
-                        <i class="fa-solid fa-unlock"></i>
-                        <p>UNLOCKED</p>
+                        <i class="fa-solid fa-unlock wow animate__animated animate__jackInTheBox"></i>
+                        <p class="animate__animated animate__fadeInBottomLeft">UNLOCKED</p>
 
                     </div>
 
-                    <a href="{% url 'level1' %}" class="btn btn-success" >Navigate</a>
+                    <a href="{% url 'level1' %}" class="btn btn-success wow animate__animated animate__fadeInBottomRight" >Navigate</a>
                    
 
                 </div>
@@ -388,7 +99,7 @@ a{
 <!-- Level 2 -->
             {% if user.level_student > 1 %}
 
-            <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="col-sm-12 col-md-12 col-lg-6  ">
                 <div class="level-text">
                     <h1>{{user.assignment2.assignment_question}}</h1>
                     <p>
@@ -411,7 +122,7 @@ a{
                 
             </div>
 
-            <div class="col-sm-12 col-md-12 col-lg-6 level-card">
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card wow animate__animated animate__flip">
             
               
                     <div class="card1" id="level1">
@@ -446,7 +157,7 @@ a{
             {% else %}
 
             <!-- Locked  Level 2 -->
-            <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 ">
                 <div class="level-text" style="margin-bottom: 10px;">
                     
                     <div style="width: 100%; height: 45px; background-color: #4242427a; border-radius: 10px; margin: 20px 0px;">
@@ -475,7 +186,7 @@ a{
                 
             </div>
 
-            <div class="col-sm-12 col-md-12 col-lg-6 level-card">
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card wow animate__animated animate__bounce">
             
                 
                     <div class="card1" id="level1">
@@ -783,13 +494,6 @@ a{
                             4
                         </div>
 
-
-
-
-
-
-
-
                     </div>
 
                     
@@ -812,247 +516,5 @@ a{
 
 
 
-    
-<!-- 
-    <section class="navv">
-        <div class="container">
 
-            <div class="row">
-                <div class="col-sm-6 col-lg-3 col-md-6">
-                    <h4 class="pt-4">DASHBOARD</h4>
-                </div>
-
-                <div class="col-sm-6 col-lg-3 col-md-6 mt-4">
-                    <a href="{% url 'logout' %}"><p style="text-right"><b>LOGOUT</b></p></a>
-                </div>
-                
-                <div class="col-sm-6 col-lg-3 col-md-6 mt-4"></div>
-                
-                <div class="col-sm-6 col-lg-3 col-md-6 mt-3" style="display:flex; ">
-                    
-                        {% if user.profile_pic %}
-                            <a href="{% url 'profile' %}">
-                                <img src="{{user.profile_pic.url}}"  width="50px" height="50px">
-                            </a>
-                        {% else %}
-                            <a href="{% url 'profile' %}">
-                                <img src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg"  width="50px" height="50px">
-                            </a>
-
-                        {% endif %}
-
-                        <a href="{% url 'profile' %}">
-                        <p class="p-2 mt-1" style="font-weight:500">
-                            {{user.name}}
-                        </p>
-
-                    </a>
-                    
-                </div>
-                
-                
-            </div>
-
-
-
-
-        </div>
-        
-    </section>
- -->
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-
-    <section class="levels">
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-sm-12 col-lg-3 col-md-6">
-                    <a href="{% url 'level1' %}">
-                        <div class="card1" id="level1">
-
-                            <img src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
-
-                        </div>
-                        <div class="text-center mt-2">
-                            <h5>Level 1</h5>
-                        </div>
-                    </a>
-
-                </div>
-
-
-
-
-                {% if user.level_student > 1 %}
-                <div class="col-sm-12 col-lg-3 col-md-6">
-                    <a href="{% url 'level2' %}">
-
-                        <img src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">
-
-                    </div>
-                    <div class="text-center mt-2">
-                        <h5>Level 2</h5>
-                    </div>
-                    </a>
-                </div>
-                {% else %}
-
-
-                <div class="col-sm-12 col-lg-3 col-md-6">
-                    <div class="card1" id="level2" >
-                        <div class="bac"></div>
-                        <img src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">
-                        <img  src="{% static 'lock.png' %}" alt="" class="lock">
-                    </div>
-                    <div class="text-center mt-2">
-                        <h5>Level 2</h5>
-                    </div>
-                </div>
-
-                {% endif %}
-
-
-
-
-
-
-                {% if user.level_student > 2 %}
-                <div class="col-sm-12 col-lg-3 col-md-6">
-                    <a href ="{% url 'level3' %}">
-                    <div class="card1" id="level3" >
-
-                        <img src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">
-
-                    </div>
-                    <div class="text-center mt-2">
-                        <h5>Level 3</h5>
-                    </div>
-                    </a>
-                </div>
-                {% else %}
-
-                <div class="col-sm-12 col-lg-3 col-md-6">
-                    <div class="card1" id="level3" >
-                        <div class="bac"></div>
-                        <img src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">
-                        <img  src="{% static 'lock.png' %}" alt="" class="lock">
-                    </div>
-                    <div class="text-center mt-2">
-                        <h5>Level 3</h5>
-                    </div>
-                </div>
-
-                {% endif %}
-
-
-
-
-
-                {% if user.level_student == 5 %}
-                    <div class="col-sm-12 col-lg-3 col-md-6">
-                        <a href="{% url 'certification' %}">
-
-                             <div class="card1" id="level4" >
-
-                            <img src="{% static 'lbg.avif' %}" alt="" class=" img-fluid">
-
-                            </div>
-                            <div class="text-center mt-2">
-                                <h5>Final Level</h5>
-                            </div>
-
-
-
-                        </a>
-
-                    </div>
-
-                {% else %}
-
-                    <div class="col-sm-12 col-lg-3 col-md-6">
-                        <div class="card1" id="level4" >
-                            <div class="bac"></div>
-                            <img src="{% static 'lbg.avif' %}" alt="" class=" img-fluid">
-                            <img  src="{% static 'lock.png' %}" alt="" class="lock">
-                        </div>
-                        <div class="text-center mt-2">
-                            <h5>Final Level</h5>
-                        </div>
-                    </div>
-
-                {% endif %}
-
-
-
-
-
-
-
-
-                <div class="col-sm-12 col-lg-12 col-md-12">
-
-                    {% if user.level_student == 4 %}
-                        <div class="card danger p-3" style="background-color:rgba(255,0,0,0.3); color:white">
-
-                            You are successfully complete the level 3,
-                            Now it will take 24 hour to Verify your Solution after that only you can get the Certificate.
-
-                        </div>
-                    {% endif %}
-
-
-
-                    {% if user.level_student == 5 %}
-                        <div class="card danger p-3" style="background-color:rgba(0,255,0,0.3); color:white">
-
-                            Now You are Successfully Verified !! Now you can get your certificate !!
-
-                        </div>
-                    {% endif %}
-
-                </div>
-
-
-
-
-
-                </div>
-
-            </div>
-    
-
-        </div>
-        
-        
-
-
-    </section> -->
-
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-    <script>
-
-        $("#level1").click(function(){
-
-        });
-
-
-
-    </script>
 {% endblock %}

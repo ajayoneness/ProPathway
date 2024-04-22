@@ -1,34 +1,14 @@
+
+{% extends 'login.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>codeAj | Free College Major Projects | Affordable Software Development Services at CodeAjay</title>
-
-    <meta name="description" content="Get a wide range of free college major projects and affordable software development services from CodeAjay. Get the best of both worlds today!" />
-    <meta name="keywords" content="college major projects, free college major projects, affordable software development services, web development, mobile development, machine learning, software development,  web design, CodeAjay, codeaj" />
-    
+{% block content %}
 
 
 
 
-
-    <link rel="icon" type="image/png" href="/fav.png" />
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-
-        body{
-            background:url('{% static "background.jpg" %}');
-            height : 100vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:cover;
-        }
 
 
         .headbanner{
@@ -37,7 +17,7 @@
         }
 
         .head{
-            position: absolute;
+           
             color :white;
             text-align: center;
             width: 100%;
@@ -75,11 +55,6 @@
 
          
 
-
-
-
-
-
         .leveltwo{
             width: 100%;
             height: 10px;
@@ -97,12 +72,279 @@
             height: 10px;
             background-color: rgb(206, 206, 206);
         }
+
+
+        .levelhead{
+            position: fixed;
+            width :100%;
+            height: 160px;  
+            background: url("http://127.0.0.1:8000/media/assignment_banners1/Portfolio.jpg");
+            z-index: 999999999;
+      
+        }
+
+
+        .levelhead::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height: 160px;
+            background-color: rgba(9, 255, 0, 0.352);
+            animation: fillBlack 2s linear forwards; /* Animation */
+
+        }
+
+        @keyframes fillBlack {
+            0% {
+                width: 0%;
+                clip-path: circle(0% at -20% 40%);
+
+
+            }
+            100% {
+                width: 25%;
+                clip-path: circle(70.7% at 50% 50%);
+
+
+            }
+        }
+
+
+
+        .biglevel{
+            font-size: 200px;
+            color:rgba(0, 0, 0, 0.527);
+            right: 300px;
+        }
+
+
+        .maintext{
+            color: rgba(255, 255, 255, 0.546);
+            z-index: 99999999999999;
+            position: absolute;
+            margin: 0;
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            
+        }
+
+
+        .topp{
+
+            padding-top: 190px;
+
+        }
+
+        .pdec{
+            
+           
+        }
+
+        .levelhead .text h1{
+            font-family: "Rowdies", sans-serif;
+            color: rgb(188, 188, 188);
+            text-shadow: 2px 2px #000000;
+        }
+
+
+        .req{
+            font-family: "Rowdies", sans-serif;
+            color: rgb(53, 53, 53);
+            margin-top : 25px;
+        }
+
+
+        .form-submit input{
+            width: 100%;
+            height: 50px;
+            box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+            border: none;
+            padding-left: 10px;
+            border-radius: 10px;
+            
+        }
+
+        .form-submit input:focus{
+            border:none;
+        }
+
+        .form-submit input:active{
+            border:none;
+        }
+
+
+
+
+        
+
+
+
+
+
+       
+
+        
+
+
+
+
+
+
+
         
 
     </style>
 </head>
 
-<body>
+
+
+
+<section class="levelhead">
+
+
+    <div class="levelpercent">
+
+        <div class="container">
+            <div class="text">
+                <h1 class="text-center maintext">{{user.assignment1.assignment_question}}</h1>
+            </div>
+
+            <div class="biglevel wow animate__animated animate__zoomIn">
+                1
+            </div>
+
+        </div>
+
+    </div>
+
+    
+
+</section>
+
+
+
+<div class="container1 topp">
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-6">
+
+            <p class="pdec"><b>
+                {{user.assignment1.assignment_description}}
+            </b></p>
+
+            <h4 class="req">Requirenments</h4>
+
+            <p>
+                {{user.assignment1.assignment_requirements | safe}}
+
+            </p>
+        </div>
+
+
+        <div class="col-md-12 col-sm-12 col-lg-6">
+
+            <div class="card1" id="level1">
+                <div class="bac"></div>
+                <img src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
+                <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+
+        </div>
+
+
+    </div>
+
+
+    <div class="col-md-12 col-sm-12 col-lg-12 mt-5 form-submit" >
+
+
+
+        <form method="post">
+            {% csrf_token %}
+            <h4 class="mb-5">Submit Your Project</h4>
+
+            <p>
+              <b class="mb-2">Project Github Link </b> 
+           <br>
+                push this project on your github account and submithe the link in the given input field.<br>
+                <b>Note : </b> Project title should be with name "{{user.assignment1.assignment_question}}" this.
+            </p>
+            <input value="{{sdata.Assignment1_github_Link}}" type="text" name="git" class="mb-5" placeholder="Project Git Link" required>
+            
+
+            <p>
+                <b class="mb-2">Project Github Link </b> 
+             <br>
+                  push this project on your github account and submithe the link in the given input field.<br>
+                  <b>Note : </b> Project title should be with name "{{user.assignment1.assignment_question}}" this.
+              </p>
+
+
+            <input value="{{sdata.Assignment1_linkedin_link}}" type="text" name="linkedin" class="mb-5"  placeholder="Project video Linkedin Link" required>
+            <button type="submit" class="btn btn-primary mt-3">Move to Next Level</button>
+
+        </form>
+
+
+
+
+    </div>
+
+
+    
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+<br><br><br><br><br>
+
+
+
 
     <section class="headbanner">
         <div class="head">
@@ -188,12 +430,4 @@
     </section>
 
 
-
-
-</body>
-
-</html>
-
-
-
-     
+{% endblock %}

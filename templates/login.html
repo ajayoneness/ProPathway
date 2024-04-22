@@ -8,11 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=Platypi:ital,wght@0,300..800;1,300..800&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
 
@@ -28,6 +35,11 @@ p{
 
         }
 
+        li{
+            font-family: "Platypi", serif;
+            padding-top : 5px; 
+        }
+
         a{
             text-decoration: none;
         }
@@ -39,9 +51,6 @@ p{
             height :95vh;
             margin: 10px;
 
-
-           
- 
   
         }
 
@@ -157,6 +166,347 @@ p{
             }
 
 
+            a{
+        color :rgb(0, 0, 0);
+        font-weight : 700;
+        text-decoration: none;
+    }
+
+    a:hover{
+
+        color:rgb(37, 37, 37);
+        text-decoration: none;
+    }
+       
+        body{
+            background-color: #ffffff;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+
+        .levels{
+            padding-top: 50px;
+        }
+
+        .card1{
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+
+            
+            
+        }
+
+        .card1  img {
+            scale:  1;
+            transition: ease-in-out 0.4s;
+        }
+
+        .card1:hover img{
+            scale:  1.1;
+        }
+
+
+        .bac{
+            background-color: rgba(0, 0, 0, 0.559);
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            z-index: 1;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            border-radius: 10px; 
+            text-shadow:rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;;   
+        }
+
+        .locked{
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            color:rgb(249, 249, 249);
+            z-index: 999;
+            text-shadow:rgba(0, 0, 0, 0.4) 0px 30px 90px;;
+            
+        }
+
+
+        .play{
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color:white;
+            z-index: 999;
+            
+           
+        }
+
+        .numlevel{
+            z-index: 9999;
+            position: relative;
+        }
+
+        .levels h5{
+            color:white;
+        }
+
+        .navv{
+
+            width: 100%;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.258);
+
+        }
+        .navv h5{
+            color:white;
+        }
+
+
+.level-card{
+    margin: 120px 0px;  
+}
+
+
+
+
+.level-text{
+    margin: 120px 0px;
+ 
+}
+
+.container1{
+    margin : 0px 200px;
+}
+
+
+.biglevel{
+    font-size: 400px;
+    font-weight: 700;
+    z-index: 999999;
+    position: absolute;
+    margin: 0;
+    position: absolute;
+    top: 65%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color:rgba(255, 255, 255, 0.568);
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+
+}
+
+.imgtext{
+    z-index: 999999;
+    position: absolute;
+    margin: 0;
+    position: absolute;
+    bottom: -10%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    color:white;
+}
+
+.imgtext i{
+    padding:10px;
+}
+
+.imgtext p{
+    color:white;
+    padding:5px;
+}
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+
+    
+.level-card{
+    margin: 50px 0px;  
+}
+
+
+
+
+.level-text{
+    margin: 50px 0px;
+ 
+}
+
+
+
+    .imgtext{
+        left: 25%;
+        bottom: -20%;
+    }
+
+.container1{
+    margin : 0px 10px;
+}
+
+        .bac{
+            background-color: rgba(0, 0, 0, 0.559);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            border-radius: 10px;    
+        }
+
+        .card1{
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            
+            
+        }
+
+        .card1  img {
+            scale:  1.1;
+            transition: ease-in-out 0.4s;
+        }
+
+        .card1:hover img{
+            scale:  1.2;
+        }
+
+        .level-text{
+
+        }
+
+        .biglevel{
+            font-size: 200px; 
+            left: 85%; 
+        }
+
+}
+
+.fa-play {
+    color: white; /* Set icon color to white */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Initial shadow color and blur */
+    transition: text-shadow 0.3s; /* Add transition for smooth animation */
+}
+
+
+
+
+
+
+@keyframes shadow-pulse {
+    0% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 50px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 1) ;
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.fa-play {
+    color: white; /* Set icon color to white */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Initial shadow color and blur */
+    animation: shadow-pulse 2s infinite; /* Apply animation to the play button */
+}
+
+.status-box{
+    display: flex;
+    padding: 10px 0px;
+
+}
+
+.status-box i{
+    font-size: 25px;
+    margin-right: 20px;
+}
+
+
+.navigation{
+    z-index: 9999999999;
+
+}
+
+.popup {
+            width: 560px;
+            height: 315px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            display: none;
+        }
+
+
+
+
+        .submit-btn {
+            height: 45px;
+            width: 200px;
+            font-size: 15px;
+            background-color: #00c09d;
+            border: 1px solid #00ab8c;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px 0 rgba(87,71,81,.2);
+            cursor: pointer;
+            transition: all 2s ease-out;
+            transition: all .2s ease-out;
+        }
+
+        .submit-btn:hover {
+            background-color: #2ca893;
+            transition: all .2s ease-out;
+        }
+
+
+        .fullbggg{
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.498);
+            z-index :999999999;
+            display: none;
+        }
+
+
+        .videopopup{
+            position: absolute;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+        }
+
+        .videopopup iframe{
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .close{
+            color: white;
+            position: relative;
+            top : -315px;
+            font-size: 25px;
+        }
+
+
+
+
 
         
     </style>
@@ -165,6 +515,46 @@ p{
 
 
 <body>
+
+
+    <div class="navigation">
+        <div class="mainlogo">
+            <img class="logo-image" src="https://www.codeajay.in/static/codeaj1.png">
+            <div class="bbx">
+
+
+                {% if user.email %}
+
+                    {% if user.profile_pic %}
+                        <a href="{% url 'profile' %}">
+                        <img class="profile-image" src="{{user.profile_pic.url}}"  >
+                                </a>
+                    {% else %}
+                        <a href="{% url 'profile' %}">
+                            <img class="profile-image" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg"  >
+                    </a>
+                    
+                    {% endif %}
+
+                    <!-- <img class="profile-image" src="http://localhost:8000/media/profile_pics/pythoncoding4u_2z7TKz6.jpg"> -->
+
+
+
+                    <div class="profile-details">
+                        <a href="{% url 'profile' %}">
+                            <h1 style="color: #545454;">{{user.name}}</h1>
+                            <p>{{user.domain}}<br> {{user.phone_no}} </p>
+                        </a>
+                        <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -256,13 +646,42 @@ p{
 
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
+
+
     <script>
 
+        wow = new WOW(
+        {
+            boxClass:     'wow',      // default
+            animateClass: 'animated', // default
+            offset:       0,          // default
+            mobile:       true,       // default
+            live:         true        // default
+        }
+        )
+        wow.init();
+
+
+
+
         $(document).ready(function() {
+
+            var popup = $("#popupvideo");
+            var close = $("#close");
+            var playbtn = $("#playbtn1");
+
+
+            close.click(function(){
+                popup.css("display", "none");
+            });
+
+            playbtn.click(function(){
+                popup.css("display", "block");
+            });
 
 
         })
