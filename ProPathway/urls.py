@@ -10,7 +10,7 @@ urlpatterns = [
     path('',include('accounts.urls')),
     path('internship/',include('internship.urls')),
     path('api/', include('api.urls')),
-
+    path('discussions/', include('discussions.urls')),
 ]
 
 if settings.DEBUG:

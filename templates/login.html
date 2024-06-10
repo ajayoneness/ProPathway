@@ -504,6 +504,8 @@ p{
             font-size: 25px;
         }
 
+        
+
 
 
 
@@ -519,7 +521,10 @@ p{
 
     <div class="navigation">
         <div class="mainlogo">
-            <img class="logo-image" src="https://www.codeajay.in/static/codeaj1.png">
+            <a href="/dashboard/">
+                <img id="logoimage" class="logo-image" src="https://www.codeajay.in/static/codeaj1.png">
+            </a>
+            
             <div class="bbx">
 
 
@@ -527,11 +532,11 @@ p{
 
                     {% if user.profile_pic %}
                         <a href="{% url 'profile' %}">
-                        <img class="profile-image" src="{{user.profile_pic.url}}"  >
+                        <img id="profileimg" class="profile-image" src="{{user.profile_pic.url}}"  >
                                 </a>
                     {% else %}
                         <a href="{% url 'profile' %}">
-                            <img class="profile-image" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg"  >
+                            <img id="profileimg" class="profile-image" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg"  >
                     </a>
                     
                     {% endif %}

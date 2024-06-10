@@ -25,3 +25,6 @@ class AssignmentSubmitSerializer(serializers.ModelSerializer):
         fields = ['id', 'student', 'Assignment1_github_Link', 'Assignment1_linkedin_link',
                   'Assignment2_github_Link', 'Assignment2_linkedin_link',
                   'Assignment3_github_Link', 'Assignment3_linkedin_link']
+        
+
+

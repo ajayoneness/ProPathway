@@ -22,6 +22,7 @@ class Assignment(models.Model):
     level = models.IntegerField(choices=level_choices, default=0)
     referral_link1 = models.URLField(max_length=255, null=True, blank=True)
     referral_link2 = models.URLField(max_length=255, null=True, blank=True)
+    slug = models.CharField(null=True, blank=True, max_length=100)
 
     def __str__(self):
         return f"{self.assignment_question} Level : {self.level}"
@@ -95,5 +96,12 @@ class AssignmentSubmit(models.Model):
     Assignment2_linkedin_link = models.TextField(null=True, blank=True)
     Assignment3_github_Link = models.TextField(null=True, blank=True)
     Assignment3_linkedin_link = models.TextField(null=True, blank=True)
+
+
+
+
+
+
+    
 
 

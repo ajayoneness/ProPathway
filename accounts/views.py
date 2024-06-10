@@ -19,7 +19,12 @@ def emailTemplate(subject,message,html_message,from_email,recipient_list):
     html_message = html_message
     from_email = from_email
     recipient_list = recipient_list
-    send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+
+    print(subject,message,html_message,from_email,recipient_list)
+    try:
+        send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+    except:
+        return redirect("logout")
 
 
 
@@ -41,6 +46,11 @@ def loginuser(request):
             login(request, user)
             print("login Success")
             print(user.profile_pic)
+
+            if user.otp is None:
+                request.session['otp'] = random.randint(1000, 9999)
+                return redirect("otp")
+
             if user.phone_no is None:
                 return redirect("profileupdate")
 
@@ -345,6 +355,11 @@ def Profile(request):
 
 
 
+
+
+
+
+
 @login_required(login_url='/')
 def OTP(request):
 
@@ -353,8 +368,12 @@ def OTP(request):
         
         
     else:
-        print(request.session.get('otp'))
-        emailTemplate("OTP | codeAj Internship","Your OTP",f"<h1 style='text-align:center; background-color:black; color:white;  padding-top:200px; padding-bottom:200px; '>{request.session.get('otp')}</h1>","codeaj4u@gmail.com",[f'{request.user.email}'])
+        try:
+            print(request.session.get('otp'))
+            emailTemplate("OTP | codeAj Internship","Your OTP",f"<h1 style='text-align:center; background-color:black; color:white;  padding-top:200px; padding-bottom:200px; '>{request.session.get('otp')}</h1>","codeaj4u@gmail.com",[f'{request.user.email}'])
+        except:
+            return redirect("login")
+        
         if request.method == "POST":
             otp = request.POST['otp']
             generated_otp = request.session.get('otp')
@@ -370,6 +389,7 @@ def OTP(request):
 
             else:
                 return render(request,"otp.html",{"message":f"Incorrect OTP !!"})
+        
         
         return render(request,"otp.html",{"message":""})
 

@@ -23,8 +23,12 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'pythoncoding4u@gmail.com'
-EMAIL_HOST_PASSWORD = 'boxrxnifrgcjpsen'
+EMAIL_HOST_PASSWORD = 'bbxemzstvizslzbp'
 DEFAULT_FROM_EMAIL = 'pythoncoding4u@gmail.com'
+
+
+
+
 
 
 
@@ -39,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'rest_framework',
+    'discussions',
 ]
 
 

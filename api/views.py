@@ -6,6 +6,28 @@ from django.contrib import messages
 from accounts.models import Student, Domain, Assignment, AssignmentSubmit
 from .serializers import StudentSerializer, DomainSerializer, AssignmentSerializer, AssignmentSubmitSerializer
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class TestAPIView(APIView):
     def get(self, request):
         return Response({'message': 'Hello, World!'})

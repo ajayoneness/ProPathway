@@ -1,0 +1,118 @@
+{% extends 'login.html' %}
+
+{% load static %}
+{% block content %}
+
+<style>
+  /* Add your custom styles here */
+  .profile_pic_comment{
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+
+  }
+
+
+  .container111{
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+        
+
+    .closse{
+      position: absolute;
+      right: 20px;
+      top:20px;
+      font-size: 25px;
+    }
+
+</style>
+
+<div class="popup p-5" id="popupreply">
+
+  <i class="fa-solid fa-circle-xmark closse" id="close"></i>
+
+    <h6>Reply</h6>
+    <p id="commentmess"></p>
+    <form method="post">
+      {% csrf_token %}
+      <textarea class="form-control mb-3" id="commentInput" placeholder="Add your comment" name="commentreply"></textarea>
+      <input type="hidden" id="comrep" name="comment_id">
+      <button type="submit" name="comment_replay">Submit</button>
+    </form>
+</div>
+
+<br><br><br><br><br>
+<div class="container111">
+  <h1>{{assignment.assignment_question}}</h1>
+
+
+
+  <form id="discussionForm" method="post">
+    {% csrf_token %}
+    <textarea class="form-control mb-3" id="commentInput" placeholder="Add your comment" name="comment"></textarea>
+    <button type="submit" name="commentNow">Submit</button>
+  </form>
+
+
+
+
+  <h5 class="mt-5">Discussions</h5>
+  {% for i in discuss %}
+    <div class="card mb-3">
+      <div class="p-5">
+        <img class="profile_pic_comment" src="{{i.student.profile_pic.url}}">
+        <h5>{{i.student.name}}</h5>
+        <p class="commenttt">{{i.comment}}</p>
+        <p style="display: none;" class="commentid">{{i.id}}</p>
+        <br>
+        <button type="button"  class="commentreplybutton">reply</button>
+
+        {% for j in disrep %}
+
+        {% if j.discuss.id == i.id %}
+          
+          <div class="card m-3">
+            <div class="p-5">
+              <img class="profile_pic_comment" src="{{j.student.profile_pic.url}}">
+              <h5>{{j.student.name}}</h5>
+              <p class="commenttt">{{j.comment}}</p>
+            </div>
+          </div>
+        {% endif %}
+          
+        {% endfor %}
+       
+
+
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function(){
+
+    $("#close").click(function(){
+      $("#popupreply").css("display", "none");
+    })
+
+
+    $(".commentreplybutton").click(function(){
+      var card = $(this).closest(".card");
+      var comment_id = card.find(".commentid").text();
+      var comment_text = card.find(".commenttt").text();
+      
+      $("#comrep").val(comment_id);
+      $("#commentmess").text(comment_text);
+      $("#popupreply").css("display", "block");
+    });
+  });
+</script>
+
+{% endblock %}
