@@ -1,1 +1,1 @@
-web: gunicorn pythoncoding4u.wsgi
+web: gunicorn ProPathway.wsgi
