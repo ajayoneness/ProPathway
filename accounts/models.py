@@ -43,9 +43,29 @@ class StudentManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
 
         return self.create_user(email, name, password, **extra_fields)
+    
+
+
 
 
 class Student(AbstractBaseUser, PermissionsMixin):
+
+    STATUS_NOT_STARTED = 'not_started'
+    STATUS_IN_PROGRESS = 'in_progress'
+    STATUS_UNDER_REVIEW = 'under_review'
+    STATUS_COMPLETED = 'completed'
+    STATUS_REJECTED = 'rejected'
+
+    STATUS_CHOICES = [
+        (STATUS_NOT_STARTED, 'Not Started'),
+        (STATUS_IN_PROGRESS, 'In Progress'),
+        (STATUS_UNDER_REVIEW, 'Under Review'),
+        (STATUS_COMPLETED, 'Completed'),
+        (STATUS_REJECTED, 'Rejected'),
+    ]
+
+
+
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
@@ -54,8 +74,23 @@ class Student(AbstractBaseUser, PermissionsMixin):
     college = models.CharField(max_length=255, null=True, blank=True)
     domain = models.ForeignKey(Domain, on_delete=models.SET_NULL, null=True, blank=True)
     assignment1 = models.ForeignKey(Assignment, on_delete=models.SET_NULL, null=True, blank=True, related_name='assignment1')
+    assignment1status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=STATUS_NOT_STARTED,
+    )
     assignment2 = models.ForeignKey(Assignment, on_delete=models.SET_NULL, null=True, blank=True, related_name='assignment2')
+    assignment2status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=STATUS_NOT_STARTED,
+    )
     assignment3 = models.ForeignKey(Assignment, on_delete=models.SET_NULL, null=True, blank=True, related_name='assignment3')
+    assignment3status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=STATUS_NOT_STARTED,
+    )
     level_choices_student = [(0, 'Not Started'), (1, 'Level 1'), (2, 'Level 2'), (3, 'Level 3'), (4, 'pending'), (5, 'Certificate Level')]
     level_student = models.IntegerField(choices=level_choices_student, default=0)
     otp = models.IntegerField(null=True, blank=True)

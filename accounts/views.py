@@ -246,6 +246,8 @@ def dashboard(request):
 
 
 
+
+
 @login_required(login_url='/')
 def level_one(request):
     student = request.user
@@ -263,15 +265,23 @@ def level_one(request):
             update_assignemt_one.save()
         if request.user.level_student !=5:  
             request.user.level_student = 2
+        request.user.assignment1status = 'under_review'
         request.user.save()
 
         return redirect('dashboard')
+    
+    if request.user.assignment1status != 'under_review':
+        request.user.assignment1status = 'in_progress'
+        request.user.save()
+
 
     try:
         submitted_data = AssignmentSubmit.objects.get(student=student)
         return render(request, 'level1.html',{"sdata": submitted_data})
     except:
         return render(request, 'level1.html')
+
+
 
 
 
@@ -290,9 +300,14 @@ def level_two(request):
         update_assignemt_two.save()
         if request.user.level_student !=5:
             request.user.level_student = 3
+        request.user.assignment2status = 'under_review'
         request.user.save()
 
         return redirect('dashboard')
+    
+    if request.user.assignment2status != 'under_review':
+        request.user.assignment2status = 'in_progress'
+        request.user.save()
 
 
     try:
@@ -300,6 +315,9 @@ def level_two(request):
         return render(request, 'level2.html', {"sdata": submitted_data})
     except:
         return render(request, 'level2.html')
+
+
+
 
 
 

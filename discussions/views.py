@@ -36,8 +36,8 @@ def Discussion(request, slug):
 
 
 
-    discussion  = Discussions.objects.all()
-    discussionreply  = discussionReply.objects.all()
+    discussion  = Discussions.objects.all().order_by("-id")
+    discussionreply  = discussionReply.objects.all().order_by("-id")
 
 
     return render(request, 'discussion.html', {'assignment': ass, 'discuss' : discussion, "disrep":discussionreply })

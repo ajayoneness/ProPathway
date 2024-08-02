@@ -11,6 +11,14 @@
     body{
         height: auto;
     }
+
+    .ststusimg{
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+    }
+
+
 </style>
 
 
@@ -58,6 +66,8 @@
                                     <p class="wow animate__animated animate__wobble">UNLOCKED</p>
 
                                 </div>
+
+
                             </div>
 
                             <div class="biglevel wow animate__animated animate__zoomIn">
@@ -81,10 +91,47 @@
                     <div class="status-box">
 
                         <!-- <i class="fa-solid fa-lock"></i> -->
+                        <!-- <i class="fa-solid fa-chart-line wow animate__animated animate__jackInTheBox"></i> -->
+
+
+                        {% if user.assignment1status == 'not_started' %}
+                        <img src="{% static 'not_started.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+                        {% elif user.assignment1status == 'in_progress' %}
+                        <img src="{% static 'inprogress.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+
+                        {% elif user.assignment1status == 'under_review' %}
+                        <img src="{% static 'under_review.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+
+                        {% elif user.assignment1status == 'completed' %}
+                        <img src="{% static 'completed.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+                        {% else %}
+                        <img src="{% static 'rejected.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+
+
+
+                        {% endif %}
+
+
+
+
+                        <div style="width: 30px;"></div>
+                        <!-- <i class="fa-solid fa-lock"></i> -->
                         <i class="fa-solid fa-unlock wow animate__animated animate__jackInTheBox"></i>
                         <p class="animate__animated animate__fadeInBottomLeft">UNLOCKED</p>
 
                     </div>
+
+                   
 
 
 
@@ -189,6 +236,34 @@
     
                    <h3>Status</h3>
                     <div class="status-box">
+
+
+                        
+                    {% if user.assignment2status == 'not_started' %}
+                        <img src="{% static 'not_started.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment2status}}</p>
+
+                        {% elif user.assignment2status == 'in_progress' %}
+                        <img src="{% static 'inprogress.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment2status}}</p>
+
+
+                        {% elif user.assignment2status == 'under_review' %}
+                        <img src="{% static 'under_review.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment2status}}</p>
+
+
+                        {% elif user.assignment2status == 'completed' %}
+                        <img src="{% static 'completed.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment2status}}</p>
+
+                        {% else %}
+                        <img src="{% static 'rejected.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+                    {% endif %}
+                    <div style="width: 30px;"></div>
+
     
                         <i class="fa-solid fa-lock"></i>
                         <!-- <i class="fa-solid fa-unlock"></i> -->
@@ -224,7 +299,16 @@
                                 <p>LEVEL TWO</p> 
                             </div>
 
+
+
+
+
                             <div style="display:flex; ">
+
+
+
+
+                                
                                 <i class="fa-solid fa-lock"></i>
                                 <p>UNLOCKED</p>
 
