@@ -1,0 +1,660 @@
+{% extends 'login.html' %}
+
+{% load static %}
+{% block content %}
+
+
+
+<style>
+
+
+    body{
+        height: auto;
+    }
+
+    .ststusimg{
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+    }
+
+
+</style>
+
+
+
+
+
+<div class="fullbggg" id="popupvideo">
+
+    <div class="videopopup">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/5O0YDHiosD0?si=pprYDGtMWuSy4MgS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <i class="fa-solid fa-xmark close" id="close"></i>
+    </div>
+
+</div>
+    
+
+
+    <div class="container1">
+
+        <div class="row">
+
+
+<!-- Level 1 -->
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card wow animate__animated animate__flip ">
+            
+                   
+                        <div class="card1" id="level1">
+                            <div class="bac"></div>
+                            <img src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
+                            <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+
+
+                            <!-- Popup container -->
+                             
+
+
+                            <div class="imgtext">
+                                <div style="display:flex; position:relative; top:20px;">
+                                    <i class="ml-2 fa-solid fa-chart-column"></i>
+                                    <p class="wow animate__animated animate__wobble">LEVEL ONE</p> 
+                                </div>
+
+                                <div style="display:flex; ">
+                                    <i class="fa-solid fa-unlock "></i>
+                                    <p class="wow animate__animated animate__wobble">UNLOCKED</p>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="biglevel wow animate__animated animate__zoomIn">
+                                1
+                            </div>
+                                                
+                        </div>
+                    
+
+                
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="level-text">
+                    <h1 class="wow animate__animated animate__fadeInTopRight">{{user.assignment1.assignment_question}}</h1>
+                    <p class="wow animate__animated animate__fadeInBottomRight">
+                        {{user.assignment1.assignment_description}} 
+                    </p>
+
+                   <h3 class="wow animate__animated animate__flip">Status</h3>
+                    <div class="status-box">
+
+                        <!-- <i class="fa-solid fa-lock"></i> -->
+                        <!-- <i class="fa-solid fa-chart-line wow animate__animated animate__jackInTheBox"></i> -->
+
+
+                        {% if user.assignment1status == 'not_started' %}
+                        <img src="{% static 'not_started.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+                        {% elif user.assignment1status == 'in_progress' %}
+                        <img src="{% static 'inprogress.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+
+                        {% elif user.assignment1status == 'under_review' %}
+                        <img src="{% static 'under_review.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+
+                        {% elif user.assignment1status == 'completed' %}
+                        <img src="{% static 'completed.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+                        {% else %}
+                        <img src="{% static 'rejected.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+
+
+
+                        {% endif %}
+
+
+
+
+                        <div style="width: 30px;"></div>
+                        <!-- <i class="fa-solid fa-lock"></i> -->
+                        <i class="fa-solid fa-unlock wow animate__animated animate__jackInTheBox"></i>
+                        <p class="animate__animated animate__fadeInBottomLeft">UNLOCKED</p>
+
+                    </div>
+
+                   
+
+
+
+                    <div class="mt-3" style="height: 100px;">
+                        <a style=" background-color: rgba(0, 255, 55, 0.267);" href="{% url 'level1' %}" type="submit" class="mb-3 submit-button wow animate__animated animate__fadeInBottomRight" >
+                            Navigate
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    
+                   
+
+                </div>
+                
+            </div>
+
+
+<!-- Level one end -->
+
+<!-- Level 2 -->
+            {% if user.level_student > 1 %}
+
+            <div class="col-sm-12 col-md-12 col-lg-6  ">
+                <div class="level-text">
+                    <h1>{{user.assignment2.assignment_question}}</h1>
+                    <p>
+                        {{user.assignment2.assignment_description}} 
+                    </p>
+    
+                   <h3>Status</h3>
+                    <div class="status-box">
+    
+                        <!-- <i class="fa-solid fa-lock"></i> -->
+                        <i class="fa-solid fa-unlock"></i>
+                        <p>UNLOCKED</p>
+    
+                    </div>
+
+
+                    <div class="mt-3" style="height: 100px;">
+                        <a style=" background-color: rgba(0, 255, 55, 0.267);" href="{% url 'level2' %}" type="submit" class="mb-3 submit-button wow animate__animated animate__fadeInBottomRight" >
+                            Navigate
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+    
+                    <!-- <a href="{% url 'level2' %}" class="btn btn-success" >Navigate</a> -->
+                   
+    
+                </div>
+                
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card wow animate__animated animate__flip">
+            
+              
+                    <div class="card1" id="level1">
+                        <div class="bac"></div>
+                        <img src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">
+                        <i class="fa-solid fa-play play"></i>    
+                        
+                        
+                        <div class="imgtext">
+                            <div style="display:flex; position:relative; top:20px;">
+                                <i class="ml-2 fa-solid fa-chart-column"></i>
+                                <p>LEVEL TWO</p> 
+                            </div>
+
+                            <div style="display:flex; ">
+                                <i class="fa-solid fa-unlock"></i>
+                                <p>UNLOCKED</p>
+
+                            </div>
+                        </div>
+
+                        <div class="biglevel">
+                            2
+                        </div>
+
+                    </div>
+        
+
+            
+            </div>
+
+            {% else %}
+
+            <!-- Locked  Level 2 -->
+            <div class="col-sm-12 col-md-12 col-lg-6 ">
+                <div class="level-text" style="margin-bottom: 10px;">
+                    
+                    <div style="width: 100%; height: 45px; background-color: #4242427a; border-radius: 10px; margin: 20px 0px;">
+
+                    </div>
+
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 40%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                        
+    
+                   <h3>Status</h3>
+                    <div class="status-box">
+
+
+                        
+                    {% if user.assignment2status == 'not_started' %}
+                        <img src="{% static 'not_started.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment2status}}</p>
+
+                        {% elif user.assignment2status == 'in_progress' %}
+                        <img src="{% static 'inprogress.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment2status}}</p>
+
+
+                        {% elif user.assignment2status == 'under_review' %}
+                        <img src="{% static 'under_review.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment2status}}</p>
+
+
+                        {% elif user.assignment2status == 'completed' %}
+                        <img src="{% static 'completed.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment2status}}</p>
+
+                        {% else %}
+                        <img src="{% static 'rejected.gif' %}" class="ststusimg wow animate__animated animate__jackInTheBox">
+                        <p class="animate__animated animate__fadeInBottomLeft">{{user.assignment1status}}</p>
+
+                    {% endif %}
+                    <div style="width: 30px;"></div>
+
+    
+                        <i class="fa-solid fa-lock"></i>
+                        <!-- <i class="fa-solid fa-unlock"></i> -->
+                        <p>LOCKED</p>
+    
+                    </div>
+
+                    <div class="mt-3" style="height: 100px;">
+                        <a href="#" style=" background-color: rgba(255, 0, 0, 0.267);" type="submit" class="mb-3 submit-button wow animate__animated animate__fadeInBottomRight" >
+                            Locked
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+    
+                    <!-- <a href="#" class="btn btn-danger" disabled>Navigate</a> -->
+                   
+    
+                </div>
+                
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card wow animate__animated animate__bounce">
+            
+                
+                    <div class="card1" id="level1">
+                        <div class="bac"></div>
+                        <img src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">  
+                        <i class="fa-solid fa-lock locked"></i>    
+                        
+                        <div class="imgtext">
+                            <div style="display:flex; position:relative; top:20px;">
+                                <i class="ml-2 fa-solid fa-chart-column"></i>
+                                <p>LEVEL TWO</p> 
+                            </div>
+
+
+
+
+
+                            <div style="display:flex; ">
+
+
+
+
+                                
+                                <i class="fa-solid fa-lock"></i>
+                                <p>UNLOCKED</p>
+
+                            </div>
+                        </div>
+
+                        <div class="biglevel" style="padding-bottom: 100px;">
+                            2
+                        </div>
+                    </div>
+               
+
+            </div>
+
+            {% endif %}
+
+            
+
+
+
+
+
+<!-- Level 3 -->
+            {% if user.level_student > 2 %}
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card">
+            
+           
+                <div class="card1" id="level1">
+                    <div class="bac"></div>
+                    <img src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">
+                    <i class="fa-solid fa-play play"></i>
+                    
+                    <div class="imgtext">
+
+                        <div style="display:flex; position:relative; top:20px;">
+                            <i class="ml-2 fa-solid fa-chart-column"></i>
+                            <p>LEVEL THREE</p> 
+                        </div>
+
+                        <div style="display:flex; ">
+                            <i class="fa-solid fa-unlock"></i>
+                            <p>UNLOCKED</p>
+
+                        </div>
+                    </div>
+
+                    <div class="biglevel">
+                        3
+                    </div>
+                    
+                    
+                </div>
+            
+
+        
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="level-text">
+            <h1>{{user.assignment3.assignment_question}}</h1>
+            <p>
+                {{user.assignment3.assignment_description}} 
+            </p>
+
+           <h3>Status</h3>
+            <div class="status-box">
+
+                <!-- <i class="fa-solid fa-lock"></i> -->
+                <i class="fa-solid fa-unlock"></i>
+                <p>UNLOCKED</p>
+
+            </div>
+
+
+            <div class="mt-3" style="height: 100px;">
+                <a href="{% url 'level3' %}" style=" background-color: rgba(0, 255, 55, 0.267);"  class="mb-3 submit-button wow animate__animated animate__fadeInBottomRight" >
+                    Navigate
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- <a href="{% url 'level3' %}" class="btn btn-success" >Navigate</a> -->
+           
+
+        </div>
+        
+            </div>
+
+            {% else %}
+
+
+             <!-- Locked  Level 3 -->
+
+             <div class="col-sm-12 col-md-12 col-lg-6 level-card">
+            
+                
+                <div class="card1" id="level1">
+                    <div class="bac"></div>
+                    <img src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">  
+                    <i class="fa-solid fa-lock locked"></i>  
+                    
+                    <div class="imgtext">
+                        <div style="display:flex; position:relative; top:20px;">
+                            <i class="ml-2 fa-solid fa-chart-column"></i>
+                            <p>LEVEL THREE</p> 
+                        </div>
+
+                        <div style="display:flex; ">
+                            <i class="fa-solid fa-unlock"></i>
+                            <p>LOCKED</p>
+
+                        </div>
+                    </div>
+
+                    <div class="biglevel" style="padding-bottom: 100px;">
+                        3
+                    </div>
+                    
+                </div>
+           
+
+            </div>
+
+             <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="level-text" style="margin-bottom: 10px;">
+                    
+                    <div style="width: 100%; height: 45px; background-color: #4242427a; border-radius: 10px; margin: 20px 0px;">
+
+                    </div>
+
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 40%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                        
+    
+                   <h3>Status</h3>
+                    <div class="status-box">
+    
+                        <i class="fa-solid fa-lock"></i>
+                        <!-- <i class="fa-solid fa-unlock"></i> -->
+                        <p>LOCKED</p>
+    
+                    </div>
+
+
+                    <div class="mt-3" style="height: 100px;">
+                        <a href="#" style=" background-color: rgba(255, 0, 0, 0.267);" type="submit" class="mb-3 submit-button wow animate__animated animate__fadeInBottomRight" >
+                            Locked
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+    
+                    <!-- <a href="#" class="btn btn-danger" disabled>Navigate</a> -->
+                   
+    
+                </div>
+                
+            </div>
+
+            {% endif %}
+
+<!-- LEvel3 End -->
+
+            <!-- Panding Level -->
+
+
+                    <div class="col-sm-12 col-lg-12 col-md-12">
+
+                        {% if user.level_student == 4 %}
+                            <div class="card danger p-3" style="background-color:rgba(255,0,0,0.3); color:white">
+
+                                You are successfully complete the level 3,
+                                Now it will take 24 hour to Verify your Solution after that only you can get the Certificate.
+
+                            </div>
+                        {% endif %}
+
+
+
+                        {% if user.level_student == 5 %}
+                            <div class="card danger p-3" style="background-color:rgba(0,255,0,0.3); color:white">
+
+                                Now You are Successfully Verified !! Now you can get your certificate !!
+
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+
+            <!-- Panding Level End -->
+
+
+            {% if user.level_student == 5 %}
+
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="level-text">
+                    <h1>Certificate</h1>
+                    <p>
+                        {{user.assignment2.assignment_description}} 
+                    </p>
+    
+                   <h3>Status</h3>
+                    <div class="status-box">
+    
+                        <!-- <i class="fa-solid fa-lock"></i> -->
+                        <i class="fa-solid fa-unlock"></i>
+                        <p>Get Certificate</p>
+    
+                    </div>
+
+                    <div class="mt-3" style="height: 100px;">
+                        <a  style=" background-color: rgba(0, 255, 55, 0.267);" href="{% url 'certification' %}" type="submit" class="mb-3 submit-button wow animate__animated animate__fadeInBottomRight" >
+                            Navigate
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+    
+                    <!-- <a href="{% url 'certification' %}" class="btn btn-success" >Navigate</a> -->
+                   
+    
+                </div>
+                
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card">
+            
+                
+                    <div class="card1" id="level1">
+                        <div class="bac"></div>
+                        <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/certificate-of-achievement-diploma-template-%28-design-a0629a4e70ae62e3854786173842eaaa_screen.jpg?ts=1690948843" alt="" class=" img-fluid">
+                        <i class="fa-solid fa-play play"></i>    
+                        
+                        <div class="imgtext">
+                            <div style="display:flex; position:relative; top:20px;">
+                                <i class="ml-2 fa-solid fa-chart-column"></i>
+                                <p>CERTIFICATION LEVEL</p> 
+                            </div>
+    
+                            <div style="display:flex; ">
+                                <i class="fa-solid fa-unlock"></i>
+                                <p>LOCKED</p>
+    
+                            </div>
+                        </div>
+    
+                        <div class="biglevel">
+                            4
+                        </div>
+
+                    </div>
+                
+
+            
+            </div>
+
+            {% else %}
+
+            <!-- Locked  Certificateion Level -->
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="level-text" style="margin-bottom: 10px;">
+                    
+                    <div style="width: 100%; height: 45px; background-color: #4242427a; border-radius: 10px; margin: 20px 0px;">
+
+                    </div>
+
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 100%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                    <div style="width: 40%; height: 20px; background-color: #7070707a; border-radius: 10px; margin: 10px 0px;"></div>
+                        
+    
+                   <h3>Status</h3>
+                    <div class="status-box">
+    
+                        <i class="fa-solid fa-lock"></i>
+                        <!-- <i class="fa-solid fa-unlock"></i> -->
+                        <p>LOCKED</p>
+    
+                    </div>
+
+
+                    <div class="mt-3" style="height: 100px;">
+                        <a  style=" background-color: rgba(255, 0, 0, 0.267);" href="#" type="submit" class="mb-3 submit-button wow animate__animated animate__fadeInBottomRight" >
+                            Navigate
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+    
+    
+                    <!-- <a href="#" class="btn btn-danger" disabled>Get Certificate</a> -->
+                   
+    
+                </div>
+                
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6 level-card">
+            
+                
+                    <div class="card1" id="level1">
+                        <div class="bac"></div>
+                        <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/certificate-of-achievement-diploma-template-%28-design-a0629a4e70ae62e3854786173842eaaa_screen.jpg?ts=1690948843" alt="" class=" img-fluid">  
+                        <i class="fa-solid fa-lock locked"></i>
+                        
+                        
+                        <div class="imgtext">
+                            <div style="display:flex; position:relative; top:20px;">
+                                <i class="ml-2 fa-solid fa-chart-column"></i>
+                                <p>LEVEL FOUR</p> 
+                            </div>
+    
+                            <div style="display:flex; ">
+                                <i class="fa-solid fa-unlock"></i>
+                                <p>LOCKED</p>
+    
+                            </div>
+                        </div>
+    
+                        <div class="biglevel" style="padding-bottom: 30px;">
+                            4
+                        </div>
+
+                    </div>
+
+                    
+               
+
+            </div>
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -263,16 +263,31 @@ def level_one(request):
             update_assignemt_one.Assignment1_github_Link = git
             update_assignemt_one.Assignment1_linkedin_link = linkedin
             update_assignemt_one.save()
-        if request.user.level_student !=5:  
-            request.user.level_student = 2
-        request.user.assignment1status = 'under_review'
-        request.user.save()
+        if student.level_student !=5:  
+            student.level_student = 2
+
+        if student.assignment1status != 'completed':   
+            student.assignment1status = 'under_review'
+
+        student.save()
 
         return redirect('dashboard')
     
-    if request.user.assignment1status != 'under_review':
-        request.user.assignment1status = 'in_progress'
-        request.user.save()
+
+    if student.assignment1status == 'not_started':
+        student.assignment1status = 'in_progress'
+        student.save()
+    else:
+        pass
+
+    
+    # if request.user.assignment1status != 'completed' : 
+    #     request.user.assignment1status = 'in_progress'
+    #     request.user.save()
+    
+    # if request.user.assignment1status != 'under_review':
+    #     request.user.assignment1status = 'in_progress'
+    #     request.user.save()
 
 
     try:
@@ -341,6 +356,7 @@ def level_three(request):
 
     try:
         submitted_data = AssignmentSubmit.objects.get(student=student)
+        print(submitted_data)
         return render(request, 'level3.html', {"sdata": submitted_data})
     except:
         return render(request, 'level3.html')

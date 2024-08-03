@@ -94,7 +94,24 @@
             left: 0;
             width: 25%;
             height:calc(100%);
-            background-color: rgba(121, 0, 0, 0.772);
+            background-color: rgba(255, 0, 0, 0.772);
+
+            {% if user.assignment1status == 'under_review'  %}
+            background-color: rgba(255, 196, 0, 0.472);
+            {% elif user.assignment1status == 'completed'  %}
+            background-color: rgba(52,121,178,0.472);
+            {% else %}
+            background-color: rgba(255, 0, 0, 0.472);
+            {% endif %}
+
+
+
+
+            
+
+
+
+
             animation: fillBlack 2s linear forwards; /* Animation */
 
         }

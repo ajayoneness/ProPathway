@@ -1,0 +1,705 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
+    <title>Pythoncoding4u</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Config -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/config.css' %}">
+    <!-- Libraries -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/libs.css' %}">
+    <!-- Template Styles -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" sizes="32x32">
+
+    <style>
+
+        .whatapp-img{
+            z-index: 99;
+            width: 50px;
+            bottom: 25px;
+            position: fixed;
+            left: 25px;
+            animation: jump 0.5s linear infinite;
+            z-index: 9999;
+        }
+
+        @keyframes jump {
+
+            0%{
+                transform: scale(1.1);
+            }
+            50%{
+                transform: scale(1.2);
+            }
+
+            100%{
+                transform: scale(1.1);
+            }
+            
+        }
+
+        
+        .full-desktop{
+                width: 100%;
+                height: 100vh;
+                position: fixed;
+                background-color: rgba(0, 0, 0, 0.866);
+                z-index: 999;
+                transition: ease-in-out 0.5s;
+                display:none;
+            }
+
+            .form-box{
+                width: 30%;
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: ease-in-out 0.5s;
+            }
+
+            .close-buttion{
+                position: absolute;
+                right: 20px;
+                top : 10px;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 20px;
+            }
+
+            @media only screen and (max-width: 600px) {
+            .whatapp-img{
+            bottom: 10px;
+            left: 10px;
+            }
+            .form-box{
+                    width: 90%;
+                }
+
+        }
+
+
+
+        
+        p{
+           
+       
+
+        }
+
+        li{
+            font-family: "Platypi", serif;
+            padding-top : 5px; 
+        }
+
+        a{
+            text-decoration: none;
+        }
+        
+
+        .box{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            border-radius: 10px;
+            height :95vh;
+            margin: 10px;
+
+  
+        }
+
+        .input-box{
+            width : 100%;
+            height :35px;
+            border : 2px solid #797979;
+            font-family: "M PLUS 1 Code", monospace;
+
+        }
+
+        .head-text{
+            color : rgb(70, 70, 70);
+            padding :10px;
+            
+            font-weight: 700;
+        }
+
+        .logo{
+            width: 120px;
+            margin:10px;
+        }
+
+        .submit-button{
+            border : none;
+            border : 2px solid gray;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+
+        .submit-button i{
+            font-size: 13px;
+            margin-left: 1px;
+            transition: ease-in-out;
+            transition-duration: 0.3s;
+        }
+
+
+        .submit-button:hover i{
+            margin-left: 5px;
+
+        }
+
+        .error-message{
+            text-align: left;
+            font-size: 12px;
+            color:rgb(226, 0, 0);
+        }
+
+        .navigation{
+            position:fixed;
+            width: 100%;
+        }
+
+        .mainlogo{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+        }
+
+
+        .mainlogo .logo-image{
+            width: 150px;
+            margin: 20px;
+        }
+
+        .mainlogo .profile-image{
+            width : 50px;
+            height : 50px;
+            border-radius: 50%;
+            border : 2px solid black;
+            margin: 20px;
+            margin-top:35px;
+        }
+
+
+        .mainlogo  .bbx .profile-details{
+            position: absolute;
+            right : 10px;
+            top : 85px;
+            padding:30px;
+            display: none;
+            border-radius: 10px;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+            background-color : white;
+
+
+        }
+
+
+        .mainlogo  .bbx:hover .profile-details{
+            display: block;
+        }
+
+        
+
+
+
+
+
+        @media only screen and (max-width: 600px) {
+            .box{
+
+                height:100vh;
+                border-radius : 0px;
+                margin :0px;
+
+            }
+
+            .mainlogo .logo-image{
+                width: 150px;
+            }
+
+
+
+
+
+            }
+
+
+            a{
+        color :rgb(0, 0, 0);
+        font-weight : 700;
+        text-decoration: none;
+    }
+
+    a:hover{
+
+        text-decoration: none;
+    }
+       
+        body{
+           
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+
+        .levels{
+            padding-top: 50px;
+        }
+
+        .card1{
+            /* width: 400px;
+            height: 400px; */
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            margin: 50px;
+            
+            
+        }
+
+        .card1  img {
+            scale:  1;
+            transition: ease-in-out 0.4s;
+        }
+
+        .card1:hover img{
+            scale:  1.1;
+        }
+
+
+        .bac{
+            background-color: rgba(0, 0, 0, 0.559);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            border-radius: 10px; 
+            text-shadow:rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;;   
+        }
+
+        .locked{
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            color:rgb(249, 249, 249);
+            z-index: 999;
+            text-shadow:rgba(0, 0, 0, 0.4) 0px 30px 90px;;
+            
+        }
+
+
+        .play{
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color:white;
+            z-index: 999;
+            
+           
+        }
+
+        .numlevel{
+            z-index: 9999;
+            position: relative;
+        }
+
+        .levels h5{
+            color:white;
+        }
+
+        .navv{
+
+            width: 100%;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.258);
+
+        }
+        .navv h5{
+            color:white;
+        }
+
+
+        .level-card{
+            margin: 120px 0px;  
+        }
+
+
+
+
+        .level-text{
+            margin: 0px 0px;
+        
+        }
+
+        .container1{
+            margin : 0px 200px;
+        }
+
+
+        .biglevel{
+            font-size: 400px;
+            font-weight: 700;
+            z-index: 999999;
+            position: absolute;
+            margin: 0;
+            position: absolute;
+            top: 65%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            color:rgba(255, 255, 255, 0.568);
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+
+        }
+
+        .imgtext{
+            z-index: 999999;
+            position: absolute;
+            margin: 0;
+            position: absolute;
+            bottom: -10%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            color:white;
+        }
+
+        .imgtext i{
+            padding:10px;
+        }
+
+        .imgtext p{
+            color:white;
+            padding:5px;
+        }
+
+
+
+
+
+        @media only screen and (max-width: 600px) {
+
+            .card1{
+            margin: 0px;
+            margin-top: 70px;
+            
+        }
+
+
+            
+        .level-card{
+            margin: 50px 0px;  
+        }
+
+
+
+
+        .level-text{
+            margin: 10px 0px;
+        
+        }
+
+
+
+            .imgtext{
+                left: 25%;
+                bottom: -20%;
+            }
+
+        .container1{
+            margin : 0px 10px;
+        }
+
+        .bac{
+            background-color: rgba(0, 0, 0, 0.559);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            border-radius: 10px;    
+        }
+
+        .card1{
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            
+            
+        }
+
+        .card1  img {
+            scale:  1.1;
+            transition: ease-in-out 0.4s;
+        }
+
+        .card1:hover img{
+            scale:  1.2;
+        }
+
+        .level-text{
+
+        }
+
+        .biglevel{
+            font-size: 200px; 
+            left: 85%; 
+        }
+
+        }
+
+        .fa-play {
+            color: white; /* Set icon color to white */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Initial shadow color and blur */
+            transition: text-shadow 0.3s; /* Add transition for smooth animation */
+        }
+
+
+
+
+
+
+        @keyframes shadow-pulse {
+            0% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 50px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 1) ;
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .fa-play {
+            color: white; /* Set icon color to white */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Initial shadow color and blur */
+            animation: shadow-pulse 2s infinite; /* Apply animation to the play button */
+        }
+
+        .status-box{
+            display: flex;
+            padding: 10px 0px;
+
+        }
+
+        .status-box i{
+            font-size: 25px;
+            margin-right: 20px;
+        }
+
+
+        .navigation{
+            z-index: 9999999999;
+
+        }
+
+        .popup {
+                    width: 560px;
+                    height: 315px;
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: #fff;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                    z-index: 9999;
+                    display: none;
+                }
+
+
+
+
+        .submit-btn {
+            height: 45px;
+            width: 200px;
+            font-size: 15px;
+            background-color: #00c09d;
+            border: 1px solid #00ab8c;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px 0 rgba(87,71,81,.2);
+            cursor: pointer;
+            transition: all 2s ease-out;
+            transition: all .2s ease-out;
+        }
+
+        .submit-btn:hover {
+            background-color: #2ca893;
+            transition: all .2s ease-out;
+        }
+
+
+        .fullbggg{
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.498);
+            z-index :999999999;
+            display: none;
+        }
+
+
+        .videopopup{
+            position: absolute;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+        }
+
+        .videopopup iframe{
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .close{
+            color: white;
+            position: relative;
+            top : -315px;
+            font-size: 25px;
+        }
+
+
+
+
+
+
+       
+
+
+    </style>
+
+
+
+</head>
+<body>
+   
+    
+
+
+
+    <!-- Header -->
+    <header id="bringer-header" class="is-frosted is-sticky" data-appear="fade-down" data-unload="fade-up">
+        <!-- Desktop Header -->
+        <div class="bringer-header-inner">
+            <!-- Header Logo -->
+            <div class="bringer-header-lp">
+                <a href="#" class="bringer-logo">
+                    <img src="{% static 'img/logo.png' %}" alt="bringer." width="180" height="24">
+                </a>
+            </div>
+            <!-- Main Menu -->
+            <div class="bringer-header-mp">
+                <nav class="bringer-nav">
+                    <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
+                        <li id="home" class="current-menu-parent">
+                            <a href="#">Home</a>
+                        </li>
+                       
+                    </ul>
+                </nav>
+            </div>
+            <!-- Header Button -->
+            <div class="bringer-header-rp">
+                <a id="getquote" class="bringer-button">Get a FREE Quote</a>
+            </div>
+        </div>
+        <!-- Mobile Header -->
+        <div class="bringer-mobile-header-inner">
+            <a href="#" class="bringer-logo">
+                <img src="{% static 'img/logo.png' %}" alt="bringer." width="160" height="24">
+            </a>
+            <a href="#" class="bringer-mobile-menu-toggler">
+                <i class="bringer-menu-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </i>
+            </a>
+        </div>
+    </header>
+
+
+    <a href="https://wa.me/918603862290">
+        <img src="{% static '/img/whatapp.png' %}" class="whatapp-img">
+    </a>
+
+
+
+
+
+
+    <!-- popup form  -->
+       
+
+        <div class="full-desktop" id="fulldisplay">
+            <div class="form-box">
+
+                
+
+
+                <form id="contactForm1" class="bringer-contact-form bringer-block" method="post" action="#" data-fill-error="Please, fill out the contact form." data-appear="fade-right" data-threshold="0.25">
+                    <p class="close-buttion" id="closebtn">x</p>
+                    <div class="bringer-form-content">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="email@example.com" required>  
+                        
+                        <label for="phone">Your Phone No.</label>
+                        <input type="text" id="phone" name="phone" placeholder="+918603862290" required>    
+                        
+                        <label style="display:none;" for="message">Your Message</label>
+                        <textarea style="display:none;" id="message" name="message" placeholder="Your Message" >Submit from Popup Form</textarea>
+                        
+                        <button id="submitButton1" type="submit">Get a FREE Quote</button>
+                    </div>
+                    <div  id="responseMessage1" ></div>
+                </form>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+        
+
+
+
+
+    <!-- popupform End -->
+
+<!-- Header End -->
+
