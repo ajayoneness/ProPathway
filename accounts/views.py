@@ -288,7 +288,9 @@ def level_one(request):
         student.save()
 
     elif student.assignment1status == 'rejected':
+        student.assignment1status = 'in_progress'
         student.assignment1rejectioncount = int(student.assignment1rejectioncount) + 1
+        student.save()
 
     else:
         pass
@@ -321,16 +323,26 @@ def level_two(request):
         update_assignemt_two.save()
         if request.user.level_student !=5:
             request.user.level_student = 3
+
         if student.assignment2status != 'completed':   
             student.assignment2status = 'under_review'
+            student.assignment2endttime = timezone.now()
 
         student.save()
 
         return redirect('dashboard')
     
+
     if student.assignment2status == 'not_started':
         student.assignment2status = 'in_progress'
+        student.assignment2starttime = timezone.now()
         student.save()
+
+    elif student.assignment2status == 'rejected':
+        student.assignment2status = 'in_progress'
+        student.assignment2rejectioncount = int(student.assignment2rejectioncount) + 1
+        student.save()
+
     else:
         pass
 
@@ -363,13 +375,23 @@ def level_three(request):
 
         if student.assignment3status != 'completed':   
             student.assignment3status = 'under_review'
-        student.save()
-        return redirect('dashboard')
+            student.assignment3endttime = timezone.now()
 
+        student.save()
+
+        return redirect('dashboard')
+    
 
     if student.assignment3status == 'not_started':
         student.assignment3status = 'in_progress'
+        student.assignment3starttime = timezone.now()
         student.save()
+
+    elif student.assignment3status == 'rejected':
+        student.assignment3status = 'in_progress'
+        student.assignment3rejectioncount = int(student.assignment3rejectioncount) + 1
+        student.save()
+
     else:
         pass
 

@@ -11,7 +11,11 @@ urlpatterns = [
     path('internship/',include('internship.urls')),
     path('api/', include('api.urls')),
     path('discussions/', include('discussions.urls')),
+    path('mentors/', include('mentor.urls')),
 ]
+
+
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

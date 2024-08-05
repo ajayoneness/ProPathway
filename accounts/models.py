@@ -8,6 +8,14 @@ class Domain(models.Model):
 
     def __str__(self):
         return self.domain_name
+    
+
+class RefralLink(models.Model):
+    title = models.CharField(max_length=255)
+    url = models.URLField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return self.title
 
 
 
@@ -20,8 +28,10 @@ class Assignment(models.Model):
     assignment_banner1 = models.ImageField(upload_to='assignment_banners1/', null=True, blank=True)
     level_choices = [(1, 'Level 1'), (2, 'Level 2'), (3, 'Level 3')]
     level = models.IntegerField(choices=level_choices, default=0)
-    referral_link1 = models.URLField(max_length=255, null=True, blank=True)
-    referral_link2 = models.URLField(max_length=255, null=True, blank=True)
+    links = models.ManyToManyField(RefralLink, null=True, blank=True)
+    # referral_link1 = models.URLField(max_length=255, null=True, blank=True)
+    # referral_link2 = models.URLField(max_length=255, null=True, blank=True)
+
     slug = models.CharField(null=True, blank=True, max_length=100)
 
     def __str__(self):
@@ -80,7 +90,7 @@ class Student(AbstractBaseUser, PermissionsMixin):
     )
     assignment1starttime = models.DateTimeField(blank=True,null=True)
     assignment1endttime = models.DateTimeField(blank=True,null=True)
-    assignment1rejectioncount = models.ImageField(default=0)
+    assignment1rejectioncount = models.IntegerField(default=0)
 
     #assignment 2
     assignment2 = models.ForeignKey(Assignment, on_delete=models.SET_NULL, null=True, blank=True, related_name='assignment2')
@@ -91,7 +101,7 @@ class Student(AbstractBaseUser, PermissionsMixin):
     )
     assignment2starttime = models.DateTimeField(blank=True,null=True)
     assignment2endttime = models.DateTimeField(blank=True,null=True)
-    assignment2rejectioncount = models.ImageField(default=0)
+    assignment2rejectioncount = models.IntegerField(default=0)
 
 
     #assignment 3
@@ -103,7 +113,7 @@ class Student(AbstractBaseUser, PermissionsMixin):
     )
     assignment3starttime = models.DateTimeField(blank=True,null=True)
     assignment3endttime = models.DateTimeField(blank=True,null=True)
-    assignment3rejectioncount = models.ImageField(default=0)
+    assignment3rejectioncount = models.IntegerField(default=0)
 
 
 

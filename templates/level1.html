@@ -400,9 +400,28 @@
             .sidesticky{
                 top: calc(35% - 70.349px);
             }
+
+            .stg-container{
+            padding-left: 80px;
+            padding-right: 80px;
+
+            }
     
     
           }
+
+
+      
+        @media only screen and (max-width: 600px) {
+
+            .stg-container{
+            padding-left: 10px;
+            padding-right: 10px;
+
+        }
+
+
+        }
     
 
 
@@ -525,7 +544,7 @@
                     </div>
 
                     <div style="text-align: center;">
-                        <a href="#" class="buttonnn" style="width: 100%; border-radius:0px; color:white;">Book Session</a>
+                        <a href="{% url 'mentor' %}" class="buttonnn" style="width: 100%; border-radius:0px; color:white;">Book Session</a>
                     </div>
                     <div style="text-align: center;">
                         <a href="/discussions/{{user.assignment1.slug}}" class="buttonnn" style="width: 100%; border-radius:0px;color:white;">Discussions</a>
@@ -536,20 +555,19 @@
                     <div class="bringer-block" data-delay="0" data-unload="zoom-out" data-threshold="0.5" style="--mouse-x: 159px; --mouse-y: -71.96250915527344px; padding:5px 20px; border-radius :0px;">
                         <br>
                         <b>Importent Links</b>
-                       
-                            <li><a href="">How to push code on github</a></li>
-                            <li><a href="">How to push code on github</a></li>
-                            <li><a href="">How to push code on github</a></li>
-                       
+                        
+                            {% for i in  user.assignment1.links.all %}
+                            <li><a style="color:#ffffff;" href="{{i.url}}">{{i.title}}</a></li>
+                            {% endfor %}
                             <br>
                            
                         
                             <b>Task Status</b>
                        
                             
-                            <li>Started At 05/08/2024  : 04:25:10</li> 
-                            <li>Completed At 06/08/2024 : 04:25:10</li> 
-                            <li>rejection count : 0</li> 
+                            <li>Started At {{ user.assignment1starttime|date:"j F Y, g:i a" }}</li> 
+                            <li>Completed At {{user.assignment1endttime|date:"j F Y, g:i a" }}</li> 
+                            <li>rejection count : {{user.assignment1rejectioncount}}</li> 
                             <br>
                        
 
