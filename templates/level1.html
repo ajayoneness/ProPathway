@@ -3,15 +3,11 @@
 {% include 'header.html' %}
 
 
-
-
-
     <style>
 
 
         .headbanner{
-        
-            
+
         }
 
         .head{
@@ -164,7 +160,6 @@
         .topp{
 
             padding-top: 190px;
-
         }
 
         .pdec{
@@ -181,8 +176,8 @@
 
         .req{
             font-family: "Rowdies", sans-serif;
-            color: rgb(53, 53, 53);
-            margin-top : 25px;
+            color: #3479B2;
+            margin-top : 28px;
         }
 
 
@@ -219,7 +214,7 @@
         .support .iconn{
 
             text-align: center;
-            margin-bottom: 100px;
+            margin-bottom: 300px;
 
 
         }
@@ -316,7 +311,7 @@
         }
 
 
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 750px) {
 
         .mobtopp{
             margin-top: 30px;
@@ -333,7 +328,7 @@
             width: 100%;
             position:fixed;
             background-color: #1F4A6E;
-            z-index: 9;
+            z-index: 999;
             bottom: 0px;
 
         }
@@ -375,6 +370,40 @@
 
         }
 
+        .buttonnn{
+       
+                font-family: var(--bringer-t-content-ff);
+                font-weight: var(--bringer-t-content-fw);
+                font-size: var(--bringer-t-button-fs);
+                line-height: 1;
+                padding: var(--bringer-button-spacing);
+                display: inline-block;
+                background: var(--bringer-s-accent);
+                border-radius: var(--bringer-button-br);
+                border: 1px solid var(--bringer-s-border-accent);
+                transition: background-color 0.3s;
+                cursor: pointer;
+                
+                
+          
+        }
+
+
+
+
+        .sidesticky{
+            top: calc(25% - 70.349px);
+        }
+
+
+        @media only screen and (max-width: 1366px) {
+            .sidesticky{
+                top: calc(35% - 70.349px);
+            }
+    
+    
+          }
+    
 
 
 
@@ -386,8 +415,6 @@
 
 
 <section class="support">
-
-
     <div class="iconn">
         <div class="spaceicon"></div>
         <i class="fa-brands fa-whatsapp"></i>
@@ -408,22 +435,19 @@
 
         <i class="fa-brands fa-facebook-f"></i>
         <p>Facebook</p>
-      
-
     </div>
-
-
-
-
-
 </section>
+
+
+
+
 
 <div class="stg-container">
 
     <section >
         <div class="stg-row mobtopp">
     
-            <div class="stg-col-8 maintexttt">
+            <div class="stg-col-8 ">
                 <div class="bringer-grid-1cols" data-stagger-appear="zoom-in" data-stagger-unload="zoom-out" data-threshold="0.5" data-stagger-delay="150">
                   
                     <div >
@@ -447,7 +471,7 @@
                             <h5 class="mb-3 req">Submit Your Project</h5>
                 
                             <p style="font-weight: 300; font-size: 13px;" >
-                              <b  style="font-size: 18px;"  class="mb-2">Project Github Link </b> 
+                              <b  style="font-size: 15px;"  class="mb-2">Project Github Link </b> 
                            <br>
                                 push this project on your github account and submithe the link in the given input field.<br>
                                 <b>Note : </b> Project title should be with name "{{user.assignment1.assignment_question}}" this.
@@ -456,7 +480,7 @@
                             
                 
                             <p style="font-weight: 300; font-size: 13px;">
-                                <b style="font-size: 18px;" class="mb-2">Project Linkedin video Link </b> 
+                                <b style="font-size: 15px;" class="mb-2">Project Linkedin video Link </b> 
                              <br>
                                   Capture the working of project video using moble phone or any camera or by screen recording and post it to your Linkedin Profile and also mention our compant name "codeAj" and submit that project link in the field.<br>
                                   <b>Note : </b> add these hash tag before posting on linkeden '#codeaj #pythoncoding4u #codeajay' .
@@ -485,29 +509,54 @@
                 </div><!-- .bringer-grid -->
             </div>
     
-    
-    
-            <div class="stg-col-4 stg-tp-bottom-gap-l" data-unload="fade-left" style="position: relative;">
-                <div class="bringer-sticky-block is-init" style="transform: translateY(0px); top: calc(35% - 70.349px); position: sticky;">
+
+            <div class="stg-col-4 stg-tp-bottom-gap-l" data-unload="fade-left" style="position: relative; border-radius:0px;">
+                <div class="bringer-sticky-block is-init sidesticky" style="transform: translateY(0px);  position: sticky; border-radius:0px;">
                    
     
-                    <div class="card1" id="level1">
-                        <div class="bac"></div>
+                    <div class="card1" id="level1" style="border-radius:0px;">
+                        <div class="bac" style="border-radius:0px;"></div>
                        
-                        <img src="{{user.assignment1.assignment_banner.url}}" data-src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
+                        <img style="border-radius:0px;" src="{{user.assignment1.assignment_banner.url}}" data-src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
                         <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
     
-    
-                        <!-- Popup container -->           
+                        
+                        
                     </div>
-    
 
-                    <a href="/discussions/{{user.assignment1.slug}}" class="btn btn-info">Discussions</a>
-                    <h5 class="p-3">
-                        Suggested Video
-                    </h5>
-    
-    
+                    <div style="text-align: center;">
+                        <a href="#" class="buttonnn" style="width: 100%; border-radius:0px; color:white;">Book Session</a>
+                    </div>
+                    <div style="text-align: center;">
+                        <a href="/discussions/{{user.assignment1.slug}}" class="buttonnn" style="width: 100%; border-radius:0px;color:white;">Discussions</a>
+                    </div>
+
+
+
+                    <div class="bringer-block" data-delay="0" data-unload="zoom-out" data-threshold="0.5" style="--mouse-x: 159px; --mouse-y: -71.96250915527344px; padding:5px 20px; border-radius :0px;">
+                        <br>
+                        <b>Importent Links</b>
+                       
+                            <li><a href="">How to push code on github</a></li>
+                            <li><a href="">How to push code on github</a></li>
+                            <li><a href="">How to push code on github</a></li>
+                       
+                            <br>
+                           
+                        
+                            <b>Task Status</b>
+                       
+                            
+                            <li>Started At 05/08/2024  : 04:25:10</li> 
+                            <li>Completed At 06/08/2024 : 04:25:10</li> 
+                            <li>rejection count : 0</li> 
+                            <br>
+                       
+
+                    </div>
+
+                    
+
     
                 </div>
             </div>

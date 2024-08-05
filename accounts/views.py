@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 import random
 from django.core.mail import send_mail, BadHeaderError
 from smtplib import SMTPException
+from django.utils import timezone
 
 
 # Your other imports
@@ -166,7 +167,6 @@ def ProfileUpdate(request):
 
 @login_required(login_url='/')
 def ProfileImage(request):
-    
     if request.method == 'POST':
         pimage = request.FILES['profileimage']
         request.user.profile_pic = pimage
@@ -191,7 +191,7 @@ def ProfileImage(request):
                                             <br><br>
                                             '''
 
-        from_email = 'pythoncoding4u@gmail.com'
+        from_email = 'ajayoneness123@gmail.com'
         recipient_list = ['pythoncoding4u@gmail.com',f'{request.user.email}']
         emailTemplate(subject,message,html_message,from_email,recipient_list)
 
@@ -275,6 +275,7 @@ def level_one(request):
 
         if student.assignment1status != 'completed':   
             student.assignment1status = 'under_review'
+            student.assignment1endttime = timezone.now()
 
         student.save()
 
@@ -283,18 +284,14 @@ def level_one(request):
 
     if student.assignment1status == 'not_started':
         student.assignment1status = 'in_progress'
+        student.assignment1starttime = timezone.now()
         student.save()
+
+    elif student.assignment1status == 'rejected':
+        student.assignment1rejectioncount = int(student.assignment1rejectioncount) + 1
+
     else:
         pass
-
-    
-    # if request.user.assignment1status != 'completed' : 
-    #     request.user.assignment1status = 'in_progress'
-    #     request.user.save()
-    
-    # if request.user.assignment1status != 'under_review':
-    #     request.user.assignment1status = 'in_progress'
-    #     request.user.save()
 
 
     try:
@@ -324,14 +321,18 @@ def level_two(request):
         update_assignemt_two.save()
         if request.user.level_student !=5:
             request.user.level_student = 3
-        request.user.assignment2status = 'under_review'
-        request.user.save()
+        if student.assignment2status != 'completed':   
+            student.assignment2status = 'under_review'
+
+        student.save()
 
         return redirect('dashboard')
     
-    if request.user.assignment2status != 'under_review':
-        request.user.assignment2status = 'in_progress'
-        request.user.save()
+    if student.assignment2status == 'not_started':
+        student.assignment2status = 'in_progress'
+        student.save()
+    else:
+        pass
 
 
     try:
@@ -359,9 +360,19 @@ def level_three(request):
         update_assignemt_three.save()
         if request.user.level_student !=5:
             request.user.level_student = 4
-        request.user.save()
 
+        if student.assignment3status != 'completed':   
+            student.assignment3status = 'under_review'
+        student.save()
         return redirect('dashboard')
+
+
+    if student.assignment3status == 'not_started':
+        student.assignment3status = 'in_progress'
+        student.save()
+    else:
+        pass
+
 
     try:
         submitted_data = AssignmentSubmit.objects.get(student=student)
@@ -398,11 +409,6 @@ def Profile(request):
 
 
 
-
-
-
-
-
 @login_required(login_url='/')
 def OTP(request):
 
@@ -415,7 +421,7 @@ def OTP(request):
     else:
         try:
             print(request.session.get('otp'))
-            emailTemplate("OTP | codeAj Internship","Your OTP",f"<h1 style='text-align:center; background-color:black; color:white;  padding-top:200px; padding-bottom:200px; '>{request.session.get('otp')}</h1>","codeaj4u@gmail.com",[f'{request.user.email}'])
+            emailTemplate("OTP | codeAj Internship","Your OTP",f"<h1 style='text-align:center; background-color:black; color:white;  padding-top:200px; padding-bottom:200px; '>{request.session.get('otp')}</h1>","ajayoneness123@gmail.com",[f'{request.user.email}'])
         
         except:
             mess = 'OTP System is not working....'
