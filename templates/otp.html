@@ -1,72 +1,104 @@
-{% extends 'login.html' %}
+
 
 {% load static %}
-{% block content %}
+
+{% include 'header.html' %}
 
 
 
-<div class="section">
+<style>
+    input:not(:last-child), textarea:not(:last-child){
+        margin-bottom: 15px;
+    }
+    input{
+        height: 20px;
+        
+    }
+    label{
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                
-            </div>
+    .nnnform{
+        margin: 0;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .stg-cta-with-image{
+        padding: 180px 0px;
+        padding-bottom: 10px;
+
+    }
+
+    @media only screen and (max-width: 600px) {
+        .nnnform{
+        margin-left: 0px;
+        width: 100%;
+        
+    }
+
+    .stg-cta-with-image{
+        padding:300px 0;
+        padding-bottom: 10px;
+    }
 
 
-            <div class="col-sm-12 col-md-12 col-lg-4 p-4 text-center box">
-
-                <h1 class = "head-text mt-4">OTP Verification</h1>
-
-                <div class="text-center">
-                    <img class="logo" src="{% static 'hacker.gif' %}" alt="Login Icon">
-                </div>
+    }
 
 
-                <p style="font-size: 13px;">OTP is send to your this <b>{{user.email}}</b> Email.</p>
-                
+   
+
+</style>
 
 
-                <form id="loginForm" method="post">
+
+
+<div class="stg-container">
+
+    <section class="backlight-top is-fullwidth">
+        <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse" >
+            <div class="stg-col-12" data-unload="fade-left" >
+                <!-- <div  class="bringer-offset-image is-init in-view" data-bg-src="img/cta/contact-section-bg.jpg" data-threshold="0.25" style="background-image: url(&quot;img/cta/contact-section-bg.jpg&quot;);"></div> -->
+                <form  method="post" class=" bringer-block  nnnform" id="loginForm" style="--mouse-x: 166.6666660308838px; --mouse-y: -302.375px; ">
                     {% csrf_token %}
+                    <div class="bringer-form-content" style="text-align: center;">
 
-                    <input class="input-box" placeholder="Enter Your 6 digit OTP" type='text' name="otp" required>
-
-                    {% if message %}
-                    <p class="error-message">{{message}}</p>
-                    {% endif %}
-
-                    <div class="text-center mt-3">
-                        <button type="submit" class="mb-3 submit-button" >
-                            Verify
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <h4 class = "head-text">OTP <span>Verification</span></h4>
 
 
+                        <p style="font-size: 13px;">OTP is send to your this <b>{{user.email}}</b> Email.</p>
+
+
+                        <input class="is-init" placeholder="Enter Your 6 digit OTP" type='text' name="otp" required>
+    
                         {% if message %}
-                        <p>Return to <a style="text-decoration: none; color:rgb(201, 18, 18); font-size : 13px;" href="{% url 'logout' %}">Login</a> </p>
+                        <p class="error-message">{{message}}</p>
                         {% endif %}
+    
+                        <div class="text-center mt-3">
+                            <button type="submit" class="mb-3 submit-button" >
+                                Verify
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        
+                            <p style="margin-top: 10px;"><a href="{% url 'otp' %}">Resend </a> OTP</p>
+    
+                            {% if message %}
+                            <p>Return to <a style="text-decoration: none; color:rgb(201, 18, 18); font-size : 13px;" href="{% url 'logout' %}">Login</a> </p>
+                            {% endif %}
+                        </div>
+
+
+                        <div class="bringer-contact-form__response"></div>
                     </div>
-                    
-                   
+                    <span class="bringer-form-spinner"></span>
                 </form>
-
-
-                
-
             </div>
-
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                
-            </div>
-
-
         </div>
-    </div>
-
-
-
-</div>
+    </section>
 
 
 
@@ -76,7 +108,10 @@
 
 
 
-{% endblock %}
+
+
+{% include 'footer.html' %}
+
 
 
 

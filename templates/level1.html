@@ -1,8 +1,6 @@
 
-{% extends 'login.html' %}
-
 {% load static %}
-{% block content %}
+{% include 'header.html' %}
 
 
 
@@ -74,12 +72,42 @@
         }
 
 
+        #bringer-header{
+
+            background: url("{{user.assignment1.assignment_banner1.url}}");
+            background-position: center;
+            background-size: contain;
+
+        }
+
+        #bringer-header::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height:calc(100%);
+            background-color: rgba(255, 0, 0, 0.772);
+
+            {% if user.assignment1status == 'under_review'  %}
+            background-color: rgba(255, 196, 0, 0.472);
+            {% elif user.assignment1status == 'completed'  %}
+            background-color: rgba(52,121,178,0.472);
+            {% else %}
+            background-color: rgba(255, 0, 0, 0.472);
+            {% endif %}
+
+            animation: fillBlack 2s linear forwards; /* Animation */
+
+        }
+
+
         .levelhead{
             position: fixed;
             width :100%;
             height: 140px;  
             background: url("{{user.assignment1.assignment_banner1.url}}");
-            z-index: 999999999;
+            z-index: 99;
             /* box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
 
@@ -103,14 +131,6 @@
             {% else %}
             background-color: rgba(255, 0, 0, 0.472);
             {% endif %}
-
-
-
-
-            
-
-
-
 
             animation: fillBlack 2s linear forwards; /* Animation */
 
@@ -193,6 +213,7 @@
             background-color: #3479B2;
             z-index: 9;
             left: 0px;
+            padding: 0px;
         }
 
         .support .iconn{
@@ -296,6 +317,10 @@
 
 
         @media only screen and (max-width: 600px) {
+
+        .mobtopp{
+            margin-top: 30px;
+        }
         
         .spaceicon{
             height: 0px;
@@ -360,12 +385,6 @@
 </style>
 
 
-
-</head>
-
-
-
-
 <section class="support">
 
 
@@ -399,130 +418,102 @@
 
 </section>
 
+<div class="stg-container">
 
-
-
-
-
-
-
-
-
-
-
-<section class="levelhead" id="navbar">
-
-
-    <div class="levelpercent">
-
-        <div class="container">
-            <div class="text">
-                <h1 class="maintext">{{user.assignment1.assignment_question}}</h1>
-            </div>
-
-            <!-- <div id="bigtxt" class="biglevel wow animate__animated animate__zoomIn">
-                1
-            </div> -->
-
-        </div>
-
-    </div>
-
+    <section >
+        <div class="stg-row mobtopp">
     
-
-</section>
-
-
-
-<div class="container topp">
-
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-lg-8 maintexttt" >
-
-            <p class="pdec" ><b>
-                {{user.assignment1.assignment_description}}
-            </b></p>
-
-            <h4 class="req">Requirenments</h4>
-
-            <p>
-                {{user.assignment1.assignment_requirements | safe}}
-
-            </p>
-
+            <div class="stg-col-8 maintexttt">
+                <div class="bringer-grid-1cols" data-stagger-appear="zoom-in" data-stagger-unload="zoom-out" data-threshold="0.5" data-stagger-delay="150">
+                  
+                    <div >
+                        <h3 class="wow animate__animated animate__fadeInTopRight">{{user.assignment1.assignment_question}}</h3>
+    
+                        <p class="pdec" ><b>
+                            {{user.assignment1.assignment_description}}
+                        </b></p>
             
-            <div class="form-submit mt-5">
-            <form method="post">
-                {% csrf_token %}
-                <h4 class="mb-3 req">Submit Your Project</h4>
-    
-                <p style="font-weight: 300; font-size: 13px;" >
-                  <b  style="font-size: 18px;"  class="mb-2">Project Github Link </b> 
-               <br>
-                    push this project on your github account and submithe the link in the given input field.<br>
-                    <b>Note : </b> Project title should be with name "{{user.assignment1.assignment_question}}" this.
-                </p>
-                <input value="{{sdata.Assignment1_github_Link}}" type="text" name="git" class="mb-4" placeholder="Project Git Link" required>
+                        <h5 class="req">Requirenments</h5>
+            
+                        <p>
+                            {{user.assignment1.assignment_requirements | safe}}
+            
+                        </p>
+            
+                        
+                        <div class="form-submit mt-5">
+                        <form method="post">
+                            {% csrf_token %}
+                            <h5 class="mb-3 req">Submit Your Project</h5>
                 
-    
-                <p style="font-weight: 300; font-size: 13px;">
-                    <b style="font-size: 18px;" class="mb-2">Project Linkedin video Link </b> 
-                 <br>
-                      Capture the working of project video using moble phone or any camera or by screen recording and post it to your Linkedin Profile and also mention our compant name "codeAj" and submit that project link in the field.<br>
-                      <b>Note : </b> add these hash tag before posting on linkeden '#codeaj #pythoncoding4u #codeajay' .
-                  </p>
-    
-    
-                <input value="{{sdata.Assignment1_linkedin_link}}" type="text" name="linkedin" class="mb-5"  placeholder="Project video Linkedin Link" required>
-
-
-                <div class="mt-3" style="height: 100px;">
-                    <button type="submit" class="mb-3 submit-button " >
-                        Move to Next Level
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
+                            <p style="font-weight: 300; font-size: 13px;" >
+                              <b  style="font-size: 18px;"  class="mb-2">Project Github Link </b> 
+                           <br>
+                                push this project on your github account and submithe the link in the given input field.<br>
+                                <b>Note : </b> Project title should be with name "{{user.assignment1.assignment_question}}" this.
+                            </p>
+                            <input value="{{sdata.Assignment1_github_Link}}" type="text" name="git" class="mb-4" placeholder="Project Git Link" required>
+                            
                 
+                            <p style="font-weight: 300; font-size: 13px;">
+                                <b style="font-size: 18px;" class="mb-2">Project Linkedin video Link </b> 
+                             <br>
+                                  Capture the working of project video using moble phone or any camera or by screen recording and post it to your Linkedin Profile and also mention our compant name "codeAj" and submit that project link in the field.<br>
+                                  <b>Note : </b> add these hash tag before posting on linkeden '#codeaj #pythoncoding4u #codeajay' .
+                              </p>
+                
+                
+                            <input value="{{sdata.Assignment1_linkedin_link}}" type="text" name="linkedin" class="mb-5"  placeholder="Project video Linkedin Link" required>
+            
+            
+                            <div class="mt-3" style="height: 100px;">
+                                <button type="submit" class="mb-3 submit-button " >
+                                    Move to Next Level
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                            
+                
+                        </form>
+            
+                    </div>
+            
+            
+            
+                    </div>
     
-            </form>
-
-        </div>
-
-
-
-        </div>
-
-
-        <div class="col-md-12 col-sm-12 col-lg-4" >
-
-            <div class="card" id="sticky-form">
-                <img id="cardimage" src="{{user.assignment1.assignment_banner.url}}" alt="" class="img-flui">
-
-                <a href="/discussions/{{user.assignment1.slug}}" class="btn btn-info">Discussions</a>
-                <h5 class="p-3">
-                    Suggested Video
-                </h5>
+                </div><!-- .bringer-grid -->
             </div>
-        </div>
-
-
-
-       
-
-
-
-
-    </div>
-
-
+    
+    
+    
+            <div class="stg-col-4 stg-tp-bottom-gap-l" data-unload="fade-left" style="position: relative;">
+                <div class="bringer-sticky-block is-init" style="transform: translateY(0px); top: calc(35% - 70.349px); position: sticky;">
+                   
+    
+                    <div class="card1" id="level1">
+                        <div class="bac"></div>
+                       
+                        <img src="{{user.assignment1.assignment_banner.url}}" data-src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
+                        <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+    
+    
+                        <!-- Popup container -->           
+                    </div>
     
 
-
-
-
-
-
-
+                    <a href="/discussions/{{user.assignment1.slug}}" class="btn btn-info">Discussions</a>
+                    <h5 class="p-3">
+                        Suggested Video
+                    </h5>
+    
+    
+    
+                </div>
+            </div>
+           
+        </div>
+    </section>
 
 
 </div>
@@ -537,10 +528,54 @@
 
 
 
-<br><br><br>
 
 
-<div class="course-review"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% include 'footer.html' %}
+
 
 
 <script>
@@ -563,7 +598,6 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 
@@ -607,63 +641,63 @@
 <script>
       
 
-      $(document).ready(function () {
-        var lastScrollTop = 0;
-        var navbar = $('#navbar');
-        var profileimage = $('#profileimg');
-        var logoimage = $('#logoimage');
+    //   $(document).ready(function () {
+    //     var lastScrollTop = 0;
+    //     var navbar = $('#navbar');
+    //     var profileimage = $('#profileimg');
+    //     var logoimage = $('#logoimage');
 
-        logoimage.attr("src", "{% static 'logo1.png' %}");
-        logoimage.css('width','80px');
-        logoimage.css('height','80px');
+    //     logoimage.attr("src", "{% static 'logo1.png' %}");
+    //     logoimage.css('width','80px');
+    //     logoimage.css('height','80px');
 
 
         
-        var navbarHeight = navbar.outerHeight();
+    //     var navbarHeight = navbar.outerHeight();
 
-        $(window).scroll(function () {
-            var scrollTop = $(this).scrollTop();
-            console.log(scrollTop)
+    //     $(window).scroll(function () {
+    //         var scrollTop = $(this).scrollTop();
+    //         console.log(scrollTop)
 
-            if (scrollTop > lastScrollTop) {
-                // Scrolling down
-                navbar.css('height', '80px');
-                logoimage.css('width','50px');
-                logoimage.css('height','50px');
-                profileimage.css('width','40px');
-                profileimage.css('height','40px');
-                profileimage.css('margin-top','23px');
+    //         if (scrollTop > lastScrollTop) {
+    //             // Scrolling down
+    //             navbar.css('height', '80px');
+    //             logoimage.css('width','50px');
+    //             logoimage.css('height','50px');
+    //             profileimage.css('width','40px');
+    //             profileimage.css('height','40px');
+    //             profileimage.css('margin-top','23px');
                 
 
               
-            }
+    //         }
 
            
             
-            else if(scrollTop == 0){
-                navbar.css('height', '140px');
-                logoimage.css('width','80px');
-                logoimage.css('height','80px');
-                profileimage.css('width','50px');
-                profileimage.css('height','50px');
-                $("#card").css('position','relative');
-            }
+    //         else if(scrollTop == 0){
+    //             navbar.css('height', '140px');
+    //             logoimage.css('width','80px');
+    //             logoimage.css('height','80px');
+    //             profileimage.css('width','50px');
+    //             profileimage.css('height','50px');
+    //             $("#card").css('position','relative');
+    //         }
             
             
-            else {
-                // Scrolling up
-                navbar.css('height', '80px');
-                logoimage.css('width','50px');
-                logoimage.css('height','50px');
-                profileimage.css('width','40px');
-                profileimage.css('height','40px');
-                profileimage.css('margin-top','23px');
+    //         else {
+    //             // Scrolling up
+    //             navbar.css('height', '80px');
+    //             logoimage.css('width','50px');
+    //             logoimage.css('height','50px');
+    //             profileimage.css('width','40px');
+    //             profileimage.css('height','40px');
+    //             profileimage.css('margin-top','23px');
 
-            }
+    //         }
 
-            lastScrollTop = scrollTop; // Update last scroll top position
-        });
-    });
+    //         lastScrollTop = scrollTop; // Update last scroll top position
+    //     });
+    // });
 
 
 
@@ -675,8 +709,3 @@
 
 
 
-
-
-
-
-{% endblock %}

@@ -27,6 +27,17 @@
 
     <style>
 
+        h3{
+            font-size: 30px;
+        }
+        h5{
+            font-size: 20px;
+        }
+
+        img{
+            object-fit: cover;
+        }
+
         .whatapp-img{
             z-index: 99;
             width: 50px;
@@ -183,17 +194,16 @@
 
 
         .mainlogo .logo-image{
-            width: 150px;
-            margin: 20px;
+            width: 100px;
+            margin: 0px;
         }
 
         .mainlogo .profile-image{
             width : 50px;
             height : 50px;
             border-radius: 50%;
-            border : 2px solid black;
-            margin: 20px;
-            margin-top:35px;
+            border : 2px solid rgb(70, 70, 70);
+            margin: 0px;
         }
 
 
@@ -205,7 +215,7 @@
             display: none;
             border-radius: 10px;
             box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
-            background-color : white;
+            background-color : rgb(12, 12, 12);
 
 
         }
@@ -232,6 +242,7 @@
 
             .mainlogo .logo-image{
                 width: 150px;
+                
             }
 
 
@@ -264,12 +275,10 @@
         }
 
         .card1{
-            /* width: 400px;
-            height: 400px; */
             overflow: hidden;
             border-radius: 10px;
             position: relative;
-            margin: 50px;
+            /* margin: 50px; */
             
             
         }
@@ -380,8 +389,8 @@
             position: absolute;
             margin: 0;
             position: absolute;
-            bottom: -10%;
-            left: 20%;
+            bottom: 0%;
+            left: 25%;
             transform: translate(-50%, -50%);
             color:white;
         }
@@ -402,7 +411,7 @@
         @media only screen and (max-width: 600px) {
 
             .card1{
-            margin: 0px;
+            /* margin: 0px; */
             margin-top: 70px;
             
         }
@@ -425,7 +434,7 @@
 
             .imgtext{
                 left: 25%;
-                bottom: -20%;
+                bottom: 0%;
             }
 
         .container1{
@@ -586,6 +595,14 @@
         }
 
 
+    
+
+        .bringer-header-inner{
+            padding-left: 120px;
+            padding-right: 120px;
+        }
+
+
 
 
 
@@ -610,24 +627,59 @@
         <div class="bringer-header-inner">
             <!-- Header Logo -->
             <div class="bringer-header-lp">
-                <a href="#" class="bringer-logo">
-                    <img src="{% static 'img/logo.png' %}" alt="bringer." width="180" height="24">
+                <a href="{% url 'main' %}" class="bringer-logo">
+                    <img src="{% static 'logo.png' %}" alt="bringer." width="180" height="24">
                 </a>
             </div>
             <!-- Main Menu -->
             <div class="bringer-header-mp">
                 <nav class="bringer-nav">
                     <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
-                        <li id="home" class="current-menu-parent">
+                        <!-- <li id="home" class="current-menu-parent">
                             <a href="#">Home</a>
                         </li>
-                       
+                        -->
                     </ul>
                 </nav>
             </div>
             <!-- Header Button -->
             <div class="bringer-header-rp">
-                <a id="getquote" class="bringer-button">Get a FREE Quote</a>
+                <!-- <a id="getquote" class="bringer-button">Get a FREE Quote</a> -->
+                <div class="mainlogo">
+                    <div class="bbx">
+
+
+                        {% if user.email %}
+        
+                            {% if user.profile_pic %}
+                                <a href="{% url 'profile' %}">
+                                    <img id="profileimg" class="profile-image" src="{{user.profile_pic.url}}"  >
+                                </a>
+                            {% else %}
+                                <a href="{% url 'profile' %}">
+                                    <img id="profileimg" class="profile-image" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg"  >
+                            </a>
+                            
+                            {% endif %}
+        
+                            <!-- <img class="profile-image" src="http://localhost:8000/media/profile_pics/pythoncoding4u_2z7TKz6.jpg"> -->
+        
+        
+        
+                            <div class="profile-details">
+                                <a href="{% url 'profile' %}">
+                                    <h3 style="color: #545454;">{{user.name}}</h3>
+                                    <p>{{user.domain}}<br> {{user.phone_no}} </p>
+                                </a>
+                                <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        
+                        {% endif %}
+        
+        
+                    </div>
+
+                </div>
             </div>
         </div>
         <!-- Mobile Header -->
@@ -644,62 +696,4 @@
             </a>
         </div>
     </header>
-
-
-    <a href="https://wa.me/918603862290">
-        <img src="{% static '/img/whatapp.png' %}" class="whatapp-img">
-    </a>
-
-
-
-
-
-
-    <!-- popup form  -->
-       
-
-        <div class="full-desktop" id="fulldisplay">
-            <div class="form-box">
-
-                
-
-
-                <form id="contactForm1" class="bringer-contact-form bringer-block" method="post" action="#" data-fill-error="Please, fill out the contact form." data-appear="fade-right" data-threshold="0.25">
-                    <p class="close-buttion" id="closebtn">x</p>
-                    <div class="bringer-form-content">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" placeholder="email@example.com" required>  
-                        
-                        <label for="phone">Your Phone No.</label>
-                        <input type="text" id="phone" name="phone" placeholder="+918603862290" required>    
-                        
-                        <label style="display:none;" for="message">Your Message</label>
-                        <textarea style="display:none;" id="message" name="message" placeholder="Your Message" >Submit from Popup Form</textarea>
-                        
-                        <button id="submitButton1" type="submit">Get a FREE Quote</button>
-                    </div>
-                    <div  id="responseMessage1" ></div>
-                </form>
-
-
-
-            </div>
-
-
-
-        </div>
-
-
-
-        
-
-
-
-
-    <!-- popupform End -->
-
-<!-- Header End -->
 

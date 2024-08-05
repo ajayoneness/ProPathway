@@ -1,4 +1,3 @@
-
 import os
 from pathlib import Path
 import environ
@@ -22,9 +21,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'pythoncoding4u@gmail.com'
-EMAIL_HOST_PASSWORD = 'bbxemzstvizslzbp'
-DEFAULT_FROM_EMAIL = 'pythoncoding4u@gmail.com'
+EMAIL_HOST_USER = 'ajayoneness123@gmail.com'
+EMAIL_HOST_PASSWORD = 'emcvispreewkkivm'
+DEFAULT_FROM_EMAIL = 'ajayoneness123@gmail.com'
 
 
 

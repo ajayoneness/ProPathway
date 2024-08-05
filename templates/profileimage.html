@@ -1,9 +1,47 @@
-{% extends 'login.html' %}
-
 {% load static %}
-{% block content %}
+{% include 'header.html' %}
+
+
+
 
 <style>
+    input:not(:last-child), textarea:not(:last-child){
+        margin-bottom: 0px;
+    }
+    input{
+        height: 20px;
+        
+    }
+    label{
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
+
+    .nnnform{
+        margin: 0;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .stg-cta-with-image{
+        padding: 180px 0px;
+        padding-bottom: 10px;
+
+    }
+
+  
+    .selectdec{
+        width: 100%;
+        height: 30px;
+        margin-bottom: 15px;
+        background-color: rgba(128, 128, 128, 0);
+        border-radius: 8px;
+        color: rgb(102, 102, 102);
+    }
+
+
     #preview {
         width: 200px;
         height: 200px;
@@ -27,144 +65,178 @@
     #edit{
         font-size : 20px;
         position: absolute;
-        top : 170px;
-        left : 54%;
+        top : 120px;
+        left : 65%;
         border-radius: 50%;
         padding:10px;
-        background-color: cadetblue;
+        background-color: #225077;
         color:white;
         transition: ease-in-out;
         transition-duration: 0.3s;
+
     }
 
 
     #edit:hover{
         transform: rotate(10deg);
     }
+
+
+
+    @media only screen and (max-width: 600px) {
+        .nnnform{
+        margin-left: 0px;
+        width: 100%;
+        
+    }
+
+    .stg-cta-with-image{
+        padding:300px 0;
+        padding-bottom: 10px;
+    }
+
+    .logo{
+        width: 150px;
+        position: relative;
+        left: 25%;
+    }
+
+
+    }
+
+
+
+   
+
 </style>
 
 
 
-<div class="section">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                
-            </div>
+<div class="stg-container">
 
-
-            <div class="col-sm-12 col-md-12 col-lg-4 p-4 text-center box">
-
-                <h1 class = "head-text mt-5">Profile Image</h1>
-
-                <form id="loginForm" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-
-                <div class="text-center">
-                    <!-- <img class="logo" src="{% static 'hacker.gif' %}" alt="Login Icon"> -->
-                
-
-                    {% if user.profile_pic %}
-                    <input  type="file" name="profileimage" value="{{user.profile_pic.url}}" id="fileInput" style="display: none;" required>
-                    {% else %}
-                    <input  type="file" name="profileimage"  id="fileInput" style="display: none;" required>
-                    {% endif %}
-
-
-
-                    {% if user.profile_pic %}
-                    <img class="logo" src="{{user.profile_pic.url}}" alt="Profile Image" id="profileImage">
-
-                    {% else %}
-                    <img class="logo" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg" alt="Profile Image" id="profileImage">
-                    {% endif %}
-
-                    <i id="edit" class="fa-solid fa-pen penn"></i>
-
-
-
-                </div>
+    <section class="backlight-top is-fullwidth">
+        <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse" >
+            <div class="stg-col-12" data-unload="fade-left" >
 
 
                 
-
-                    <!-- <input type="file" name="profileimage" class="input-box" id="profileImageInput" accept="image/*" required> -->
-
-                    {% if messages %}
-                        {% for message in messages %}
-                            <p class="error-message">{{message}}</p>
-                        {% endfor %}
-                    {% endif %}
-                    
-                    
-                  
-
-                        <div class="text-center mt-3">
-                            <button type="submit" class="mb-3 submit-button" >
-                                Update
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
+                <!-- <div  class="bringer-offset-image is-init in-view" data-bg-src="img/cta/contact-section-bg.jpg" data-threshold="0.25" style="background-image: url(&quot;img/cta/contact-section-bg.jpg&quot;);"></div> -->
+                <form  method="post" class=" bringer-block  nnnform" id="loginForm" style="--mouse-x: 166.6666660308838px; --mouse-y: -302.375px; " enctype="multipart/form-data">
+                        {% csrf_token %}
+                      
+                        <h5 class = "head-text mt-5">Profile Image</h5>
+        
+                        <div class="" style="text-align: center;">
+                        
+        
+                            {% if user.profile_pic %}
+                            <input  type="file" name="profileimage" value="{{user.profile_pic.url}}" id="fileInput" style="display: none;" required>
+                            {% else %}
+                            <input  type="file" name="profileimage"  id="fileInput" style="display: none;" required>
+                            {% endif %}
+        
+        
+        
+                            {% if user.profile_pic %}
+                            <img class="logo" src="{{user.profile_pic.url}}" alt="Profile Image" id="profileImage">
+        
+                            {% else %}
+                            <img class="logo" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg" alt="Profile Image" id="profileImage">
+                            {% endif %}
+        
+                            <i id="edit" class="fa-solid fa-pen penn"></i>
+        
+        
+        
                         </div>
+        
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p class="error-message">{{message}}</p>
+                                {% endfor %}
+                            {% endif %}
+                            
+                            
+                          
+        
+                                <div class="" style="text-align: center;">
+                                    <button type="submit" class="mb-3 submit-button" >
+                                        Update
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+        
+        
+        
+        
+                            <p style="font-size: 13px; text-align: center;margin-top: 10px;"><a style="text-decoration: none; color:rgb(219, 86, 63);" href="{% url 'dashboard' %}">Skip</a> This Process</p>
+              
 
-
-
-
-                    <p><a style="text-decoration: none; color:rgb(219, 86, 63);" href="{% url 'dashboard' %}">Skip</a> This Process</p>
-                    
-                   
+                      
+    
                 </form>
 
 
-                
+
+
 
             </div>
-
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                
-            </div>
-
-
         </div>
-    </div>
+    </section>
 
 
 
-</div>
 
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+
+
+
+
+<style>
+  
+</style>
+
+
+{% include 'footer.html' %}
+
 
 <script>
-    $(document).ready(function () {
-            $('#edit').click(function () {
-                $('#fileInput').trigger('click');
-            });
+  
 
-            $('#fileInput').change(function () {
-                var file = this.files[0];
+    $(document).ready(function () {
+    $('#edit').click(function () {
+        $('#fileInput').trigger('click');
+    });
+
+    $('#fileInput').change(function () {
+        var file = this.files[0];
+
+        // Check if a file was selected
+        if (file) {
+            // Check file size in bytes (200KB = 200 * 1024 bytes)
+            if (file.size > 200 * 1024) {
+                alert('The file size exceeds the 200KB limit. Please select a smaller file.');
+                // Clear the file input
+                $('#fileInput').val('');
+                $('#profileImage').attr('src', ''); // Reset the image
+                $('#preview').hide(); // Hide the preview
+            } else {
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     $('#profileImage').attr('src', e.target.result);
                     $('#preview').html('<img src="' + e.target.result + '" alt="Uploaded Image">').show();
                 };
                 reader.readAsDataURL(file);
-            });
+            }
+        }
+    });
+});
 
-           
-        });
 </script>
-
-
-{% endblock %}
-
-
-
-
-
-
-
-
-
-

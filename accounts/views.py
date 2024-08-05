@@ -7,24 +7,31 @@ import razorpay
 from ProPathway.settings import RAZORPAY_KEY_ID,RAZORPAY_KEY_SECRET
 from django.core.mail import send_mail
 import random
+from django.core.mail import send_mail, BadHeaderError
+from smtplib import SMTPException
 
 
+# Your other imports
 
-
-
-
-def emailTemplate(subject,message,html_message,from_email,recipient_list):
-    subject = subject
-    message = message
-    html_message = html_message
-    from_email = from_email
-    recipient_list = recipient_list
-
-    print(subject,message,html_message,from_email,recipient_list)
+def emailTemplate(subject, message, html_message, from_email, recipient_list):
     try:
         send_mail(subject, message, from_email, recipient_list, html_message=html_message)
-    except:
-        return redirect("logout")
+        print(f"Email sent to {recipient_list}")
+    except BadHeaderError:
+        return HttpResponse('Invalid header found.')
+    except SMTPException as e:
+        print(f"Error sending email: {e}")
+        return HttpResponse(f'Error sending email: {e}')
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return HttpResponse(f'Unexpected error: {e}')
+
+    # try:
+    #     send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+    #     print('mail Sent')
+    # except:
+    #     return redirect("logout")
+
 
 
 
@@ -291,9 +298,11 @@ def level_one(request):
 
 
     try:
+        print("loading...1")
         submitted_data = AssignmentSubmit.objects.get(student=student)
         return render(request, 'level1.html',{"sdata": submitted_data})
     except:
+        print("loading...")
         return render(request, 'level1.html')
 
 
@@ -397,6 +406,8 @@ def Profile(request):
 @login_required(login_url='/')
 def OTP(request):
 
+    mess= ''
+
     if request.user.otp:
         return redirect('dashboard')
         
@@ -405,8 +416,9 @@ def OTP(request):
         try:
             print(request.session.get('otp'))
             emailTemplate("OTP | codeAj Internship","Your OTP",f"<h1 style='text-align:center; background-color:black; color:white;  padding-top:200px; padding-bottom:200px; '>{request.session.get('otp')}</h1>","codeaj4u@gmail.com",[f'{request.user.email}'])
+        
         except:
-            return redirect("login")
+            mess = 'OTP System is not working....'
         
         if request.method == "POST":
             otp = request.POST['otp']
@@ -425,7 +437,7 @@ def OTP(request):
                 return render(request,"otp.html",{"message":f"Incorrect OTP !!"})
         
         
-        return render(request,"otp.html",{"message":""})
+        return render(request,"otp.html",{"message":mess})
 
             
         

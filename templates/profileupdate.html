@@ -1,98 +1,140 @@
-{% extends 'login.html' %}
+
 
 {% load static %}
 
+{% include 'header.html' %}
 
 
 
 
 
-{% block content %}
+<style>
+    input:not(:last-child), textarea:not(:last-child){
+        margin-bottom: 0px;
+    }
+    input{
+        height: 20px;
+        
+    }
+    label{
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
 
-<div class="section">
+    .nnnform{
+        margin: 0;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                
-            </div>
+    .stg-cta-with-image{
+        padding: 230px 0px;
+        padding-bottom: 10px;
+
+    }
+
+    @media only screen and (max-width: 600px) {
+        .nnnform{
+        margin-left: 0px;
+        width: 100%;
+        
+    }
+
+    .stg-cta-with-image{
+        padding:300px 0;
+        padding-bottom: 10px;
+    }
 
 
-            <div class="col-sm-12 col-md-12 col-lg-4 p-4 text-center box">
+    }
 
-                <h1 class = "head-text mt-2">Update Profile</h1>
+    .selectdec{
+        width: 100%;
+        height: 30px;
+        margin-bottom: 15px;
+        background-color: rgba(128, 128, 128, 0);
+        border-radius: 8px;
+        color: rgb(102, 102, 102);
+    }
 
-                <div class="text-center">
-                    <img class="logo" src="{% static 'hacker.gif' %}" alt="Login Icon">
-                </div>
-                
-
-
-                <form id="loginForm" method="post">
-                    {% csrf_token %}
-
-
-                    <input type="text" name="contactno" class="mb-3 input-box" id="contact" placeholder="Enter contact*" required><br>
 
    
-                    <input type="text" name="whatsappno" class="mb-3 input-box" id="whatsapp" placeholder="Enter WhatsApp*" required><br>
+
+</style>
+
+
+
+
+<div class="stg-container">
+
+    <section class="backlight-top is-fullwidth">
+        <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse" >
+            <div class="stg-col-12" data-unload="fade-left" >
+
+
                 
-                
-                    <input type="text" name="collage" class="mb-3 input-box" id="collage" placeholder="Enter collage*" required><br>
-                   
-                    <select class="input-box" id="domain" name="domain" required>
-                
+                <!-- <div  class="bringer-offset-image is-init in-view" data-bg-src="img/cta/contact-section-bg.jpg" data-threshold="0.25" style="background-image: url(&quot;img/cta/contact-section-bg.jpg&quot;);"></div> -->
+                <form  method="post" class=" bringer-block  nnnform" id="loginForm" style="--mouse-x: 166.6666660308838px; --mouse-y: -302.375px; ">
+                        {% csrf_token %}
+                        <h5 class = "">Update Profile</h5>
+    
+                        <label for="contact">Your Phone No.</label>
+                        <input type="text" name="contactno" class=" is-init" id="contact" placeholder="Enter contact*" required><br>
+    
+                        <label for="whatsapp">Your WhatsApp No.</label>
+                        <input type="text" name="whatsappno" class="is-init" id="whatsapp" placeholder="Enter WhatsApp*" required><br>
+                    
+                        <label for="collage">Your Collage Name</label>
+                        <input type="text" name="collage" class="is-init" id="collage" placeholder="Enter collage*" required><br>
+                       
+                        <label for="domain">Your Interest</label>
+                        <select class="selectdec" id="domain" name="domain" required>
+                    
                         <option value="" selected disabled>Select a domain*</option>
-                
+                    
                         {% for i in domain %}
                         <option value="{{i.domain_name}}">{{i.domain_name}}</option>
-                       {% endfor %}
-                
-                    </select> <br>
-                
-
-
-                    {% if messages %}
-                        {% for message in messages %}
-                            <p class="error-message">{{message}}</p>
                         {% endfor %}
-                    {% endif %}
                     
-
-                    <div class="text-center mt-3">
-                        <button type="submit" class="mb-3 submit-button" >
-                            Update Profile
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
-
+                        </select> <br>
                     
-                    <!-- <p><a style="text-decoration: none; color:rgb(219, 86, 63);" href="{% url 'profileimage' %}">Skip</a> The Process</p> -->
-                    
-                   
-
-                  
+    
+    
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="error-message">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                        
+    
+                        <div class="text-center mt-3">
+                            <button type="submit" class="submit-button" >
+                                Update Profile
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+    
+                        
+                        <!-- <p><a style="text-decoration: none; color:rgb(219, 86, 63);" href="{% url 'profileimage' %}">Skip</a> The Process</p> -->
+                        
+                       
+    
+                      
+    
                 </form>
 
 
-                
+
+
 
             </div>
-
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                
-            </div>
-
-
         </div>
-    </div>
-
-
-
-</div>
+    </section>
 
 
 
 
 
-{% endblock %}
+{% include 'footer.html' %}

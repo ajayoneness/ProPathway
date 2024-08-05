@@ -1,8 +1,8 @@
 
-{% extends 'login.html' %}
 
 {% load static %}
-{% block content %}
+
+{% include 'header.html' %}
 
 
 
@@ -11,76 +11,160 @@
 
 
 
-<div class="section">
+<style>
+    input:not(:last-child), textarea:not(:last-child){
+        margin-bottom: 15px;
+    }
+    input{
+        height: 20px;
+        
+    }
+    label{
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                
-            </div>
+    .nnnform{
+        margin-left: 200px;
+        width: 65%;
+        
+    }
+
+    .stg-cta-with-image{
+        padding:0px 0;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .nnnform{
+        margin-left: 0px;
+        width: 100%;
+        
+    }
+
+    .stg-cta-with-image{
+        padding:50px 0;
+    }
 
 
-            <div class="col-sm-12 col-md-12 col-lg-4 p-4 text-center box">
-
-                <h1 class = "head-text">REGISTER</h1>
-
-                <div class="text-center">
-                    <img class="logo" src="{% static 'hacker.gif' %}" alt="Login Icon">
-                </div>
-                
+    }
 
 
-                <form id="loginForm" method="post">
+   
+
+</style>
+
+
+<div class="stg-container">
+
+    <section class="backlight-top is-fullwidth">
+        <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse">
+            <div class="stg-col-6" data-unload="fade-left">
+                <div  class="bringer-offset-image is-init in-view" data-bg-src="img/cta/contact-section-bg.jpg" data-threshold="0.25" style="background-image: url(&quot;img/cta/contact-section-bg.jpg&quot;);"></div>
+                <form  method="post" class=" bringer-block  nnnform" id="loginForm" style="--mouse-x: 166.6666660308838px; --mouse-y: -302.375px; ">
                     {% csrf_token %}
+                    <div class="bringer-form-content">
+
+                    
+                        <!-- Field: Email -->
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="email@example.com" required="" class="is-init"> 
 
 
-                        <input type="email" name="email" class="mb-3 input-box" id="regEmail" placeholder="Email" required>
-                        <input type="text" name="name" class="mb-3 input-box" id="regName" placeholder="Name" required>
-                        <input type="password" name="password1" class="mb-3 input-box" id="regPassword" placeholder="Password" required>
-                        <input type="password" name="password2" class="input-box" id="regPassword2" placeholder="Re-password" required>
+                        <!-- Field: Name -->
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required="" class="is-init">
+
+
+                         <!-- Field: Name -->
+                         <label for="name">Password</label>
+                         <input type="password"  id="regPassword"  name="password1" placeholder="Your Name" required="" class="is-init">
+
+
+                          <!-- Field: Name -->
+                        <label for="name">Conform Password</label>
+                        <input type="password" id="regPassword2" name="password2" placeholder="Your Name" required="" class="is-init">
+
                         {% if messages %}
                             {% for message in messages %}
                                 <p class="error-message">{{message}}</p>
                             {% endfor %}
                         {% endif %}
-
+                           
                         <p class="error-message" id="err"></p>
 
-                        <div class="text-center mt-3">
-                            <button type="submit" class="mb-3 submit-button" >
-                                Register
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
+                        <!-- Form Button -->
+                        <button type="submit" value="Send Message">Register Now</button>
 
-
-                        <p>
+                        
+                        <p style="margin-top: 10px; font-size: 13px;">
                             If You are Already Registered <a style="text-decoration: none; color:rgb(0, 159, 50);" href="{% url 'main' %}">Login</a>
                         </p>
 
-                   
 
+                        <div class="bringer-contact-form__response"></div>
+                    </div>
+                    <span class="bringer-form-spinner"></span>
                 </form>
-
-
-                
-
             </div>
 
-            <div class="col-sm-12 col-md-12 col-lg-4">
+            
+            <div class="stg-col-6 stg-offset-1 textttttop" data-unload="fade-right">
+                <div class="bringer-cta-form-content">
+                    
+                    <div class="bringer-cta-form-title is-done" data-split-appear="fade-up" data-split-delay="100" data-split-by="line">
+                        <div class="line in-view" style="display: block; text-align: start; width: 100%;" data-unload="none" data-delay="0">
+                            
+                            <div class="word" style="display: inline-block;">
+                               <h3>Register Now for Internship Opportunities!</h3>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
+                <div class="bringer-cta-text">
+                        <div class="stg-row stg-valign-middle">
+                            <div class="stg-col-2 stg-offset-2 stg-tp-col-1 stg-tp-offset-3 stg-m-col-1 stg-m-offset-2 in-view">
+                                <i class="bringer-cta-icon"></i>
+                            </div>
+                            <div class="stg-col-12 stg-tp-col-7 stg-m-col-8 stg-m-offset-1 in-view">
+                                <p >
+                                    Sign up to join our internship program, where students work on real projects across three levels. Gain hands-on experience, enhance your skills, and earn a Professional Certificate upon successful completion. Kickstart your career with us!
+                                
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
             </div>
-
-
         </div>
-    </div>
+    </section>
+
 
 
 
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% include 'footer.html' %}
+
+
+
 <script>
     $(document).ready(function () {
         $('#regPassword, #regPassword2').keyup(function () {
@@ -95,13 +179,3 @@
         });
     });
 </script>
-
-
-
-
-
-
-
-{% endblock %}
-
-
