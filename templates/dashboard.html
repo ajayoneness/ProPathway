@@ -668,11 +668,10 @@
 
  <!-- Panding Level -->
 
-<section id="level4">
+ {% if user.level_student == 4 %}
 
-    
+<section id="level4">
         
-        {% if user.level_student == 4 %}
         <div class="bringer-block in-view" data-delay="0" data-unload="fade-up" data-threshold="0.5" style="--mouse-x: 26px; --mouse-y: 17.458328247070312px; background-color: rgba(195, 172, 0, 0.295);">
             <h4> You are successfully complete the level 3,
                 Now it will take 24 hour to Verify your Solution after that only you can get the Certificate.</h4>
@@ -695,14 +694,10 @@
         
         </div>
     
-        {% endif %}
-
         
-
-
-
-
 </section>
+
+{% endif %}
 
 <!-- Panding level End -->
 
