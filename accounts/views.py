@@ -493,22 +493,16 @@ def level_one(request):
                       <h4>{student.assignment1.assignment_question}</h4>
                         <p>{student.assignment1.assignment_description}</p>
                         <h5>Git Link</h5>
-                      <a href="{git}">{git}</h5>
+                      <a href="{git}">{git}</h5></a>
+
                       <h5>LinkedIn</h5>
-                      <a href="{linkedin}">LinkedIn</a>
+                      <a href="{linkedin}">{linkedin}</a>
+
+                      <a href="http://127.0.0.1:8000/rejected/{student.id}/1/"><button>Rejected</button></a>
+                      <br><br>
+                      <a href="http://127.0.0.1:8000/completed/{student.id}/1/"><button>Completed</button></a>
 
 
-<h2 style="text-align:center">🎉 Congratulations on Completing Level One! 🎉</h2>
-<p style="text-align:center">
-                          We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
-
-Well done! 🌟
-                          
-                          </p>
-<div style="text-align:center">
-                          <a href="/dashboard/">
-      <button>Dashboard</button>                    
-                   </a>       
 </div>                  
 
 
