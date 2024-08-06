@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from .models import Mentor
 
 
 
 def mentor(request):
-    return render(request, 'mentor.html')
+    mentor = Mentor.objects.all()
+    return render(request, 'mentor.html',{'mentor':mentor})

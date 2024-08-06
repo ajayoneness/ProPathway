@@ -1,43 +1,17 @@
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>codeAj | Free College Major Projects | Affordable Software Development Services at CodeAjay</title>
+{% include 'header.html' %}
 
-    <meta name="description" content="Get a wide range of free college major projects and affordable software development services from CodeAjay. Get the best of both worlds today!" />
-    <meta name="keywords" content="college major projects, free college major projects, affordable software development services, web development, mobile development, machine learning, software development,  web design, CodeAjay, codeaj" />
-    
-
-
-
-
-
-    <link rel="icon" type="image/png" href="/fav.png" />
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
 
-        body{
-            background:url('{% static "background.jpg" %}');
-            height : 100vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:cover;
-        }
-
 
         .headbanner{
-        
-            
+
         }
 
         .head{
-            position: absolute;
+           
             color :white;
             text-align: center;
             width: 100%;
@@ -45,14 +19,6 @@
         }
 
         .levelone {
-            width: 100%;
-            height: 10px;
-            background-color: rgb(0, 247, 0);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-          }
-
-
-          .leveltwo {
             width: 100%;
             height: 10px;
             background-color: rgb(0, 247, 0);
@@ -83,15 +49,10 @@
 
          
 
-
-
-
-
-
         .leveltwo{
             width: 100%;
             height: 10px;
-
+            background-color: rgb(206, 206, 206);
         }
 
         .levelthree{
@@ -105,112 +66,575 @@
             height: 10px;
             background-color: rgb(206, 206, 206);
         }
-        
-
-    </style>
-</head>
-
-<body>
-
-    <section class="headbanner">
-        <div class="head">
-            <h1>{{user.assignment2.assignment_question}}</h1>
-            <p>Level 2</p>
-
-        <div class="container">
 
 
-            <div class="level">
-                <div class="row">
-                    <div class="col-md-3 col-sm-3 col-lg-3" >
-                        <div class="levelone"></div>
-                        <div class="point" style="z-index:99;"></div>
+        #bringer-header{
 
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3" >
-                        <div class="leveltwo"></div>
-                        <div class="point"></div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3" >
-                        <div class="levelthree"></div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3" >
-                        <div class="levelfour"></div>
-                    </div>
-                </div>
-            </div>
+            background: url("{{user.assignment2.assignment_banner2.url}}");
+            background-position: center;
+            background-size: contain;
 
-        </div>
-    </div>
-    <img src="{{user.assignment2.assignment_banner1.url}}" class="img-fluid" height="110%">
-<!--    <img src="{% static 'banner.jpg' %}" class="img-fluid" height="110%">-->
-    </section>
+        }
 
+        #bringer-header::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height:calc(100%);
+            background-color: rgba(255, 0, 0, 0.772);
 
-    <section class="mt-3">
-        <div class="container">
-            <p>
-               {{user.assignment2.assignment_description}}
-            </p>
+            {% if user.assignment2status == 'under_review'  %}
+            background-color: rgba(255, 196, 0, 0.472);
+            {% elif user.assignment2status == 'completed'  %}
+            background-color: rgba(52,121,178,0.472);
+            {% else %}
+            background-color: rgba(255, 0, 0, 0.472);
+            {% endif %}
+
+            animation: fillBlack 2s linear forwards; /* Animation */
+
+        }
 
 
-            <div class="row">
-                <div class="col-sm-12 col-lg-6 col-md-12">
+        .levelhead{
+            position: fixed;
+            width :100%;
+            height: 140px;  
+            background: url("{{user.assignment2.assignment_banner2.url}}");
+            z-index: 99;
+            /* box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
 
-                    <h4>Requirenments</h4>
 
-                    {{user.assignment2.assignment_requirements | safe}}
+        }
 
-<!--                    <ul>-->
-<!--                        <li>User Interface:</li>-->
-<!--                        <li>Shopping Cart:</li>-->
-<!--                        <li>Admin Interface:</li>-->
-<!--                        <li>Database:</li>-->
-<!--                        <li>Security:</li>-->
-<!--                        <li>Code Quality and Documentation:</li>-->
-<!--                        <li>Testing:</li>-->
-<!--                    </ul>-->
 
-                </div>
-                <div class="col-sm-12 col-lg-6 col-md-12">
-                     <form method="post">
-                        {% csrf_token %}
-                        <h4>Submit Your Project</h4>
-                         {% if sdata.Assignment2_github_Link %}
-                            <input value="{{sdata.Assignment2_github_Link}}" type="text" name="git" class="mb-3 form-control" placeholder="Project Git Link" required>
-                         {% else %}
-                            <input type="text" name="git" class="mb-3 form-control" placeholder="Project Git Link" required>
-                         {% endif %}
+        .levelhead::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height:calc(100%);
+            background-color: rgba(255, 0, 0, 0.772);
 
-                         {% if sdata.Assignment2_github_Link %}
-                            <input value="{{sdata.Assignment2_linkedin_link}}" type="text" name="linkedin" class="mb-3 form-control"  placeholder="Project video Linkedin Link" required>
-                         {% else %}
-                            <input  type="text" name="linkedin" class="mb-3 form-control"  placeholder="Project video Linkedin Link" required>
-                         {% endif %}
+            {% if user.assignment2status == 'under_review'  %}
+            background-color: rgba(255, 196, 0, 0.472);
+            {% elif user.assignment2status == 'completed'  %}
+            background-color: rgba(52,121,178,0.472);
+            {% else %}
+            background-color: rgba(255, 0, 0, 0.472);
+            {% endif %}
 
-                        <button type="submit" class="btn btn-primary mt-3">Move to Next Level</button>
-                    </form>
+            animation: fillBlack 2s linear forwards; /* Animation */
 
-                </div>
-            </div>
+        }
+
+       
+
+
+
+        .biglevel{
+            font-size: 200px;
+            color:rgb(255, 255, 255);
+            right: 300px;
+            text-shadow: 1px 1px 10px rgb(0, 0, 0), 1px 1px 40px rgb(0, 0, 0);
+        }
+
+
+        .maintext{
+            color: rgba(255, 255, 255, 0.546);
+            z-index: 99999999999999;
+            position: absolute;
+            margin: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
 
             
+        }
+
+
+        .topp{
+
+            padding-top: 190px;
+        }
+
+        .pdec{
+            
+           
+        }
+
+        .levelhead .text h1{
+            font-family: "Rowdies", sans-serif;
+            color: rgb(188, 188, 188);
+            text-shadow: 2px 2px #000000;
+        }
+
+
+        .req{
+            font-family: "Rowdies", sans-serif;
+            color: #3479B2;
+            margin-top : 28px;
+        }
+
+
+        .form-submit input{
+            width: 100%;
+            height: 50px;
+            /* box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; */
+            border: 2 px solid gray;
+            padding-left: 10px;
+            border-radius: 10px;
+            border-radius: 0px;
+
+            
+        }
+
+        .form-submit input:focus{
+            border:none;
+        }
+
+        .form-submit input:active{
+            border:none;
+        }
+
+
+        .support{
+            width: 50px;
+            position:fixed;
+            background-color: #3479B2;
+            z-index: 9;
+            left: 0px;
+            padding: 0px;
+        }
+
+        .support .iconn{
+
+            text-align: center;
+            margin-bottom: 300px;
+
+
+        }
+
+        .support .iconn i{
+
+            font-size: 30px;
+            color: white;
+            padding-top: 20px;
+        }
+
+
+        .support .iconn p{
+
+            font-size: 8px;
+            color: white;
+            font-weight:300;
+
+        }
+
+      
+
+    .fixed {
+        position: fixed;
+        top: 20px;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
+    #card {
+        transition: top 0.3s ease;
+    }
+
+
+    #cardimage{
+        width: 100%;
+        height: 100%;
+    }
+
+
+    #cardimage::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height:100%;
+        background-color: rgb(0, 0, 0);
+        z-index: 999;
+    
+
+    }
 
 
 
-        </div>
+    @keyframes fillBlack {
+            0% {
+                width: 0%;
+                clip-path: circle(0% at -20% 40%);
 
+
+            }
+            100% {
+
+              
+                {% if user.assignment2status == 'under_review'  %}
+                    width: 80%;
+
+                {% elif user.assignment2status == 'completed'  %}
+                    width: 100%;
+
+                {% else %}
+                    width: 25%;
+
+                {% endif %}
+
+
+                clip-path: circle(70.7% at 50% 50%);
+
+
+            }
+        }
+
+
+
+        .maintexttt{
+            padding-left: 50px;
+        }
+
+
+        .spaceicon{
+            height: 150px;
+        }
+
+
+        @media only screen and (max-width: 750px) {
+
+        .mobtopp{
+            margin-top: 30px;
+        }
+        
+        .spaceicon{
+            height: 0px;
+        }
+        .maintexttt{
+            padding-left: 10px;
+        }
+
+        .support{
+            width: 100%;
+            position:fixed;
+            background-color: #1F4A6E;
+            z-index: 999;
+            bottom: 0px;
+
+        }
+
+        .support .iconn{
+
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content:space-between;
+            margin-right: 45px;
+            margin-bottom: 0px;
+           
+
+        }
+
+        .support .iconn i{
+
+            font-size: 30px;
+            color: white;
+            padding : 20px 0;
+            
+        }
+
+
+        .support .iconn p{
+
+            font-size: 8px;
+            color: white;
+            font-weight:300;
+            text-align: center;
+            display: none;
+            
+
+        }
+
+
+
+
+
+        }
+
+        .buttonnn{
+       
+                font-family: var(--bringer-t-content-ff);
+                font-weight: var(--bringer-t-content-fw);
+                font-size: var(--bringer-t-button-fs);
+                line-height: 1;
+                padding: var(--bringer-button-spacing);
+                display: inline-block;
+                background: var(--bringer-s-accent);
+                border-radius: var(--bringer-button-br);
+                border: 1px solid var(--bringer-s-border-accent);
+                transition: background-color 0.3s;
+                cursor: pointer;
+                
+                
+          
+        }
+
+
+
+
+        .sidesticky{
+            top: calc(25% - 70.349px);
+        }
+
+
+        @media only screen and (max-width: 1366px) {
+            .sidesticky{
+                top: calc(35% - 70.349px);
+            }
+
+            .stg-container{
+            padding-left: 80px;
+            padding-right: 80px;
+
+            }
+    
+    
+          }
+
+
+      
+        @media only screen and (max-width: 600px) {
+
+            .stg-container{
+            padding-left: 10px;
+            padding-right: 10px;
+
+        }
+
+
+        }
+    
+
+
+
+
+
+
+
+</style>
+
+
+<section class="support">
+    <div class="iconn">
+        <div class="spaceicon"></div>
+        <i class="fa-brands fa-whatsapp"></i>
+        <p>WhatApp</p>
+     
+
+        <i class="fa-brands fa-telegram"></i>
+        <p>Teligram</p>
+    
+
+        <i class="fa-brands fa-instagram"></i>
+        <p>Instagram</p>
+     
+
+        <i class="fa-brands fa-linkedin-in"></i>
+        <p>Linkedin</p>
         
 
+        <i class="fa-brands fa-facebook-f"></i>
+        <p>Facebook</p>
+    </div>
+</section>
+
+
+
+
+
+<div class="stg-container">
+
+    <section >
+        <div class="stg-row mobtopp">
+    
+            <div class="stg-col-8 ">
+                <div class="bringer-grid-1cols" data-stagger-appear="zoom-in" data-stagger-unload="zoom-out" data-threshold="0.5" data-stagger-delay="150">
+                  
+                    <div >
+                        <h3 class="wow animate__animated animate__fadeInTopRight">{{user.assignment2.assignment_question}}</h3>
+    
+                        <p class="pdec" ><b>
+                            {{user.assignment2.assignment_description}}
+                        </b></p>
+            
+                        <h5 class="req">Requirenments</h5>
+            
+                        <p>
+                            {{user.assignment2.assignment_requirements | safe}}
+            
+                        </p>
+            
+                        
+                        <div class="form-submit mt-5">
+                        <form method="post">
+                            {% csrf_token %}
+                            <h5 class="mb-3 req">Submit Your Project</h5>
+                
+                            <p style="font-weight: 300; font-size: 13px;" >
+                              <b  style="font-size: 15px;"  class="mb-2">Project Github Link </b> 
+                           <br>
+                                push this project on your github account and submithe the link in the given input field.<br>
+                                <b>Note : </b> Project title should be with name "{{user.assignment2.assignment_question}}" this.
+                            </p>
+                            <input value="{{sdata.Assignment2_github_Link}}" type="text" name="git" class="mb-4" placeholder="Project Git Link" required>
+                            
+                
+                            <p style="font-weight: 300; font-size: 13px;">
+                                <b style="font-size: 15px;" class="mb-2">Project Linkedin video Link </b> 
+                             <br>
+                                  Capture the working of project video using moble phone or any camera or by screen recording and post it to your Linkedin Profile and also mention our compant name "codeAj" and submit that project link in the field.<br>
+                                  <b>Note : </b> add these hash tag before posting on linkeden '#codeaj #pythoncoding4u #codeajay' .
+                              </p>
+                
+                
+                            <input value="{{sdata.Assignment2_linkedin_link}}" type="text" name="linkedin" class="mb-5"  placeholder="Project video Linkedin Link" required>
+            
+            
+                            <div class="mt-3" style="height: 100px;">
+                                <button type="submit" class="mb-3 submit-button " >
+                                    Move to Next Level
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                            
+                
+                        </form>
+            
+                    </div>
+            
+            
+            
+                    </div>
+    
+                </div><!-- .bringer-grid -->
+            </div>
+    
+
+            <div class="stg-col-4 stg-tp-bottom-gap-l" data-unload="fade-left" style="position: relative; border-radius:0px;">
+                <div class="bringer-sticky-block is-init sidesticky" style="transform: translateY(0px);  position: sticky; border-radius:0px;">
+                   
+    
+                    <div class="card1" id="level1" style="border-radius:0px;">
+                        <div class="bac" style="border-radius:0px;"></div>
+                       
+                        <img style="border-radius:0px;" src="{{user.assignment2.assignment_banner.url}}" data-src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">
+                        <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+    
+                        
+                        
+                    </div>
+
+                    <div style="text-align: center;">
+                        <a href="{% url 'mentor' %}" class="buttonnn" style="width: 100%; border-radius:0px; color:white;">Book Session</a>
+                    </div>
+                    <div style="text-align: center;">
+                        <a href="/discussions/{{user.assignment2.slug}}" class="buttonnn" style="width: 100%; border-radius:0px;color:white;">Discussions</a>
+                    </div>
+
+
+
+                    <div class="bringer-block" data-delay="0" data-unload="zoom-out" data-threshold="0.5" style="--mouse-x: 159px; --mouse-y: -71.96250915527344px; padding:5px 20px; border-radius :0px;">
+                        <br>
+                        <b>Importent Links</b>
+                        
+                            {% for i in  user.assignment1.links.all %}
+                            <li><a style="color:#ffffff;" href="{{i.url}}">{{i.title}}</a></li>
+                            {% endfor %}
+                            <br>
+                           
+                        
+                            <b>Task Status</b>
+                       
+                            
+                            <li>Started At {{ user.assignment1starttime|date:"j F Y, g:i a" }}</li> 
+                            <li>Completed At {{user.assignment1endttime|date:"j F Y, g:i a" }}</li> 
+                            <li>rejection count : {{user.assignment1rejectioncount}}</li> 
+                            <br>
+                       
+
+                    </div>
+
+                    
+
+    
+                </div>
+            </div>
+           
+        </div>
     </section>
 
 
-
-
-</body>
-
-</html>
+</div>
 
 
 
-     
+
+
+
+{% include 'footer.html' %}
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('scroll', function() {
+        // Define a minimum width for the laptop screen
+        var minWidthForLaptop = 1024;
+
+        // Check if the screen width is above the defined minimum width
+        if (window.innerWidth >= minWidthForLaptop) {
+            var formContainer = document.getElementById('sticky-form');
+            var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            var gapBottomEqualElement = document.querySelector('.course-review');
+
+            if (scrollPosition >= formContainer.offsetTop && scrollPosition + formContainer.clientHeight <= gapBottomEqualElement.offsetTop) {
+                formContainer.style.position = 'fixed';
+                formContainer.style.top = '100px';
+                formContainer.style.width = '28%';
+            } else {
+                formContainer.style.position = 'relative';
+                formContainer.style.top = '0';
+                formContainer.style.width = 'auto';
+            }
+        } else {
+            // Reset styles for smaller screen sizes, if needed
+            var formContainer = document.getElementById('sticky-form');
+            formContainer.style.position = 'relative';
+            formContainer.style.top = '0';
+            formContainer.style.width = 'auto';
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+

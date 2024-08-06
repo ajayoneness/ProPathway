@@ -2,10 +2,70 @@
 
 {% include 'header.html' %}
 
+<div class="stg-container">
+    <!-- Section: Page Title -->
 
 
 
-<h1>Our Mentors</h1>
+    <section class="backlight-bottom" style="padding-top:140px; padding-bottom:60px;">
+        <div class="stg-row">
+            <div class="stg-col-6 stg-offset-3">
+                <div class="align-center">
+                    <h1 class="bringer-page-title in-view" data-unload="fade-up">Our Mentors</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section: Grid -->
+    <section>
+        <!-- Portfolio Grid -->
+        <div id="blog-cards-container" class="bringer-grid-3cols bringer-tp-grid-2cols bringer-tp-centered-last-item stg-normal-gap bringer-parallax-media is-init" data-stagger-appear="fade-up" data-threshold="0.5" data-stagger-delay="150" data-stagger-unload="fade-up">
+
+
+            {% for i in mentor %}
+            <div class="bringer-block bringer-portfolio-card in-view" data-delay="0" data-unload="fade-up" data-threshold="0.5">
+                <div class="bringer-portfolio-card-image">
+                    <img class="bringer-lazy" src="{{i.profile_picture.url}}" data-src="{{i.profile_picture.url}}" alt="" width="1200" height="1200">
+                </div>
+                <div class="bringer-portfolio-card-footer">
+                    <div class="bringer-portfolio-card-title">
+                        <span class="bringer-meta">{{i.expertise}}</span>
+                        <h6>{{i.name}}</h6>
+                        <p style="margin-top:5px;">{{i.bio}}</p>
+                        <a href="#">
+                            <span class="bringer-icon bringer-icon-explore"></span>
+                        </a>
+                        
+
+
+                        <ul class="bringer-socials-list" style="position:absolute; right : 20px; bottom : 20px;" data-stagger-appear="fade-up" data-stagger-delay="75">
+                           
+                            <li class="in-view" data-delay="0" data-unload="none" data-threshold="0.5">
+                                <a href="{{i.linkedin_profile}}" class="bringer-socials-linkedin">
+                                    <i></i>
+                                </a>
+                            </li>
+                           
+                        </ul>
+
+
+                    </div>
+                </div>
+                <!-- <a href="#"></a> -->
+            </div><!-- .bringer-portfolio-card -->
+            {% endfor %}
+
+
+
+
+        </div>
+        <!-- .bringer-grid -->
+    </section>
+
+    
+
+</div>
 
 
 
