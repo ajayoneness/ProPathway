@@ -4,6 +4,9 @@
 {% include 'header.html' %}
 
 
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+
 <style>
   /* Add your custom styles here */
   .profile_pic_comment{
@@ -29,6 +32,9 @@
 
 </style>
 
+
+<!-- POPUP FORM -->
+
 <div class="popup p-5" id="popupreply">
 
   <i class="fa-solid fa-circle-xmark closse" id="close"></i>
@@ -37,64 +43,170 @@
     <p id="commentmess"></p>
     <form method="post">
       {% csrf_token %}
-      <textarea class="form-control mb-3" id="commentInput" placeholder="Add your comment" name="commentreply"></textarea>
+      <!-- <textarea class="form-control mb-3" id="commentInput" placeholder="Add your comment" name="commentreply"></textarea> -->
+
+      <div id="editor-container"></div>
+        <input type="hidden" name="commentreply" id="content">
       <input type="hidden" id="comrep" name="comment_id">
       <button type="submit" name="comment_replay">Submit</button>
     </form>
 </div>
 
-<br><br><br><br><br>
-<div class="container111">
-  <h1>{{assignment.assignment_question}}</h1>
-
-
-
-  <form id="discussionForm" method="post">
-    {% csrf_token %}
-    <textarea class="form-control mb-3" id="commentInput" placeholder="Add your comment" name="comment"></textarea>
-    <button type="submit" name="commentNow">Submit</button>
-  </form>
 
 
 
 
-  <h5 class="mt-5">Discussions</h5>
-  {% for i in discuss %}
-    <div class="card mb-3">
-      <div class="p-5">
-        <img class="profile_pic_comment" src="{{i.student.profile_pic.url}}">
-        <h5>{{i.student.name}}</h5>
-        <p class="commenttt">{{i.comment}}</p>
-        <p style="display: none;" class="commentid">{{i.id}}</p>
-        <br>
-        <button type="button"  class="commentreplybutton">reply</button>
+<div class="stg-container">
+  <!-- Section: Page Title -->
+  <section class="backlight-bottom" style="padding-top:140px; padding-bottom:60px;">
+      <div class="stg-row">
+          <div class="stg-col-6 stg-offset-3">
+              <div class="align-center">
+                  <h3 class="bringer-page-title in-view" data-unload="fade-up">{{assignment.assignment_question}}</h3>
+              </div>
+          </div>
+      </div>
+  </section>
 
-        {% for j in disrep %}
 
-        {% if j.discuss.id == i.id %}
-          
-          <div class="card m-3">
+
+  <section>
+    <form id="discussionForm" method="post">
+      {% csrf_token %}
+      <!-- <textarea class="form-control mb-3" id="commentInput" placeholder="Add your comment" name="comment"></textarea> -->
+
+      <div id="editor-container1"></div>
+      <input type="hidden" name="comment" id="content1">
+      <button type="submit" name="commentNow">Submit</button>
+    </form>
+
+  </section>
+  
+
+  
+  <!-- Section: Grid -->
+  <section>
+
+
+      <!-- Portfolio Grid -->
+      <div id="blog-cards-container" class="bringer-grid-1cols bringer-tp-grid-1cols bringer-tp-centered-last-item stg-normal-gap bringer-parallax-media is-init" data-stagger-appear="fade-up" data-threshold="0.5" data-stagger-delay="150" data-stagger-unload="fade-up">
+
+        <h5 class="mt-5">Discussions</h5>
+
+        {% for i in discuss %}
+          <div class="bringer-block in-view" data-delay="0" data-unload="zoom-out" data-threshold="0.5" style="--mouse-x: 216px; --mouse-y: 52.274993896484375px;">
             <div class="p-5">
-              <img class="profile_pic_comment" src="{{j.student.profile_pic.url}}">
-              <h5>{{j.student.name}}</h5>
-              <p class="commenttt">{{j.comment}}</p>
+              <img class="profile_pic_comment" src="{{i.student.profile_pic.url}}">
+              <h5>{{i.student.name}}</h5>
+              <p class="commenttt">{{i.comment}}</p>
+              <p style="display: none;" class="commentid">{{i.id}}</p>
+              <br>
+              <button type="button"  class="commentreplybutton">reply</button>
+
+              {% for j in disrep %}
+
+              {% if j.discuss.id == i.id %}
+                
+                <div class="bringer-block in-view" data-delay="0" data-unload="zoom-out" data-threshold="0.5" style="--mouse-x: 216px; --mouse-y: 52.274993896484375px;">
+                  <div class="p-5">
+                    <img class="profile_pic_comment" src="{{j.student.profile_pic.url}}">
+                    <h5>{{j.student.name}}</h5>
+                    <p class="commenttt">{{j.comment}}</p>
+                  </div>
+                </div>
+              {% endif %}
+                
+              {% endfor %}
+            
+
+
             </div>
           </div>
-        {% endif %}
-          
         {% endfor %}
-       
+
+
+
 
 
       </div>
-    </div>
-  {% endfor %}
+      <!-- .bringer-grid -->
+  </section>
+
+  
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% include 'footer.html' %}
 
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
+
+<script>
+  // code_display_app/static/js/scripts.js
+document.addEventListener('DOMContentLoaded', function () {
+  // Initialize Quill editor
+  var quill = new Quill('#editor-container', {
+      theme: 'snow',
+      placeholder: 'Compose your blog content here...',
+      modules: {
+          toolbar: [
+              [{ header: [1, 2, false] }],
+              ['bold', 'italic', 'underline'],
+              ['link', 'image']
+          ]
+      }
+  });
+
+  // On form submit, transfer the content from Quill to the hidden input
+  window.submitForm = function() {
+      var content = document.querySelector('input[name=content]');
+      content.value = quill.root.innerHTML;
+  };
+});
+
+</script>
+
+
+
+<script>
+  // code_display_app/static/js/scripts.js
+document.addEventListener('DOMContentLoaded', function () {
+  // Initialize Quill editor
+  var quill = new Quill('#editor-container1', {
+      theme: 'snow',
+      placeholder: 'Compose your blog content here...',
+      modules: {
+          toolbar: [
+              [{ header: [1, 2, false] }],
+              ['bold', 'italic', 'underline'],
+              ['link', 'image']
+          ]
+      }
+  });
+
+  // On form submit, transfer the content from Quill to the hidden input
+  window.submitForm = function() {
+      var content = document.querySelector('input[name=content1]');
+      content.value = quill.root.innerHTML;
+  };
+});
+
+</script>
 
 <script>
   $(document).ready(function(){

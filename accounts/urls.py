@@ -16,6 +16,10 @@ urlpatterns = [
     path('pay/',views.Pay,name="rezpay"),
     path('profile/',views.Profile,name="profile"),
     path('otp/',views.OTP,name="otp"),
+    path('rejected/<int:student_id>/<int:assignmentlevel>/',views.Rejected,name="rejected"),
+    path('completed/<int:student_id>/<int:assignmentlevel>/',views.Completed,name="completed"),
+    
+
 
 ]
 

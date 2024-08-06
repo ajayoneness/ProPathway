@@ -11,6 +11,9 @@ from django.core.mail import send_mail, BadHeaderError
 from smtplib import SMTPException
 from django.utils import timezone
 
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+
 
 # Your other imports
 
@@ -249,6 +252,196 @@ def dashboard(request):
         return redirect('profileimage')
     else:
         return render(request, 'dashboard.html')
+    
+
+
+
+def Rejected(request, student_id, assignmentlevel):
+    try:
+        student = get_object_or_404(Student, id=student_id)
+            
+        if assignmentlevel == 1:
+            student.assignment1status = 'rejected'
+            emailTemplate("Level One Assignment Rejected","Your Level One Assignment Rejected",f''' 
+<body style='background-color:black; color:white; padding:100px;'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+
+<h2>Level 1 Project Submission Rejected!! </h2>
+                        
+<ol>
+<h3>Reasons for Rejecting</h3>
+<li>Lack of Originality or Plagiarism</li>
+<li>Incomplete or Inadequate Requirements</li>
+</ol>
+
+<div style="text-align:center">
+                          <a href="/dashboard/">
+      <button>Dashboard</button>                    
+                   </a>       
+</div>                  
+
+
+</body>
+                          
+                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+
+        elif assignmentlevel == 2:
+            student.assignment2status = 'rejected'
+            emailTemplate("Level Two Assignment Rejected","Your Level Two Assignment Rejected",f''' 
+                          
+<body style='background-color:black; color:white; padding:100px;'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+
+<h2>Level 2 Project Submission Rejected!! </h2>
+                        
+<ol>
+<h3>Reasons for Rejecting</h3>
+<li>Lack of Originality or Plagiarism</li>
+<li>Incomplete or Inadequate Requirements</li>
+</ol>
+
+<div style="text-align:center">
+                          <a href="/dashboard/">
+      <button>Dashboard</button>                    
+                   </a>       
+</div>                  
+
+
+</body>
+                          
+                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+            
+
+
+
+
+        elif assignmentlevel == 3:
+            student.assignment3status = 'rejected'
+            emailTemplate("Level Three Assignment Rejected","Your Level Three Assignment Rejected",f''' 
+                          
+<body style='background-color:black; color:white; padding:100px;'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+
+<h2>Level 3 Project Submission Rejected!! </h2>
+                        
+<ol>
+<h3>Reasons for Rejecting</h3>
+<li>Lack of Originality or Plagiarism</li>
+<li>Incomplete or Inadequate Requirements</li>
+</ol>
+
+<div style="text-align:center">
+                          <a href="/dashboard/">
+      <button>Dashboard</button>                    
+                   </a>       
+</div>                  
+
+
+</body>
+                          
+                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+            
+
+        else:
+            return JsonResponse({'error': 'Invalid assignment level'}, status=400)
+
+        student.save()
+        return JsonResponse({'status': 'success', 'message': 'Assignment status updated'})
+    except:
+
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
+
+
+def Completed(request, student_id, assignmentlevel):
+    try:
+        student = get_object_or_404(Student, id=student_id)
+        if assignmentlevel == 1:
+            student.assignment1status = 'completed'
+            emailTemplate("Level One Assignment Completed","Your Level One Assignment Completed",f''' 
+                          
+<body style='background-color:black; color:white; padding:40px;text-align:center'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+
+<h2 style="text-align:center">🎉 Congratulations on Completing Level One! 🎉</h2>
+<p style="text-align:center">
+                          We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
+
+Well done! 🌟
+                          
+                          </p>
+<div style="text-align:center">
+                          <a href="/dashboard/">
+      <button>Dashboard</button>                    
+                   </a>       
+</div>                  
+
+
+</body>
+                          
+                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+
+
+
+        elif assignmentlevel == 2:
+            student.assignment2status = 'completed'
+            emailTemplate("Level Two Assignment Completed","Your Level Two Assignment Completed",f''' 
+                          
+<body style='background-color:black; color:white; padding:40px;text-align:center'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+
+<h2 style="text-align:center">🎉 Congratulations on Completing Level Two! 🎉</h2>
+<p style="text-align:center">
+                          We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
+
+Well done! 🌟
+                          
+                          </p>
+<div style="text-align:center">
+                          <a href="/dashboard/">
+      <button>Dashboard</button>                    
+                   </a>       
+</div>                  
+
+
+</body>
+                          
+                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+            
+        elif assignmentlevel == 3:
+            student.assignment3status = 'completed'
+            emailTemplate("Level Three Assignment Completed","Your Level Three Assignment Completed",f''' 
+                          
+<body style='background-color:black; color:white; padding:40px;text-align:center'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+
+<h2 style="text-align:center">🎉 Congratulations on Completing Level Three! 🎉</h2>
+<p style="text-align:center">
+                          We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
+
+Well done! 🌟
+                          
+                          </p>
+<div style="text-align:center">
+                          <a href="/dashboard/">
+      <button>Dashboard</button>                    
+                   </a>       
+</div>                  
+
+
+</body>
+                          
+                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+            
+        else:
+            return JsonResponse({'error': 'Invalid assignment level'}, status=400)
+
+        student.save()
+        return JsonResponse({'status': 'success', 'message': 'Assignment status updated'})
+    except:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+
 
 
 
@@ -258,6 +451,7 @@ def dashboard(request):
 @login_required(login_url='/')
 def level_one(request):
     student = request.user
+    print(student.id)
     if request.method == "POST":
         git = request.POST['git']
         linkedin = request.POST['linkedin']
@@ -276,6 +470,55 @@ def level_one(request):
         if student.assignment1status != 'completed':   
             student.assignment1status = 'under_review'
             student.assignment1endttime = timezone.now()
+
+        # mail send to the Admin
+
+        emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
+                          
+<body style='background-color:black; color:white; padding:40px;'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+                      
+                      <h2>Studnet Details</h2>
+                        <img src="{student.profile_pic}" width="50px">
+
+                            <p>
+                      <b>Name : </b>{student.name}<br>
+                      <b>Email : </b><a href="mailto:{student.email}">{student.email}</a><br>
+                      <b>Phone No. : </b>{student.phone_no}<br>
+                      <b>WhatsApp No. : </b>{student.whatsapp_no}<br>
+                      <b>Domain : </b>{student.domain}<br>
+                      </p>
+                      
+                      <h2>Assignment Details</h2>
+                      <h4>{student.assignment1.assignment_question}</h4>
+                        <p>{student.assignment1.assignment_description}</p>
+                        <h5>Git Link</h5>
+                      <a href="{git}">{git}</h5>
+                      <h5>LinkedIn</h5>
+                      <a href="{linkedin}">LinkedIn</a>
+
+
+<h2 style="text-align:center">🎉 Congratulations on Completing Level One! 🎉</h2>
+<p style="text-align:center">
+                          We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
+
+Well done! 🌟
+                          
+                          </p>
+<div style="text-align:center">
+                          <a href="/dashboard/">
+      <button>Dashboard</button>                    
+                   </a>       
+</div>                  
+
+
+</body>
+                          
+''',"ajayoneness123@gmail.com",[f'{student.email}'])
+
+
+
+
 
         student.save()
 

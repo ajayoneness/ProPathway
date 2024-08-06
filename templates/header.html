@@ -685,15 +685,47 @@
         </div>
         <!-- Mobile Header -->
         <div class="bringer-mobile-header-inner">
-            <a href="#" class="bringer-logo">
-                <img src="{% static 'img/logo.png' %}" alt="bringer." width="160" height="24">
+            <a href="{% url 'main' %}" class="bringer-logo">
+                <img src="{% static 'logo.png' %}" alt="bringer." width="160" height="24">
             </a>
-            <a href="#" class="bringer-mobile-menu-toggler">
-                <i class="bringer-menu-toggler-icon">
+            <a href="#" class="">
+                <!-- <i class="bringer-menu-toggler-icon">
                     <span></span>
                     <span></span>
                     <span></span>
-                </i>
+                </i> -->
+
+
+                <div class="mainlogo">
+                    <div class="bbx">
+
+
+                        {% if user.email %}
+        
+                            {% if user.profile_pic %}
+                                <a href="{% url 'profile' %}">
+                                    <img id="profileimg" class="profile-image" src="{{user.profile_pic.url}}"  >
+                                </a>
+                            {% else %}
+                                <a href="{% url 'profile' %}">
+                                    <img id="profileimg" class="profile-image" src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg"  >
+                            </a>
+                            
+                            {% endif %}
+        
+                            <!-- <img class="profile-image" src="http://localhost:8000/media/profile_pics/pythoncoding4u_2z7TKz6.jpg"> -->
+        
+        
+        
+                        {% endif %}
+        
+        
+                    </div>
+
+                </div>
+
+
+
             </a>
         </div>
     </header>
