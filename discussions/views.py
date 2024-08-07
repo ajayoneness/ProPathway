@@ -36,7 +36,7 @@ def Discussion(request, slug):
 
 
 
-    discussion  = Discussions.objects.all().order_by("-id")
+    discussion  = Discussions.objects.filter(assignment=ass).order_by("-id")
     discussionreply  = discussionReply.objects.all().order_by("-id")
 
 
