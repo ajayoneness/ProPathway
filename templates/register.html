@@ -42,9 +42,13 @@
     }
 
     .stg-cta-with-image{
-        padding:50px 0;
+        padding:0px 0;
     }
 
+
+    .textttttop{
+        padding-top: 100px;
+    }
 
     }
 
@@ -57,9 +61,9 @@
 <div class="stg-container">
 
     <section class="backlight-top is-fullwidth">
-        <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse">
+        <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column">
             <div class="stg-col-6" data-unload="fade-left">
-                <div  class="bringer-offset-image is-init in-view" data-bg-src="img/cta/contact-section-bg.jpg" data-threshold="0.25" style="background-image: url(&quot;img/cta/contact-section-bg.jpg&quot;);"></div>
+                <div  class="bringer-offset-image is-init in-view" data-bg-src="{% static 'register.jpg' %}" data-threshold="0.25" style="background-image: url({% static 'register.jpg' %});"></div>
                 <form  method="post" class=" bringer-block  nnnform" id="loginForm" style="--mouse-x: 166.6666660308838px; --mouse-y: -302.375px; ">
                     {% csrf_token %}
                     <div class="bringer-form-content">
