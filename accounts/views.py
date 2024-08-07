@@ -261,6 +261,7 @@ def Rejected(request, student_id, assignmentlevel):
         student = get_object_or_404(Student, id=student_id)
             
         if assignmentlevel == 1:
+            student.assignment1rejectioncount = int(student.assignment1rejectioncount) + 1
             student.assignment1status = 'rejected'
             emailTemplate("Level One Assignment Rejected","Your Level One Assignment Rejected",f''' 
 <body style='background-color:black; color:white; padding:100px;'>
@@ -284,8 +285,10 @@ def Rejected(request, student_id, assignmentlevel):
 </body>
                           
                           ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+            
 
         elif assignmentlevel == 2:
+            student.assignment2rejectioncount = int(student.assignment2rejectioncount) + 1
             student.assignment2status = 'rejected'
             emailTemplate("Level Two Assignment Rejected","Your Level Two Assignment Rejected",f''' 
                           
@@ -316,6 +319,7 @@ def Rejected(request, student_id, assignmentlevel):
 
 
         elif assignmentlevel == 3:
+            student.assignment3rejectioncount = int(student.assignment3rejectioncount) + 1
             student.assignment3status = 'rejected'
             emailTemplate("Level Three Assignment Rejected","Your Level Three Assignment Rejected",f''' 
                           
@@ -467,15 +471,13 @@ def level_one(request):
         if student.level_student !=5:  
             student.level_student = 2
 
-        if student.assignment1status != 'completed':   
-            student.assignment1status = 'under_review'
-            student.assignment1endttime = timezone.now()
-
-        # mail send to the Admin
-            emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
+        if student.assignment1status != 'completed':  
+            if student.assignment1status != 'under_review': 
+                # mail send to the Admin
+                emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
                           
-<body style='background-color:black; color:white; padding:40px;'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+                    <body style='background-color:black; color:white; padding:40px;'>
+                    <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
                       
                       <h1>Studnet Details</h1>
                         <img src="{student.profile_pic}" width="50px">
@@ -508,19 +510,16 @@ def level_one(request):
                       <a href="http://127.0.0.1:8000/completed/{student.id}/1/"><button style="padding:10px; background-color:green; font-size :20px; color:white; ">Completed</button></a>
                     <br><br>
 
-</div>                  
+                </div>                  
 
 
-</body>
-                          
-''',"ajayoneness123@gmail.com",[f'{student.email}'])
-
-
-
-
+                </body>
+                                        
+                ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                student.assignment1status = 'under_review'
+                student.assignment1endttime = timezone.now()
 
         student.save()
-
         return redirect('dashboard')
     
 
@@ -529,10 +528,9 @@ def level_one(request):
         student.assignment1starttime = timezone.now()
         student.save()
 
-    elif student.assignment1status == 'rejected':
-        student.assignment1status = 'in_progress'
-        student.assignment1rejectioncount = int(student.assignment1rejectioncount) + 1
-        student.save()
+    # elif student.assignment1status == 'rejected':
+    #     student.assignment1status = 'in_progress'
+    #     student.save()
 
     else:
         pass
@@ -566,14 +564,12 @@ def level_two(request):
         if request.user.level_student !=5:
             request.user.level_student = 3
 
-        if student.assignment2status != 'completed':   
-            student.assignment2status = 'under_review'
-            student.assignment2endttime = timezone.now()
-
-            emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
-                          
-<body style='background-color:black; color:white; padding:40px;'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+        if student.assignment2status != 'completed': 
+            if student.assignment2status != 'under_review':
+                emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
+                                            
+                    <body style='background-color:black; color:white; padding:40px;'>
+                    <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
                       
                       <h1>Studnet Details</h1>
                         <img src="{student.profile_pic}" width="50px">
@@ -606,19 +602,17 @@ def level_two(request):
                       <a href="http://127.0.0.1:8000/completed/{student.id}/2/"><button style="padding:10px; background-color:green; font-size :20px; color:white; ">Completed</button></a>
                     <br><br>
 
-</div>                  
+                </div>                  
 
 
-</body>
-                          
-''',"ajayoneness123@gmail.com",[f'{student.email}'])
-
-
-
-
+                </body>
+                                        
+                ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                                
+                student.assignment2status = 'under_review'
+                student.assignment2endttime = timezone.now()
 
         student.save()
-
         return redirect('dashboard')
     
 
@@ -627,10 +621,9 @@ def level_two(request):
         student.assignment2starttime = timezone.now()
         student.save()
 
-    elif student.assignment2status == 'rejected':
-        student.assignment2status = 'in_progress'
-        student.assignment2rejectioncount = int(student.assignment2rejectioncount) + 1
-        student.save()
+    # elif student.assignment2status == 'rejected':
+    #     student.assignment2status = 'in_progress'
+    #     student.save()
 
     else:
         pass
@@ -663,14 +656,12 @@ def level_three(request):
             request.user.level_student = 4
 
         if student.assignment3status != 'completed':   
-            student.assignment3status = 'under_review'
-            student.assignment3endttime = timezone.now()
-
-            emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
+            if student.assignment3status != 'under_review':
+                emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
                           
-<body style='background-color:black; color:white; padding:40px;'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
-                      
+                <body style='background-color:black; color:white; padding:40px;'>
+                <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+                                    
                       <h1>Studnet Details</h1>
                         <img src="{student.profile_pic}" width="50px">
 
@@ -702,20 +693,16 @@ def level_three(request):
                       <a href="http://127.0.0.1:8000/completed/{student.id}/3/"><button style="padding:10px; background-color:green; font-size :20px; color:white; ">Completed</button></a>
                     <br><br>
 
-</div>                  
+                    </div>                  
 
 
-</body>
-                          
-''',"ajayoneness123@gmail.com",[f'{student.email}'])
-
-
-
-
-
+                    </body>
+                                            
+                    ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                student.assignment3status = 'under_review'
+                student.assignment3endttime = timezone.now()
 
         student.save()
-
         return redirect('dashboard')
     
 
@@ -724,10 +711,9 @@ def level_three(request):
         student.assignment3starttime = timezone.now()
         student.save()
 
-    elif student.assignment3status == 'rejected':
-        student.assignment3status = 'in_progress'
-        student.assignment3rejectioncount = int(student.assignment3rejectioncount) + 1
-        student.save()
+    # elif student.assignment3status == 'rejected':
+    #     student.assignment3status = 'in_progress'
+    #     student.save()
 
     else:
         pass
