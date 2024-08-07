@@ -472,16 +472,15 @@ def level_one(request):
             student.assignment1endttime = timezone.now()
 
         # mail send to the Admin
-
-        emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
+            emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
                           
 <body style='background-color:black; color:white; padding:40px;'>
 <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
                       
-                      <h2>Studnet Details</h2>
+                      <h1>Studnet Details</h1>
                         <img src="{student.profile_pic}" width="50px">
 
-                            <p>
+                    <p>
                       <b>Name : </b>{student.name}<br>
                       <b>Email : </b><a href="mailto:{student.email}">{student.email}</a><br>
                       <b>Phone No. : </b>{student.phone_no}<br>
@@ -489,19 +488,25 @@ def level_one(request):
                       <b>Domain : </b>{student.domain}<br>
                       </p>
                       
-                      <h2>Assignment Details</h2>
+                      <h1>Assignment Details</h1>
                       <h4>{student.assignment1.assignment_question}</h4>
                         <p>{student.assignment1.assignment_description}</p>
+                    
+                    <br><br><br>
+                    <div style="border: 2px solid gray; padding:20px">
                         <h5>Git Link</h5>
-                      <a href="{git}">{git}</h5></a>
+                        <a href="{git}">{git}</h5></a>
+                        <br>
+                        <h5>LinkedIn</h5>
+                        <a href="{linkedin}">{linkedin}</a>
+                    </div>
 
-                      <h5>LinkedIn</h5>
-                      <a href="{linkedin}">{linkedin}</a>
+                        <br><br>
 
-                      <a href="http://127.0.0.1:8000/rejected/{student.id}/1/"><button>Rejected</button></a>
+                      <a href="http://127.0.0.1:8000/rejected/{student.id}/1/"><button style="padding:10px; background-color:red; font-size :20px; color:white; ">Rejected</button></a>
                       <br><br>
-                      <a href="http://127.0.0.1:8000/completed/{student.id}/1/"><button>Completed</button></a>
-
+                      <a href="http://127.0.0.1:8000/completed/{student.id}/1/"><button style="padding:10px; background-color:green; font-size :20px; color:white; ">Completed</button></a>
+                    <br><br>
 
 </div>                  
 
@@ -565,6 +570,53 @@ def level_two(request):
             student.assignment2status = 'under_review'
             student.assignment2endttime = timezone.now()
 
+            emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
+                          
+<body style='background-color:black; color:white; padding:40px;'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+                      
+                      <h1>Studnet Details</h1>
+                        <img src="{student.profile_pic}" width="50px">
+
+                    <p>
+                      <b>Name : </b>{student.name}<br>
+                      <b>Email : </b><a href="mailto:{student.email}">{student.email}</a><br>
+                      <b>Phone No. : </b>{student.phone_no}<br>
+                      <b>WhatsApp No. : </b>{student.whatsapp_no}<br>
+                      <b>Domain : </b>{student.domain}<br>
+                      </p>
+                      
+                      <h1>Assignment Details</h1>
+                      <h4>{student.assignment2.assignment_question}</h4>
+                        <p>{student.assignment2.assignment_description}</p>
+                    
+                    <br><br><br>
+                    <div style="border: 2px solid gray; padding:20px">
+                        <h5>Git Link</h5>
+                        <a href="{git}">{git}</h5></a>
+                        <br>
+                        <h5>LinkedIn</h5>
+                        <a href="{linkedin}">{linkedin}</a>
+                    </div>
+
+                        <br><br>
+
+                      <a href="http://127.0.0.1:8000/rejected/{student.id}/2/"><button style="padding:10px; background-color:red; font-size :20px; color:white; ">Rejected</button></a>
+                      <br><br>
+                      <a href="http://127.0.0.1:8000/completed/{student.id}/2/"><button style="padding:10px; background-color:green; font-size :20px; color:white; ">Completed</button></a>
+                    <br><br>
+
+</div>                  
+
+
+</body>
+                          
+''',"ajayoneness123@gmail.com",[f'{student.email}'])
+
+
+
+
+
         student.save()
 
         return redirect('dashboard')
@@ -613,6 +665,54 @@ def level_three(request):
         if student.assignment3status != 'completed':   
             student.assignment3status = 'under_review'
             student.assignment3endttime = timezone.now()
+
+            emailTemplate(f"Assignment Submitted | {student.name}",f"Level One Assignment Submitted",f''' 
+                          
+<body style='background-color:black; color:white; padding:40px;'>
+<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+                      
+                      <h1>Studnet Details</h1>
+                        <img src="{student.profile_pic}" width="50px">
+
+                    <p>
+                      <b>Name : </b>{student.name}<br>
+                      <b>Email : </b><a href="mailto:{student.email}">{student.email}</a><br>
+                      <b>Phone No. : </b>{student.phone_no}<br>
+                      <b>WhatsApp No. : </b>{student.whatsapp_no}<br>
+                      <b>Domain : </b>{student.domain}<br>
+                      </p>
+                      
+                      <h1>Assignment Details</h1>
+                      <h4>{student.assignment3.assignment_question}</h4>
+                        <p>{student.assignment3.assignment_description}</p>
+                    
+                    <br><br><br>
+                    <div style="border: 2px solid gray; padding:20px">
+                        <h5>Git Link</h5>
+                        <a href="{git}">{git}</h5></a>
+                        <br>
+                        <h5>LinkedIn</h5>
+                        <a href="{linkedin}">{linkedin}</a>
+                    </div>
+
+                        <br><br>
+
+                      <a href="http://127.0.0.1:8000/rejected/{student.id}/3/"><button style="padding:10px; background-color:red; font-size :20px; color:white; ">Rejected</button></a>
+                      <br><br>
+                      <a href="http://127.0.0.1:8000/completed/{student.id}/3/"><button style="padding:10px; background-color:green; font-size :20px; color:white; ">Completed</button></a>
+                    <br><br>
+
+</div>                  
+
+
+</body>
+                          
+''',"ajayoneness123@gmail.com",[f'{student.email}'])
+
+
+
+
+
 
         student.save()
 
