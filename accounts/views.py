@@ -261,90 +261,93 @@ def Rejected(request, student_id, assignmentlevel):
         student = get_object_or_404(Student, id=student_id)
             
         if assignmentlevel == 1:
-            student.assignment1rejectioncount = int(student.assignment1rejectioncount) + 1
-            student.assignment1status = 'rejected'
-            emailTemplate("Level One Assignment Rejected","Your Level One Assignment Rejected",f''' 
-<body style='background-color:black; color:white; padding:100px;'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+            if student.assignment1status != 'rejected':
+                student.assignment1rejectioncount = int(student.assignment1rejectioncount) + 1
+                student.assignment1status = 'rejected'
+                emailTemplate("Level One Assignment Rejected","Your Level One Assignment Rejected",f''' 
+                        <body style='background-color:black; color:white; padding:100px;'>
+                        <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
 
-<h2>Level 1 Project Submission Rejected!! </h2>
-                        
-<ol>
-<h3>Reasons for Rejecting</h3>
-<li>Lack of Originality or Plagiarism</li>
-<li>Incomplete or Inadequate Requirements</li>
-</ol>
+                        <h2>Level 1 Project Submission Rejected!! </h2>
+                                                
+                        <ol>
+                        <h3>Reasons for Rejecting</h3>
+                        <li>Lack of Originality or Plagiarism</li>
+                        <li>Incomplete or Inadequate Requirements</li>
+                        </ol>
 
-<div style="text-align:center">
-                          <a href="/dashboard/">
-      <button>Dashboard</button>                    
-                   </a>       
-</div>                  
+                        <div style="text-align:center">
+                                                <a href="/dashboard/">
+                            <button>Dashboard</button>                    
+                                        </a>       
+                        </div>                  
 
 
-</body>
-                          
-                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
-            
+                        </body>
+                            
+                            ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                
 
         elif assignmentlevel == 2:
-            student.assignment2rejectioncount = int(student.assignment2rejectioncount) + 1
-            student.assignment2status = 'rejected'
-            emailTemplate("Level Two Assignment Rejected","Your Level Two Assignment Rejected",f''' 
-                          
-<body style='background-color:black; color:white; padding:100px;'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+            if student.assignment2status != 'rejected':
+                student.assignment2rejectioncount = int(student.assignment2rejectioncount) + 1
+                student.assignment2status = 'rejected'
+                emailTemplate("Level Two Assignment Rejected","Your Level Two Assignment Rejected",f''' 
+                            
+                        <body style='background-color:black; color:white; padding:100px;'>
+                        <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
 
-<h2>Level 2 Project Submission Rejected!! </h2>
-                        
-<ol>
-<h3>Reasons for Rejecting</h3>
-<li>Lack of Originality or Plagiarism</li>
-<li>Incomplete or Inadequate Requirements</li>
-</ol>
+                        <h2>Level 2 Project Submission Rejected!! </h2>
+                                                
+                        <ol>
+                        <h3>Reasons for Rejecting</h3>
+                        <li>Lack of Originality or Plagiarism</li>
+                        <li>Incomplete or Inadequate Requirements</li>
+                        </ol>
 
-<div style="text-align:center">
-                          <a href="/dashboard/">
-      <button>Dashboard</button>                    
-                   </a>       
-</div>                  
+                        <div style="text-align:center">
+                                                <a href="/dashboard/">
+                            <button>Dashboard</button>                    
+                                        </a>       
+                        </div>                  
 
 
-</body>
-                          
-                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
-            
+                        </body>
+                            
+                            ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                
 
 
 
 
         elif assignmentlevel == 3:
-            student.assignment3rejectioncount = int(student.assignment3rejectioncount) + 1
-            student.assignment3status = 'rejected'
-            emailTemplate("Level Three Assignment Rejected","Your Level Three Assignment Rejected",f''' 
-                          
-<body style='background-color:black; color:white; padding:100px;'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+            if student.assignment3status != 'rejected':
+                student.assignment3rejectioncount = int(student.assignment3rejectioncount) + 1
+                student.assignment3status = 'rejected'
+                emailTemplate("Level Three Assignment Rejected","Your Level Three Assignment Rejected",f''' 
+                            
+                        <body style='background-color:black; color:white; padding:100px;'>
+                        <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
 
-<h2>Level 3 Project Submission Rejected!! </h2>
-                        
-<ol>
-<h3>Reasons for Rejecting</h3>
-<li>Lack of Originality or Plagiarism</li>
-<li>Incomplete or Inadequate Requirements</li>
-</ol>
+                        <h2>Level 3 Project Submission Rejected!! </h2>
+                                                
+                        <ol>
+                        <h3>Reasons for Rejecting</h3>
+                        <li>Lack of Originality or Plagiarism</li>
+                        <li>Incomplete or Inadequate Requirements</li>
+                        </ol>
 
-<div style="text-align:center">
-                          <a href="/dashboard/">
-      <button>Dashboard</button>                    
-                   </a>       
-</div>                  
+                        <div style="text-align:center">
+                                                <a href="/dashboard/">
+                            <button>Dashboard</button>                    
+                                        </a>       
+                        </div>                  
 
 
-</body>
-                          
-                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
-            
+                        </body>
+                            
+                            ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                
 
         else:
             return JsonResponse({'error': 'Invalid assignment level'}, status=400)
@@ -362,82 +365,84 @@ def Completed(request, student_id, assignmentlevel):
     try:
         student = get_object_or_404(Student, id=student_id)
         if assignmentlevel == 1:
-            student.assignment1status = 'completed'
-            emailTemplate("Level One Assignment Completed","Your Level One Assignment Completed",f''' 
-                          
-<body style='background-color:black; color:white; padding:40px;text-align:center'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+            if student.assignment1status == 'under_review':
+                student.assignment1status = 'completed'
+                emailTemplate("Level One Assignment Completed","Your Level One Assignment Completed",f''' 
+                    <body style='background-color:black; color:white; padding:40px;text-align:center'>
+                    <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
 
-<h2 style="text-align:center">🎉 Congratulations on Completing Level One! 🎉</h2>
-<p style="text-align:center">
-                          We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
+                    <h2 style="text-align:center">🎉 Congratulations on Completing Level One! 🎉</h2>
+                    <p style="text-align:center">
+                                            We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
 
-Well done! 🌟
-                          
-                          </p>
-<div style="text-align:center">
-                          <a href="/dashboard/">
-      <button>Dashboard</button>                    
-                   </a>       
-</div>                  
+                    Well done! 🌟
+                                            
+                                            </p>
+                    <div style="text-align:center">
+                                            <a href="/dashboard/">
+                        <button>Dashboard</button>                    
+                                    </a>       
+                    </div>                  
 
 
-</body>
-                          
-                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                    </body>
+                            
+                            ''',"ajayoneness123@gmail.com",[f'{student.email}'])
 
 
 
         elif assignmentlevel == 2:
-            student.assignment2status = 'completed'
-            emailTemplate("Level Two Assignment Completed","Your Level Two Assignment Completed",f''' 
-                          
-<body style='background-color:black; color:white; padding:40px;text-align:center'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+            if student.assignment2status == 'under_review':
+                student.assignment2status = 'completed'
+                emailTemplate("Level Two Assignment Completed","Your Level Two Assignment Completed",f''' 
+                            
+                        <body style='background-color:black; color:white; padding:40px;text-align:center'>
+                        <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
 
-<h2 style="text-align:center">🎉 Congratulations on Completing Level Two! 🎉</h2>
-<p style="text-align:center">
-                          We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
+                        <h2 style="text-align:center">🎉 Congratulations on Completing Level Two! 🎉</h2>
+                        <p style="text-align:center">
+                                                We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
 
-Well done! 🌟
-                          
-                          </p>
-<div style="text-align:center">
-                          <a href="/dashboard/">
-      <button>Dashboard</button>                    
-                   </a>       
-</div>                  
+                        Well done! 🌟
+                                                
+                                                </p>
+                        <div style="text-align:center">
+                                                <a href="/dashboard/">
+                            <button>Dashboard</button>                    
+                                        </a>       
+                        </div>                  
 
 
-</body>
-                          
-                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                        </body>
+                            
+                            ''',"ajayoneness123@gmail.com",[f'{student.email}'])
             
         elif assignmentlevel == 3:
-            student.assignment3status = 'completed'
-            emailTemplate("Level Three Assignment Completed","Your Level Three Assignment Completed",f''' 
-                          
-<body style='background-color:black; color:white; padding:40px;text-align:center'>
-<img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
+            if student.assignment3status == 'under_review':
+                student.assignment3status = 'completed'
+                emailTemplate("Level Three Assignment Completed","Your Level Three Assignment Completed",f''' 
+                            
+                            <body style='background-color:black; color:white; padding:40px;text-align:center'>
+                            <img src='https://pythoncoding.codeajay.in/static/img/logo.png' width='250px'><br>
 
-<h2 style="text-align:center">🎉 Congratulations on Completing Level Three! 🎉</h2>
-<p style="text-align:center">
-                          We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
+                            <h2 style="text-align:center">🎉 Congratulations on Completing Level Three! 🎉</h2>
+                            <p style="text-align:center">
+                                                    We're thrilled to celebrate your achievement and commend you for your hard work and dedication. This is a fantastic milestone, and you've shown great commitment and skill in reaching this point. Keep up the excellent work as you continue to advance and take on new challenges. We can't wait to see what you'll accomplish next!
 
-Well done! 🌟
-                          
-                          </p>
-<div style="text-align:center">
-                          <a href="/dashboard/">
-      <button>Dashboard</button>                    
-                   </a>       
-</div>                  
+                            Well done! 🌟
+                                                    
+                                                    </p>
+                            <div style="text-align:center">
+                                                    <a href="/dashboard/">
+                                <button>Dashboard</button>                    
+                                            </a>       
+                            </div>                  
 
 
-</body>
-                          
-                          ''',"ajayoneness123@gmail.com",[f'{student.email}'])
-            
+                            </body>
+                            
+                            ''',"ajayoneness123@gmail.com",[f'{student.email}'])
+                
         else:
             return JsonResponse({'error': 'Invalid assignment level'}, status=400)
 
@@ -646,8 +651,7 @@ def level_three(request):
     if request.method == "POST":
         git = request.POST['git']
         linkedin = request.POST['linkedin']
-
-
+        
         update_assignemt_three = AssignmentSubmit.objects.get(student=student)
         update_assignemt_three.Assignment3_github_Link = git
         update_assignemt_three.Assignment3_linkedin_link = linkedin
@@ -729,10 +733,10 @@ def level_three(request):
 
 
 
-
 @login_required(login_url='/')
 def certification(request):
     return render(request, 'certificate.html')
+
 
 
 
