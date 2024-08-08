@@ -1,280 +1,142 @@
+
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Profile Update</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <style>
-    a{
-        color :rgb(0, 0, 0);
-        font-weight : 700;
-        text-decoration: none;
-    }
-
-    a:hover{
-
-        color:rgb(37, 37, 37);
-        text-decoration: none;
-    }
-
-
-    body{
-            background:url('{% static "background.jpg" %}');
-            height : 150vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:cover;
-        }
-
-        .main-box{
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 45%;
-            height: auto;
-            background-color: steelblue;
-            padding:50px;
-            
-        }
-    
-    
-        input{
-            width: 100%;
-            height: 40px;
-        }
-    
-        button{
-            
-            height:40px;
-            border:none;
-            color:black;
-        }
-    </style>
+{% include 'header.html' %}
 
 
 
-</head>
-<body>
-
-   
+  <div class="stg-container">
+      <section>
 
 
-    <section>
-        <div class="container py-5">
-          <div class="row">
-            <div class="col">
-              <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-                <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                </ol>
-              </nav>
-            </div>
+        <!-- Block: Our Approach -->
+        <div class="stg-row stg-bottom-gap-l">
+          <div class="stg-col-3 stg-tp-bottom-gap" data-appear="fade-right" data-unload="fade-left">
+              <img class="bringer-lazy" src="{{user.profile_pic.url}}" data-src="{{user.profile_pic.url}}" alt="Cookie Dough" width="960" height="960">
           </div>
-      
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="card mb-4">
-                <div class="card-body text-center">
-
-                  {% if user.profile_pic %}
-                  <img src="{{user.profile_pic.url}}" alt="avatar"
-                    class="rounded-circle img-fluid" style="width: 150px;">
-                  {% else %}
-
-                  <img src="https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg" alt="avatar"
-                    class="rounded-circle img-fluid" style="width: 150px;">
-
-                  {% endif %}
+          <div class="stg-col-9 bringer-block stg-vertical-space-between" data-appear="fade-left" data-unload="fade-right">
+              <h3>{{user.name}} ( {{user.domain}} )</h3>
+              <p>Email : {{user.email}}<br>
+                Phone No. : {{user.phone_no}}<br>
+                Collage : {{user.college}}<br><br>
+                Assignment 1 : <b><i>{{user.assignment1.assignment_question}} ( {{user.assignment1status}} )</i></b><br>
+                Assignment 2 : <b><i>{{user.assignment2.assignment_question}} ( {{user.assignment2status}} )</i></b><br>
+                Assignment 3 : <b><i>{{user.assignment3.assignment_question}} ( {{user.assignment3status}} )</i></b><br>
 
 
+              </p>
 
-                  <h5 class="my-3">{{user.name}}</h5>
-                  <p class="text-muted mb-1">{{user.domain}}</p>
-                  <p class="text-muted mb-4">{{user.college}}</p>
-                 
-                </div>
+
+          </div>
+      </div>
+
+
+
+
+        <!-- Block: The Challenge -->
+        <div class="stg-row stg-bottom-gap-l stg-tp-column-reverse">
+          <div class="stg-col-8 bringer-block stg-vertical-space-between" data-appear="fade-right" data-unload="fade-left">
+              <h2>The Challenge</h2>
+              <div>
+                  <p>Doughp wasn't your average cookie dough company. They crafted edible cookie dough – a tantalizing treat that promised the deliciousness of raw dough minus the food poisoning fear. Yet, the "edible" aspect was a double-edged sword. Parents hesitated, wary of the safety claims, while adults questioned the indulgence without the baking payoff. </p>
+                  <p>Doughp needed a campaign that not only dispelled myths and promoted safety, but also redefined the very concept of cookie dough – transforming it from a forbidden fruit into a guilt-free, delectable treat for everyone.</p>
               </div>
-              <div class="card mb-4 mb-lg-0">
-                <div class="card-body p-0">
-                  <ul class="list-group list-group-flush rounded-3">
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fas fa-globe fa-lg text-warning"></i>
-                      <p class="mb-0"><a href="https://codeajay.in">codeajay.in</a></p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                      <p class="mb-0">ajayoneness</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                      <p class="mb-0">@c0deaj</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                      <p class="mb-0">code_ajay</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                      <p class="mb-0">codeaj</p>
-                    </li>
+          </div>
+          <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-left" data-unload="fade-right">
+              <img class="bringer-lazy" src="img/null.png" data-src="img/portfolio/portfolio02/image01.jpg" alt="Cookie Dough" width="960" height="960">
+          </div>
+      </div>
+
+
+
+          <!-- Block: Page Title -->
+          <div class="bringer-bento-grid stg-bottom-gap-l">
+              <div class="is-large" data-appear="fade-right" data-unload="fade-left">
+                  <img class="bringer-lazy" src="img/null.png" data-src="img/portfolio/portfolio02/hero01.jpg" alt="Cookie Dough" width="1200" height="1200">
+              </div>
+              <div class="is-medium bringer-block stg-vertical-space-between" data-appear="fade-down" data-delat="100" data-unload="fade-right">
+                  <h1>Cookie Dough</h1>
+                  <p class="bringer-large-text">Dive into the story of how Bringer helped Doughp transform a forbidden fruit into a guilt-free sensation, one spoonful at a time.</p>
+              </div>
+              <div class="is-small bringer-block" data-appear="fade-up" data-delat="100" data-unload="fade-left">
+                  <ul class="bringer-meta-list">
+                      <li>
+                          <span class="bringer-meta">Client:</span>
+                          <span class="bringer-highlight">Doughp</span>
+                      </li>
+                      <li>
+                          <span class="bringer-meta">Service:</span>
+                          <span class="bringer-highlight">Advertising</span>
+                      </li>
+                      <li>
+                          <span class="bringer-meta">Date:</span>
+                          <span class="bringer-highlight">October '2023</span>
+                      </li>
                   </ul>
-                </div>
               </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="card mb-4">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Full Name</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">{{user.name}}</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Email</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">{{user.email}}</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Phone no.</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">{{user.phone_no}}</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">WhatApp</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">{{user.whatsapp_no}}</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Assignment Level</p>
-                    </div>
-                    <div class="col-sm-9">
-                      {% if user.level_student == 4 %}
-
-                      <p class="text-mut mb-0" style="color:red;">Requested For Aproval (Panding) </p>
-
-                      {% else %}
-                      <p class="text-muted mb-0">Level {{user.level_student}}</p>
-                      {% endif %}
-
-                    </div>
-                  </div>
-                </div>
+              <div class="is-small" data-appear="fade-left" data-delat="200" data-unload="fade-right">
+                  <img class="bringer-lazy" src="img/null.png" data-src="img/portfolio/portfolio02/hero02.jpg" alt="Cookie Dough" width="960" height="960">
               </div>
-
-
-             
-
-
-              <div class="row">
-               
-                <div class="col-md-12">
-                  <div class="card mb-4 mb-md-0">
-                    <div class="card-body">
-                      <p class="mb-4"><span class="text-primary font-italic me-1">Assigment</span> Project Status
-                      </p>
-                      <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                      <div class="progress rounded" style="height: 20px;">
-
-                        {% if user.level_student == 0 %}
-                        <div class="progress-bar" style="color:Orange" role="progressbar" style="width: 0%" aria-valuenow="0"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-
-                        {% elif user.level_student == 1 %}
-                        <div class="progress-bar" style="color:Orange" role="progressbar" style="width: 20%" aria-valuenow="20"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-
-                        {% elif user.level_student == 2 %}
-
-                        <div class="progress-bar"  role="progressbar" style="width: 40%" aria-valuenow="40"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-
-
-                        {% elif user.level_student == 3 %}
-
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-
-                          {% elif user.level_student == 4 %}
-
-                          <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-
-                          {% elif user.level_student == 5 %}
-
-                          <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-
-                          {% endif %}
-
-
-
-
-
-
-
-
-
-                      </div>
-                      
-                      
-                      
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
+
+          
+
+          
+
+          <!-- Block: The Solution -->
+          <div class="bringer-bento-grid stg-bottom-gap-l">
+              <div class="is-large stg-vertical-space-between bringer-block stg-large-gap" data-bg-src="img/cta/grid-cta-background.jpg" data-appear="fade-right" data-unload="fade-left">
+                  <h2>The Solution</h2>
+                  <p class="bringer-large-text">We crafted a campaign that celebrated the joy of cookie dough, but with a modern twist: #DoughpWithoutDoubt, a playful nod to the safety concerns and a powerful message of guilt-free indulgence.</p>
+              </div>
+              <div class="is-medium bringer-block stg-valign-middle" data-appear="fade-left" data-delay="100" data-unload="fade-right">
+                  <ul class="bringer-marked-list">
+                      <li>Whimsical video ads: We created stop-motion animation shorts featuring vibrant cookie dough characters.</li>
+                      <li>Influencer partnerships: We teamed up with parenting bloggers and health-conscious chefs, showcasing how Doughp fit into their families and healthy lifestyles.</li>
+                      <li>Instagrammable pop-up shops: We created interactive pop-up shops brimming with colorful Doughp jars and activities. </li>
+                  </ul>
+              </div>
+              <div class="is-small" data-appear="fade-up" data-delay="100" data-unload="fade-left">
+                  <img class="bringer-lazy" src="img/null.png" data-src="img/portfolio/portfolio02/image03.jpg" alt="Cookie Dough" width="960" height="960">
+              </div>
+              <div class="is-small" data-appear="fade-up" data-delay="200" data-unload="fade-right">
+                  <img class="bringer-lazy" src="img/null.png" data-src="img/portfolio/portfolio02/image04.jpg" alt="Cookie Dough" width="960" height="960">
+              </div>
+          </div>
+
+          <!-- Block: Results & Impact -->
+          <div class="stg-row">
+              <div class="stg-col-8 bringer-block stg-vertical-space-between stg-tp-bottom-gap" data-appear="fade-right" data-unload="fade-left">
+                  <h2>Results & Impact</h2>
+                  <div>
+                      <ul class="bringer-marked-list">
+                          <li><span class="bringer-highlight">Doubling of brand awareness:</span> Doughp became synonymous with safe, delicious edible cookie dough, capturing the attention of both skeptical parents and curious adults.</li>
+                          <li><span class="bringer-highlight">Significant sales growth:</span> Sales skyrocketed, propelled by new customers and repeat buys from families and individuals discovering the joy of guilt-free indulgence.</li>
+                          <li><span class="bringer-highlight">Shift in market perception:</span> Doughp successfully redefined the edible cookie dough category, moving from a niche product to a mainstream treat embraced by consumers.</li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="stg-col-4" data-appear="fade-left" data-unload="fade-right">
+                  <img class="bringer-lazy" src="img/null.png" data-src="img/portfolio/portfolio02/image05.jpg" alt="Cookie Dough" width="960" height="960">
+              </div>
+          </div>
       </section>
 
+      <!-- Section: Next Post -->
+      <section class="divider-top" data-appear="fade-up">
+          <div class="align-center" data-unload="zoom-in">
+              <a href="{% url 'logout' %}" class="bringer-icon-link bringer-next-post">
+                  <div class="bringer-icon-link-content">
+                      <h6></h6>
+                      <h2>Logout</h2>
+                  </div>
+                  <div class="bringer-icon-wrap">
+                      <i class="bringer-icon bringer-icon-explore"></i>
+                  </div>
+              </a><!-- .bringer-icon-link -->
+          </div>
+      </section>
+  </div><!-- .stg-container -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    <script>
-        $(document).ready(function() {
-
-
-        });
-    </script>
-
-</body>
-</html>
+  {% include 'footer.html' %}

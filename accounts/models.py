@@ -29,6 +29,7 @@ class Assignment(models.Model):
     level_choices = [(1, 'Level 1'), (2, 'Level 2'), (3, 'Level 3')]
     level = models.IntegerField(choices=level_choices, default=0)
     links = models.ManyToManyField(RefralLink, null=True, blank=True)
+    youtube_video_id = models.CharField(max_length=255,null=True, blank=True)
     # referral_link1 = models.URLField(max_length=255, null=True, blank=True)
     # referral_link2 = models.URLField(max_length=255, null=True, blank=True)
 

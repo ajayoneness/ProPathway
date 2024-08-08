@@ -569,6 +569,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            z-index: 999999;
             
         }
 
@@ -595,9 +596,46 @@
 
 
 
-
-
        
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.7);
+            z-index: 9999;
+            border: 2px solid gray;
+        }
+
+        .popup-content {
+            background-color: #ffffff00;
+            margin: 15% auto;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: rgb(255, 0, 0);
+            text-decoration: none;
+            cursor: pointer;
+        }
 
 
     </style>
@@ -606,7 +644,16 @@
 
 </head>
 <body>
+
+<!-- Popup youtub video -->
+    <div id="videoPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <iframe id="videoIframe" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
    
+<!-- popup youtub video end -->
     
 
 

@@ -136,7 +136,7 @@
                             <div class="bac"></div>
                            
                             <img src="{{user.assignment1.assignment_banner.url}}" data-src="{{user.assignment1.assignment_banner.url}}" alt="" class=" img-fluid">
-                            <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+                            <i id="playVideoBtnL1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
 
 
                             <!-- Popup container -->
@@ -188,7 +188,7 @@
                                 <div class="bac"></div>
                                
                                 <img src="{{user.assignment2.assignment_banner.url}}" data-src="{{user.assignment2.assignment_banner.url}}" alt="" class=" img-fluid">
-                                <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+                                <i id="playVideoBtnL2" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
     
     
                                 <!-- Popup container -->
@@ -518,7 +518,7 @@
                         <div class="bac"></div>
                        
                         <img src="{{user.assignment3.assignment_banner.url}}" data-src="{{user.assignment3.assignment_banner.url}}" alt="" class=" img-fluid">
-                        <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+                        <i id="playVideoBtnL3" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
 
 
                         <!-- Popup container -->
@@ -732,7 +732,7 @@
                                 <div class="bac"></div>
                                
                                 <img src="{% static 'certificate.jpg' %}" data-src="{% static 'certificate.jpg' %}" alt="" class=" img-fluid">
-                                <i id="playbtn1" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
+                                <i id="playVideoBtnL4" class="fa-solid fa-play play wow animate__animated animate__backOutDown"></i> 
     
     
                                 <!-- Popup container -->
@@ -920,4 +920,76 @@
 
 
     {% include 'footer.html' %}
+
+
+
+
+    <script>
+
+        $(document).ready(function() {
+
+
+            var videoIdl1 = "{{user.assignment1.youtube_video_id}}";
+            var videoIdl2 = "{{user.assignment2.youtube_video_id}}";
+            var videoIdl3 = "{{user.assignment3.youtube_video_id}}";
+            var videoIdl4 = "gUQ-3R1Ua2Y?si=WiMyiP7lZNmeSLWF";
+
+            $("#playVideoBtnL1").click(function() {
+                var videoUrl = "https://www.youtube.com/embed/" + videoIdl1 + "?autoplay=1&mute=1";
+                $("#videoIframe").attr("src", videoUrl);
+                $("#videoPopup").show();
+            });
+
+
+            $("#playVideoBtnL2").click(function() {
+                var videoUrl = "https://www.youtube.com/embed/" + videoIdl2 + "?autoplay=1&mute=1";
+                $("#videoIframe").attr("src", videoUrl);
+                $("#videoPopup").show();
+            });
+
+            $("#playVideoBtnL3").click(function() {
+                var videoUrl = "https://www.youtube.com/embed/" + videoIdl3 + "?autoplay=1&mute=1";
+                $("#videoIframe").attr("src", videoUrl);
+                $("#videoPopup").show();
+            });
+
+            $("#playVideoBtnL4").click(function() {
+                var videoUrl = "https://www.youtube.com/embed/" + videoIdl4 + "?autoplay=1&mute=1";
+                $("#videoIframe").attr("src", videoUrl);
+                $("#videoPopup").show();
+            });
+
+
+
+
+            
+
+
+
+
+
+            $(".close-btn").click(function() {
+                $("#videoIframe").attr("src", "");
+                $("#videoPopup").hide();
+            });
+
+            $(window).click(function(event) {
+                if ($(event.target).is("#videoPopup")) {
+                    $("#videoIframe").attr("src", "");
+                    $("#videoPopup").hide();
+                }
+            });
+
+
+
+
+
+
+
+
+        });
+
+
+	</script>
+
 

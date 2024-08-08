@@ -765,8 +765,7 @@ def OTP(request):
 
     if request.user.otp:
         return redirect('dashboard')
-        
-        
+           
     else:
         try:
             print(request.session.get('otp'))
@@ -791,27 +790,8 @@ def OTP(request):
             else:
                 return render(request,"otp.html",{"message":f"Incorrect OTP !!"})
         
-        
         return render(request,"otp.html",{"message":mess})
-
-            
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
