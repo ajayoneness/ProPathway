@@ -2,6 +2,46 @@
 
 {% include 'header.html' %}
 
+<style>
+    #mentor-popup {
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .popup-content {
+       
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 600px;
+        width: 80%;
+        margin: auto;
+        position: relative;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    #popup-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+</style>
+
 <div class="stg-container">
     <!-- Section: Page Title -->
 
@@ -19,6 +59,23 @@
 
 
 
+    <div id="mentor-popup" style="display:none;">
+        <div class="bringer-block popup-content">
+            <span id="popup-close">&times;</span>
+            <h2 id="popup-name"></h2>
+            <p id="popup-bio"></p>
+            <p><strong>Expertise:</strong> <span id="popup-expertise"></span></p>
+            <p><strong>Experience:</strong> <span id="popup-experience"></span> years</p>
+            <p><strong>LinkedIn:</strong> <a id="popup-linkedin" href="#" target="_blank"></a></p>
+            <p><strong>Website:</strong> <a id="popup-website" href="#" target="_blank"></a></p>
+            <p><strong>One Hour Price:</strong> <span id="popup-one-hour-price"></span></p>
+            <p><strong>One Project Guide Price:</strong> <span id="popup-one-project-price"></span></p>
+            <p><strong>All 3 Projects Guide Price:</strong> <span id="popup-all-projects-price"></span></p>
+        </div>
+    </div>
+    
+
+
     
     <!-- Section: Grid -->
     <section>
@@ -26,39 +83,7 @@
         <div id="blog-cards-container" class="bringer-grid-3cols bringer-tp-grid-2cols bringer-tp-centered-last-item stg-normal-gap bringer-parallax-media is-init" data-stagger-appear="fade-up" data-threshold="0.5" data-stagger-delay="150" data-stagger-unload="fade-up">
 
 
-            {% for i in mentor %}
-            <div class="bringer-block bringer-portfolio-card in-view" data-delay="0" data-unload="fade-up" data-threshold="0.5">
-                <div class="bringer-portfolio-card-image">
-                    <img class="bringer-lazy" src="{{i.profile_picture.url}}" data-src="{{i.profile_picture.url}}" alt="" width="1200" height="1200">
-                </div>
-                <div class="bringer-portfolio-card-footer">
-                    <div class="bringer-portfolio-card-title">
-                        <span class="bringer-meta">{{i.expertise}}</span>
-                        <h6>{{i.name}}</h6>
-                        <p style="margin-top:5px;">{{i.bio}}</p>
-                        <a href="#">
-                            <span class="bringer-icon bringer-icon-explore"></span>
-                        </a>
-                        
-
-
-                        <ul class="bringer-socials-list" style="position:absolute; right : 20px; bottom : 20px;" data-stagger-appear="fade-up" data-stagger-delay="75">
-                           
-                            <li class="in-view" data-delay="0" data-unload="none" data-threshold="0.5">
-                                <a href="{{i.linkedin_profile}}" class="bringer-socials-linkedin">
-                                    <i></i>
-                                </a>
-                            </li>
-                           
-                        </ul>
-
-
-                    </div>
-                </div>
-                <!-- <a href="#"></a> -->
-            </div><!-- .bringer-portfolio-card -->
-            {% endfor %}
-
+           
 
 
 
@@ -74,8 +99,84 @@
 
 
 
-
-
 {% include 'footer.html' %}
 
-  
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+            url: '{% url "mentorlistapi" %}', 
+            method: 'GET',  
+            dataType: 'json',  
+            success: function(response) {
+                console.log(response);
+    
+                let mentorList = $('#blog-cards-container');
+                mentorList.empty(); 
+    
+                response.forEach(function(mentor) {
+                    
+                    mentorList.append(`
+                        <div class="bringer-block bringer-portfolio-card in-view" data-delay="0" data-unload="fade-up" data-threshold="0.5">
+                            <div class="bringer-portfolio-card-image">
+                                <img class="bringer-lazy" src="${mentor.profile_picture}" alt="" width="1200" height="1200">
+                            </div>
+                            <div class="bringer-portfolio-card-footer">
+                                <div class="bringer-portfolio-card-title">
+                                    <span class="bringer-meta">${mentor.expertise}</span>
+                                    <h6>${mentor.name}</h6>
+                                    <p style="margin-top:5px;">${mentor.bio}</p>
+                                    <a href="#" class="explore-mentor" data-mentor='${JSON.stringify(mentor)}'>
+                                        <span class="bringer-icon bringer-icon-explore"></span>
+                                    </a>
+                                    <ul class="bringer-socials-list" style="position:absolute; right : 20px; bottom : 20px;" data-stagger-appear="fade-up" data-stagger-delay="75">
+                                        <li class="in-view" data-delay="0" data-unload="none" data-threshold="0.5">
+                                            <a href="${mentor.linkedin_profile}" class="bringer-socials-linkedin">
+                                                <i></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+    
+                // Handle the click event on the "explore" icon
+                $('.explore-mentor').click(function(e) {
+                    e.preventDefault();
+                    let mentorData = $(this).data('mentor');
+    
+                    // Populate the popup with the mentor's data
+                    $('#popup-name').text(mentorData.name);
+                    $('#popup-bio').text(mentorData.bio);
+                    $('#popup-expertise').text(mentorData.expertise);
+                    $('#popup-experience').text(mentorData.experience);
+                    $('#popup-linkedin').attr('href', mentorData.linkedin_profile).text(mentorData.linkedin_profile);
+                    $('#popup-website').attr('href', mentorData.website).text(mentorData.website);
+                    $('#popup-one-hour-price').text(mentorData.one_hour_price || 'N/A');
+                    $('#popup-one-project-price').text(mentorData.one_Project_guide_price || 'N/A');
+                    $('#popup-all-projects-price').text(mentorData.all_3_Project_guide_price || 'N/A');
+    
+                    // Show the popup
+                    $('#mentor-popup').fadeIn();
+                });
+    
+                // Handle closing the popup
+                $('#popup-close').click(function() {
+                    $('#mentor-popup').fadeOut();
+                });
+    
+                // Close the popup if the user clicks outside of the popup content
+                $(window).click(function(event) {
+                    if (event.target.id === 'mentor-popup') {
+                        $('#mentor-popup').fadeOut();
+                    }
+                });
+            },
+            error: function(error) {
+                console.error("There was an error with the request:", error);
+            }
+        });
+    });
+    </script>
+    
