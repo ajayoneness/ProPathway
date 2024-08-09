@@ -11,7 +11,7 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.7);
         display: none;
         justify-content: center;
         align-items: center;
@@ -30,6 +30,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        background-color: rgb(31, 31, 31);
     }
     
     #popup-close {
@@ -64,13 +65,36 @@
             <span id="popup-close">&times;</span>
             <h2 id="popup-name"></h2>
             <p id="popup-bio"></p>
-            <p><strong>Expertise:</strong> <span id="popup-expertise"></span></p>
-            <p><strong>Experience:</strong> <span id="popup-experience"></span> years</p>
-            <p><strong>LinkedIn:</strong> <a id="popup-linkedin" href="#" target="_blank"></a></p>
-            <p><strong>Website:</strong> <a id="popup-website" href="#" target="_blank"></a></p>
-            <p><strong>One Hour Price:</strong> <span id="popup-one-hour-price"></span></p>
-            <p><strong>One Project Guide Price:</strong> <span id="popup-one-project-price"></span></p>
-            <p><strong>All 3 Projects Guide Price:</strong> <span id="popup-all-projects-price"></span></p>
+            <p><strong>Expertise:</strong><br> <span id="popup-expertise"></span></p>
+            <p><strong>Experience:</strong><br> <span id="popup-experience"></span> years</p>
+            <!-- <p><strong>LinkedIn:</strong> <a id="popup-linkedin" href="#" target="_blank"></a></p>
+            <p><strong>Website:</strong> <a id="popup-website" href="#" target="_blank"></a></p> -->
+
+            <div  class="bringer-grid-3cols bringer-tp-grid-2cols bringer-tp-centered-last-item stg-normal-gap bringer-parallax-media is-init" data-stagger-appear="fade-up" data-threshold="0.5" data-stagger-delay="150" data-stagger-unload="fade-up">
+
+                <div class="bringer-block bringer-portfolio-card in-view" data-delay="0" data-unload="fade-up" data-threshold="0.5">
+                    <p style="font-size: 14px;">One hour session price: <h3 id="popup-one-hour-price"></h3></p>
+                    <button style=" width:100%">Book Now</button>
+                </div>
+
+                <div class="bringer-block bringer-portfolio-card in-view" data-delay="0" data-unload="fade-up" data-threshold="0.5">
+                    <p style="font-size: 14px;">One Project Guide Price: <h3 id="popup-one-project-price"></h3></p>
+                    <button style="width:100%">Book Now</button>
+                </div>
+
+                <div class="bringer-block bringer-portfolio-card in-view" data-delay="0" data-unload="fade-up" data-threshold="0.5">
+                    <p style="font-size: 14px;">All 3 Projects Guide Price: <h3 id="popup-all-projects-price"></h3></p>
+                    <button style="width:100%">Book Now</button>
+                </div>
+
+
+            </div>
+
+            
+            
+   
+            
+          
         </div>
     </div>
     
@@ -81,11 +105,7 @@
     <section>
         <!-- Portfolio Grid -->
         <div id="blog-cards-container" class="bringer-grid-3cols bringer-tp-grid-2cols bringer-tp-centered-last-item stg-normal-gap bringer-parallax-media is-init" data-stagger-appear="fade-up" data-threshold="0.5" data-stagger-delay="150" data-stagger-unload="fade-up">
-
-
-           
-
-
+            
 
         </div>
         <!-- .bringer-grid -->
@@ -156,10 +176,11 @@
                     $('#popup-one-hour-price').text(mentorData.one_hour_price || 'N/A');
                     $('#popup-one-project-price').text(mentorData.one_Project_guide_price || 'N/A');
                     $('#popup-all-projects-price').text(mentorData.all_3_Project_guide_price || 'N/A');
-    
+
                     // Show the popup
                     $('#mentor-popup').fadeIn();
                 });
+
     
                 // Handle closing the popup
                 $('#popup-close').click(function() {

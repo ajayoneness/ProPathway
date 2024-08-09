@@ -608,7 +608,6 @@
             background-color: rgb(0,0,0);
             background-color: rgba(0,0,0,0.7);
             z-index: 9999;
-            border: 2px solid gray;
         }
 
         .popup-content {
@@ -622,8 +621,8 @@
 
         .close-btn {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: -15px;
+            right: 25px;
             color: #aaa;
             font-size: 28px;
             font-weight: bold;
@@ -705,10 +704,10 @@
         
                             <div class="profile-details">
                                 <a href="{% url 'profile' %}">
-                                    <h3 style="color: #545454;">{{user.name}}</h3>
+                                    <h3 style="color: #545454; ">{{user.name}}</h3>
                                     <p>{{user.domain}}<br> {{user.phone_no}} </p>
                                 </a>
-                                <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+                                <a class="btn btn-danger" href="{% url 'logout' %}"><button style="width: 100%;">Logout</button></a>
                             </div>
                         
                         {% endif %}

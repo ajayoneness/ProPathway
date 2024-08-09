@@ -1,8 +1,10 @@
 from django.db import models
+from accounts.models import Domain
 
 
 
 class Mentor(models.Model):
+    domain = models.ForeignKey(Domain, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)

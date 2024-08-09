@@ -1,18 +1,18 @@
 from django.shortcuts import render
 from .models import Mentor
 from django.http import JsonResponse
-
+from accounts.models import Domain
 
 
 def mentor(request):
-    # mentor = Mentor.objects.all()
-    # return render(request, 'mentor.html',{'mentor':mentor})
     return render(request, 'mentor.html')
 
 
 
 def mentor_list(request):
-    mentors = Mentor.objects.all()
+
+    mentors = mentors = Mentor.objects.filter(domain=Domain.objects.get(id=request.user.domain.id)).reverse()
+
     mentor_data = []
     
     for mentor in mentors:

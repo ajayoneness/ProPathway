@@ -1,186 +1,64 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Pay</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-     <style>
-
-        body{
-            background:url('{% static "background.jpg" %}');
-            height : 100vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:cover;
-        }
-
-
-        .headbanner{
-
-
-        }
-
-        .head{
-            position: absolute;
-            color :white;
-            text-align: center;
-            width: 100%;
-            top : 10px;
-        }
-
-        .levelone {
-            width: 100%;
-            height: 10px;
-            background-color: rgb(0, 247, 0);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-          }
-
-          .leveltwo {
-            width: 100%;
-            height: 10px;
-            background-color: rgb(0, 247, 0);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-          }
-
-          .levelthree {
-            width: 100%;
-            height: 10px;
-            background-color: rgb(0, 247, 0);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-          }
-
-
-          .levelfour {
-            width: 100%;
-            height: 10px;
-            background-color: rgb(0, 247, 0);
-            clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-            animation: revealAnimation 3s ease-out infinite;
-          }
-
-          .point{
-            width : 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: rgb(24, 110, 224);
-            position: relative;
-            left : 99%;
-            bottom:15px;
-            top : -20px;
-          }
-
-          @keyframes revealAnimation {
-            0% {
-                clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-            }
-            100% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-          }
-
-        .leveltwo{
-            width: 100%;
-            height: 10px;
-
-        }
-
-        .levelthree{
-            width: 100%;
-            height: 10px;
-
-        }
-
-        .levelfour{
-            width: 100%;
-            height: 10px;
-
-        }
-
-
-    </style>
-
-</head>
-<body>
+{% include 'header.html' %}
 
 
 
-    <section class="headbanner">
-        <div class="head">
-            <h1>Congratulations</h1>
-            <p>You are successfully complete internship!!</p>
+
+<div class="stg-container">
+    <!-- Section: Page Title -->
 
 
 
-        <div class="container">
-            <div class="level">
-                <div class="row">
-                    <div class="col-md-3 col-sm-3 col-lg-3" >
-                        <div class="levelone"></div>
-                        <div class="point" style="z-index:99;"></div>
-
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3" >
-                        <div class="leveltwo"></div>
-                        <div class="point" style="z-index:99;"></div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3" >
-                        <div class="levelthree"></div>
-                        <div class="point" style="z-index:99;"></div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3" >
-                        <div class="levelfour"></div>
-                    </div>
+    <section class="backlight-bottom" style="padding-top:140px; padding-bottom:60px;">
+        <div class="stg-row">
+            <div class="stg-col-6 stg-offset-3">
+                <div class="align-center">
+                    <h1 class="bringer-page-title in-view" data-unload="fade-up">Congratulations</h1>
+                    <p>You are successfully complete internship!!</p>
                 </div>
             </div>
-
         </div>
-    </div>
-    <img src="{{user.assignment3.assignment_banner1.url}}" class="img-fluid" height="110%">
-<!--    <img src="{% static 'banner.jpg' %}" class="img-fluid" height="110%">-->
     </section>
 
 
 
-<section>
-    <div class="container p-5">
-
-        <div class="row">
 
 
-            <div class="col-md-12 col-sm-12 col-lg-6 text-center mt-5">
-
-                <p>
-
-Congratulations! You have successfully completed all three levels and are now eligible to receive your certificate. Great job on your hard work and dedication!
-
-                </p>
 
 
-                <a href="{% url 'rezpay' %}" id="rzp-button1" class="btn btn-success">Download ⬇</a>
 
-            </div>
-
-
-            <div class="col-md-12 col-sm-12 col-lg-6">
-                <img
-                        src="https://i.pinimg.com/736x/dc/c6/bc/dcc6bc71679db32008dce45c8e25e664.jpg"
-                        class="img-fluid"
-                >
-
-            </div>
+<section class="backlight-bottom divider-top">
+    <div class="stg-row stg-large-gap stg-valign-middle stg-tp-column-reverse">
 
 
+
+        <div class="stg-col-6 in-view" data-unload="fade-left">
+            <p>Congratulations! You have successfully completed all three levels and are now eligible to receive your certificate. Great job on your hard work and dedication!</p>
+            <a href="#" id="rzp-button1" class="btn btn-success"><button>Download ⬇</button></a>
         </div>
 
 
-    </div>
 
 
+
+        <div class="stg-col-6 stg-tp-bottom-gap-l stg-m-bottom-gap in-view" data-unload="fade-right">
+            <div class="bringer-parallax-media is-init">
+                <div class="st-lazy-wrappe">
+
+                    <!-- <img src="{{user.assignment1.assignment_banner.url}}" data-src="{{user.assignment1.assignment_banner.url}}" alt="About Us" width="960" height="960" style="transform-origin: 50% 50%; transform: translateY(8.79297px) scale(1.1);"> -->
+
+                    <div class="" id="">
+                        <img src="{% static 'certificate.jpg' %}" data-src="{% static 'certificate.jpg' %}" alt="" class=" img-fluid">    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- .stg-row -->
 </section>
 
 
+</div>
 
 
 
@@ -191,20 +69,12 @@ Congratulations! You have successfully completed all three levels and are now el
 
 
 
+{% include 'footer.html' %}
 
 
 
 
 
-
-
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
     var options = {
@@ -259,6 +129,3 @@ Congratulations! You have successfully completed all three levels and are now el
     </script>
 
 
-
-</body>
-</html>
